@@ -2,7 +2,7 @@
 
   <main class="lg:flex">
     <!-- sidebar -->
-
+  <?php include APPPATH.'/views/includes/sidebar.php'?>
     <!-- content -->
     <div class="main-content flex-grow min-h-[100%] py-20 relative px-4 lg:pr-8 lg:pl-3">
       <!-- heading -->
