@@ -4,6 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('UserModel');
+    }
+
     public function login() 
     {
         $userdata = [
@@ -98,9 +104,10 @@ class Auth extends CI_Controller
             //encrypt password
             $options = ['cost' => 12];
             $hashedPassword = password_hash($userdata['password'], PASSWORD_BCRYPT, $options);
-            ['password' => $hashedPassword, ...$otherUserData] = $userdata; 
+            $userdata['password'] = $hashedPassword;
 
-            //now serve user to db 
+            $this->UserModel->create_user($userdata);
+            echo "User created";
         
         }
 

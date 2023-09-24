@@ -6,12 +6,17 @@ class User extends CI_Controller
 {
     public function index()
     {
-        $this->load->view('users');
+        $this->load->view('users/all_users');
     }
 
     public function show($id)
     {
         $this->load->view('user_detail');
+    }
+
+    public function create_index()
+    {
+        $this->load->view('users/add_user');
     }
 
     public function update()
