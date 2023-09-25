@@ -296,7 +296,7 @@
               <div class="flex-shrink max-w-full px-4 w-full sm:w-1/2">
                 <div class="my-6" id="coupon">
                   <div class="relative flex flex-row gap-4 items-center w-full mb-6">
-                    <input type="text" aria-label="inputtext" name="inputtext" id="inputtext" class="grow h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder="Coupon code" value="">
+                    <input type="text" aria-label="inputtext" name="inputtext" id="inputtext" class="grow h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder="Discount code" value="">
                     <button class="btn-tonal relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] text-sm tracking-[.00714em] font-medium hover:shadow bg-secondary-100 text-primary-900 dark:bg-secondary-700 dark:text-secondary-100">
                       Apply
                     </button>
@@ -359,9 +359,6 @@
                   <td class="p-4 font-normal">
                     <a href="#">
                       <div class="flex flex-wrap flex-row items-center">
-                        <div class="self-center hidden sm:inline-block sm:mr-3">
-                          <img class="h-8 w-8" src="<?php echo base_url('assets/img/products/product.png')?>" alt="product title">
-                        </div>
                         <div class="leading-5 dark:text-gray-300 flex-1 mb-1">  
                           Azam cora
                         </div>
@@ -369,8 +366,14 @@
                     </a>
                   </td>
                   <td class="p-4 font-normal text-center ">Azam</td>
-                  <td class="p-4 font-normal text-center ">80,000/=</td>
-                  <td class="p-4 font-normal text-center ">10,000/=</td>
+                  <td class="p-4 font-normal grid grid-cols-2 gap-2 ">
+                    <span>80,000/=</span>
+                    <span class="bg-red-100 text-red-800 text-xs font-medium px-3 py-1 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">699</span>
+                  </td>
+                  <td class="p-4 font-normal grid grid-cols-2 gap-2 ">
+                    <span>10,000/=</span>
+                    <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">1,600</span>
+                  </td>
                   <td class="p-4 font-normal text-center">
                     <div class="flex flex-row" style="max-width: 200px;">
                       <div class="relative z-0">
@@ -380,12 +383,12 @@
                   </td>
                   <td class="p-4 font-normal text-center">
                     <a href="" class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
-                       Items
+                       Retail
                     </a>
                   </td>
                   <td class="p-4 font-normal text-center">
                     <a href="" class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
-                        Package
+                        Whole
                     </a>
                   </td>
                 </tr>

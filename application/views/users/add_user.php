@@ -328,7 +328,7 @@
                       <div class="relative z-0">
                         <select id="branch" name="branch_id" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200">
                           <option>Select</option>
-                          <option selected="" value="1">Uyole Branch</option>
+                          <option value="1">Uyole Branch</option>
                           <option value="2">Mbalizi Branch</option>
                         </select>
                       </div>
@@ -344,7 +344,7 @@
                   
                       <div class="relative z-0 w-full">
                         <label class="flex items-center gap-3">
-                          <input type="checkbox" name="store_id" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
+                          <input type="checkbox" name="store_id" value="1" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
                           <span>Is a store member</span>
                         </label>
                       </div>
@@ -359,13 +359,13 @@
                       <!-- input text -->
                       <div class="relative z-0 w-full">
                         <label class="flex items-center gap-3">
-                          <input type="checkbox" name="is_supper" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
+                          <input type="checkbox" name="is_superuser" value="1" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
                           <span>Is a super user?</span>
                         </label>
                       </div>
                       <div class="relative z-0 w-full">
                         <label class="flex items-center gap-3">
-                          <input type="checkbox" name="is_staff" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
+                          <input type="checkbox" name="is_staff" value="1" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
                           <span>Can login to this system</span>
                         </label>
                       </div>

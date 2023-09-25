@@ -43,7 +43,6 @@ class Auth extends CI_Controller
             'is_staff' => $this->input->post('is_staff'),
             'is_active' => $this->input->post('is_active'),
             'password' => $this->input->post('password'),
-            'confipass' => $this->input->post('confipass'),
         ];
 
         //data validation
@@ -99,7 +98,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules($config);
 
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('users/register');
+            return redirect('user/create_index');
         } else {
             //encrypt password
             $options = ['cost' => 12];
