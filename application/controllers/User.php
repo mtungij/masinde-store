@@ -28,4 +28,9 @@ class User extends CI_Controller
     {
         //delete user
     }
+
+    public function profile($id)
+    {
+        $this->load->view('users/edit');
+    }
 }

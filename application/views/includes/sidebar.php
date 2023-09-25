@@ -70,7 +70,7 @@
             <li class="relative">
               <a href="javascript:void(0)" data-type="collapse" data-target="#dashboard3" class="active flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
                 <span class="material-symbols-outlined">shopping_cart</span>
-                <span class="compact-title">Ecommerce</span>
+                <span class="compact-title">Products</span>
               </a>
               <ul id="dashboard3" data-type="collapsed" class="active sidebar-submenu [&.active]:block hidden">
                 <li><a href="ecommerce-dashboard.html" class="active flex items-center py-3 pl-12 pr-6 mb-1 leading-none gap-2.5 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-primary-600/[0.08] dark:[&.active]:bg-primary-200/10 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
