@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2023 at 12:29 AM
+-- Generation Time: Sep 25, 2023 at 02:24 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -85,7 +85,8 @@ CREATE TABLE `loan` (
   `full_name` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `total_loan` int(11) DEFAULT NULL,
-  `phone_number` int(11) DEFAULT NULL
+  `phone_number` int(11) DEFAULT NULL,
+  `user_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -156,7 +157,6 @@ CREATE TABLE `product` (
   `whole_sale_price` int(11) DEFAULT NULL,
   `retail_sale_price` int(11) DEFAULT NULL,
   `extra_items` int(11) DEFAULT NULL,
-  `extra_buy_price` int(11) DEFAULT NULL,
   `stock_limit_unit` varchar(50) DEFAULT NULL,
   `stock_limit` int(11) DEFAULT NULL,
   `expire_date` int(11) DEFAULT NULL,
@@ -235,7 +235,8 @@ ALTER TABLE `expenses`
 -- Indexes for table `loan`
 --
 ALTER TABLE `loan`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `loan_provider` (`user_id`);
 
 --
 -- Indexes for table `loanitem`
@@ -385,6 +386,12 @@ ALTER TABLE `cart_item`
 ALTER TABLE `expenses`
   ADD CONSTRAINT `branchExpenses` FOREIGN KEY (`branch_id`) REFERENCES `branch` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION,
   ADD CONSTRAINT `storeExpenses` FOREIGN KEY (`store_id`) REFERENCES `store` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `loan`
+--
+ALTER TABLE `loan`
+  ADD CONSTRAINT `loan_provider` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `loanitem`
