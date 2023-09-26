@@ -5,11 +5,11 @@
       <!-- menu -->
       <div id="sidebar-content" class="sidebar-content transition-all duration-300 ease-in-out fixed z-40 max-lg:-translate-x-full max-lg:bg-surface-500 dark:max-lg:bg-surfacedark-500 left-0 top-0 bottom-0 h-screen w-72 overflow-auto scrollbars">
         <!-- logo -->
-        <a href="../analytics/analytics-dashboard.html" class="sidebar-logo pt-4 pb-2 pl-6 flex items-center w-full">
+        <a href="<?= site_url('welcome/dashboard') ?>" class="sidebar-logo pt-4 pb-2 pl-6 flex items-center w-full">
           <div class="w-9 h-9 rounded-full border-2 border-primary-600 flex items-center justify-center text-primary-800 font-bold text-lg">
             <span class="flex items-center justify-center w-6 h-6 rounded-full bg-primary-200">G</span>
           </div>
-          <h4 class="text-2xl font-medium tracking-wide text-gray-900 dark:text-gray-100 compact-hide ml-2">Goodash</h4>
+          <h4 class="text-2xl font-medium tracking-wide text-gray-900 dark:text-gray-100 compact-hide ml-2">Masinde Store</h4>
         </a>
 
         <!-- Standart drawer -->

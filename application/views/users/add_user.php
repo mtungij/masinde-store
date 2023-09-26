@@ -221,7 +221,7 @@
             </a>
           </li>
           <li class="relative">
-            <a href="../docs/support.html" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
+            <a href="../docs/s`u`pport.html" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
             <span class="material-symbols-outlined">help_center</span>
               Help
             </a>
@@ -254,29 +254,34 @@
           <div class="tabs flex flex-col w-full">
             <!-- tabs header -->
             <div class="relative flex flex-row items-center">
-              
-              <!-- indicator -->
+              <?php if (validation_errors()):?>
+               <div class="flex items-center gap-2 relative bg-red-50 text-red-700 p-4 rounded">
+                  <i class="material-symbols-outlined">info</i>
+                  <div>
+                      <?php echo validation_errors(); ?>
+                  </div>
+              </div>
+              <?php elseif($this->session->flashdata('register_success')): ?>
+                  <div class="flex items-center gap-2 relative bg-green-50 text-green-700 p-4 rounded">
+                    <i class="material-symbols-outlined">info</i>
+                    <p><?= $this->session->flashdata('register_success');
+                     ?></p>
+                  </div>
+              <?php endif?>
             </div>
+              
             <!-- tabs content -->
             <div class="flex flex-col">
               <?php echo form_open('Auth/register', ['id' => 'tab-4', 'role' => 'tabpanel', 'class' => 'active [&.active]:block hidden py-4 transition duration-400 ease-in-out'])?>
-                <div class="flex flex-col gap-8">
-                  <!-- row -->
-                  <div class="flex flex-col sm:flex-row gap-4 text-body-lg">
-                    <div class="relative w-full md:max-w-[240px]">
-                      <h3 class="text-title-md">Full Name</h3>
-                    </div>
-                    <div class="flex flex-col flex-start gap-4 w-full">
-                      <!-- input text -->
-                      <div class="relative z-0">
-                        <input type="text" aria-label="first_name" name="first_name" id="title-product" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
-
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 
+                     <div class="relative z-0">
+                        <input type="text" aria-label="first_name" name="first_name" value="<?= set_value('first_name'); ?>" id="title-product" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
                         <label for="first_name" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">First Name</label>
                       </div>
 
                       <div class="relative z-0">
-                        <input type="text" aria-label="last_name" name="last_name" id="title-product" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
-
+                        <input type="text" aria-label="last_name" name="last_name" value="<?= set_value('last_name'); ?>" id="title-product" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
                         <label for="last_name" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Last Name</label>
                       </div>
 
@@ -285,62 +290,35 @@
                         <!-- text editor -->
                         <!-- <textarea class="texteditor w-full leading-5 relative pt-6 px-4 rounded-t text-gray-800 bg-gray-100 dark:bg-gray-700 border-b focus:border-b-2 border-gray-500 dark:border-gray-400 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:focus:border-primary-200" placeholder="Product description" id="texteditor" rows="3"></textarea> -->
                       <!-- </div> -->
-                    </div>
-                  </div>
+      
 
                   <!-- row -->
-                  <div class="flex flex-col sm:flex-row gap-4 text-body-lg">
-                    <div class="relative w-full md:max-w-[240px]">
-                      <h3 class="text-title-md">Username</h3>
-                    </div>
-                    <div class="flex flex-col flex-start gap-4 w-full">
                       <!-- input text -->
                       <div class="relative z-0">
-                        <input type="text" aria-label="username" name="username" id="username" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
-
+                        <input type="text" aria-label="username" name="username" value="<?= set_value('username'); ?>" id="username" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
                         <label for="username" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Username</label>
                       </div>
-                    </div>
-                  </div>
+              
 
                   <!-- row -->
-                  <div class="flex flex-col sm:flex-row gap-4 text-body-lg">
-                    <div class="relative w-full md:max-w-[240px]">
-                      <h3 class="text-title-md">Email</h3>
-                    </div>
-                    <div class="flex flex-col flex-start gap-4 w-full">
-                      <!-- input text -->
+            
                       <div class="relative z-0">
-                        <input type="email" aria-label="email" name="email" id="email" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
-
+                        <input type="email" aria-label="email" name="email" value="<?= set_value('email'); ?>" id="email" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
                         <label for="email" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Email</label>
                       </div>
-                    </div>
-                  </div>
+                   
                   
                   <!-- row -->
-                  <div class="flex flex-col sm:flex-row gap-4 text-body-lg">
-                    <div class="relative w-full md:max-w-[240px]">
-                      <h3 class="text-title-md">Branch</h3>
-                    </div>
-                    <div class="flex flex-col flex-start gap-4 w-full">
                       <!-- select outline -->
                       <div class="relative z-0">
-                        <select id="branch" name="branch_id" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200">
+                        <select id="branch" name="branch_id" value="<?= set_value('branch_id'); ?>" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200">
                           <option>Select</option>
                           <option value="1">Uyole Branch</option>
                           <option value="2">Mbalizi Branch</option>
                         </select>
                       </div>
-                    </div>
-                  </div>
 
                   <!-- row -->
-                  <div class="flex flex-col sm:flex-row gap-4 text-body-lg">
-                    <div class="relative w-full md:max-w-[240px]">
-                      <h3 class="text-title-md">Store</h3>
-                    </div>
-                    <div class="flex flex-col md:flex-row flex-start gap-4 w-full">
                   
                       <div class="relative z-0 w-full">
                         <label class="flex items-center gap-3">
@@ -348,14 +326,7 @@
                           <span>Is a store member</span>
                         </label>
                       </div>
-                    </div>
-                  </div>
-                  <!-- row -->
-                  <div class="flex flex-col sm:flex-row gap-4 text-body-lg">
-                    <div class="relative w-full md:max-w-[240px]">
-                      <h3 class="text-title-md">Staff Permission</h3>
-                    </div>
-                    <div class="flex flex-col flex-start gap-4 w-full">
+
                       <!-- input text -->
                       <div class="relative z-0 w-full">
                         <label class="flex items-center gap-3">
@@ -363,36 +334,28 @@
                           <span>Is a super user?</span>
                         </label>
                       </div>
+
+
                       <div class="relative z-0 w-full">
                         <label class="flex items-center gap-3">
                           <input type="checkbox" name="is_staff" value="1" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
                           <span>Can login to this system</span>
                         </label>
                       </div>
-                      
-                    </div>
-                  </div>
 
-                  <!-- row -->
-                  <div class="flex flex-col sm:flex-row gap-4 text-body-lg">
-                    <div class="relative w-full md:max-w-[240px]">
-                      <h3 class="text-title-md">Password</h3>
-                    </div>
-                    <div class="flex flex-col md:flex-row flex-start gap-4 w-full">
                       <!-- input date -->
                       <div class="relative z-0 w-full">
                         <input type="password" aria-label="password" name="password" id="password" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" value="">
-
                         <label for="password" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Password</label>
                       </div>
+
+
                       <!-- input time -->
                       <div class="relative z-0 w-full">
                         <input type="password" aria-label="confipass" name="confipass" id="confipass" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" value="">
-
                         <label for="confipass" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Confirm Password</label>
                       </div>
-                    </div>
-                  </div>
+
                 </div>
 
                 <div class="relative pt-4 flex justify-end">

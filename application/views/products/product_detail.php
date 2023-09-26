@@ -242,7 +242,7 @@
     <div class="main-content flex-grow min-h-[100%] py-20 relative px-4 lg:pr-8 lg:pl-3">
       <!-- heading -->
       <div class="flex flex-row justify-between items-center pt-2 pb-6">
-        <h2 class="text-title-lg">Product Name</h2>
+        <h2 class="text-title-lg">-- <?= $product->name ?></h2>
 
         <div class="flex flex-row gap-3 items-center pr-4">
           <button data-type="dialogs" data-target="#dialog_detail" class="btn relative inline-flex flex-row items-center justify-center gap-x-1 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
@@ -280,28 +280,27 @@
             <div class="px-6 py-8 flex flex-col rounded-xl bg-white dark:bg-gray-900">
               <h4 class="text-title-md text-gray-700 dark:text-gray-200 mb-2">Product Info</h4>
               <div class="text-gray-500">
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Name:</span> Pepsi Big</p>
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Brand:</span> Pepsi</p>
+                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Name: </span><?= $product->name ?> </p>
+                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Brand:</span> <?= $product->brand ? $product->brand: '--//--' ?></p>
               </div>
             </div>
 
             <div class="px-6 py-8 flex flex-col rounded-xl bg-white dark:bg-gray-900">
               <h4 class="text-title-md text-gray-700 dark:text-gray-200 mb-2">Product amounts</h4>
               <div class="text-gray-500">
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Packages:</span> 78</p>
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Items Quantity/pkg:</span> 100</p>
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Total Items:</span> 560</p>
+                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Containers:</span> <?= $product->pkj_amount ?></p>
+                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Retail Amount:</span> <?= $product->quantity + $product->extra_items ?? 0 ?></p>
               </div>
             </div>
 
             <div class="px-6 py-8 flex flex-col rounded-xl bg-white dark:bg-gray-900">
               <h4 class="text-title-md text-gray-700 dark:text-gray-200 mb-2">Pricing</h4>
               <div class="text-gray-500">
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Total Buy Price:</span> 2,000,000/=</p>
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Whole sale Price: </span> 12,000</p>
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Retail Sale Price: </span> 2,000</p>
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Total Retail Sale:</span> 2,500,000</p>
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Total Whole Sale: </span> 2,800,000</p>
+                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Total Buy Price:</span> <?= $product->pkgs_buy_price ?></p>
+                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Whole sale Price: </span> <?= number_format($product->whole_sale_price).'/=' ?></p>
+                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Retail Sale Price: </span> <?= number_format($product->retail_sale_price).'/=' ?></p>
+                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Total Retail Sale:</span> <?= number_format($product->retail_sale_price * ($product->quantity + $product->extra_items ?? 0 )).'/=' ?></p>
+                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Total Whole Sale: </span> <?= number_format($product->whole_sale_price * $product->pkj_amount).'/=' ?></p>
               </div>
             </div>
 
@@ -310,14 +309,22 @@
               <div class="text-gray-500">
                 <p class="mb-1">
                     <span class="font-semibold text-gray-700 dark:text-gray-200">Stock Limit:</span>
-                    <span>78</span>
+                    <span><?= $product->stock_limit ?></span>
+                    <?php if($product->stock_limit >= $product->pkj_amount):?>
                     <span class="inline-block leading-tight text-center text-label-md py-1 px-3 text-red-800 dark:text-red-800 bg-red-100 dark:bg-red-100 rounded-full">out of stock</span>
+                    <?php  else: ?>
+                    <span class="inline-block leading-tight text-center text-label-md py-1 px-3 text-green-800 dark:text-green-800 bg-green-100 dark:bg-green-100 rounded-full">InStock</span>
+                    <?php endif?>
                 </p>
 
                 <p class="mb-1">
                     <span class="font-semibold text-gray-700 dark:text-gray-200">Expire Date:</span>
-                    <span>01/10/2023</span>
-                    <div class="inline-block leading-tight text-center text-label-md py-1 px-3 text-gray-800 dark:text-gray-100 bg-green-100 dark:bg-green-900 rounded-full">Alive</div>
+                    <span><?php echo date('Y/m/d', $product->expire_date) ?></span>
+                    <?php if(strtotime($product->expire_date) <= strtotime(date('Y-m-d'))): ?>
+                        <div class="inline-block leading-tight text-center text-label-md py-1 px-3 text-white dark:text-gray-100 bg-red-400 dark:bg-red-900 rounded-full">Expired</div>
+                      <?php else:?>
+                        <div class="inline-block leading-tight text-center text-label-md py-1 px-3 text-gray-800 dark:text-gray-100 bg-green-100 dark:bg-green-900 rounded-full">Alive</div>
+                    <?php endif ?>
                 </p>
                 
               </div>

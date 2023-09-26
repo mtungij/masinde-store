@@ -30,6 +30,10 @@ class Auth extends CI_Controller
         
     }
 
+    public function register_index() {
+        $this->load->view('users/add_user');
+    }
+
     public function register()
     {
         $userdata = [
@@ -98,7 +102,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules($config);
 
         if ($this->form_validation->run() == FALSE) {
-            return redirect('user/create_index');
+            $this->load->view('users/add_user');
         } else {
             //encrypt password
             $options = ['cost' => 12];
@@ -106,8 +110,9 @@ class Auth extends CI_Controller
             $userdata['password'] = $hashedPassword;
 
             $this->UserModel->create_user($userdata);
-            echo "User created";
-        
+            
+             $this->session->set_flashdata('register_success', "<b>{$userdata['username']}</b> is registered successfully!");
+           redirect('user/create_index');
         }
 
     }

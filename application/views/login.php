@@ -106,11 +106,11 @@
         <div class="flex items-center justify-center w-full h-full">
           <!-- logo -->
           <div class="relative">
-            <a href="../analytics/analytics-dashboard.html" class="sidebar-logo py-6 flex items-center w-full">
+            <a href="<?= site_url('') ?>" class="sidebar-logo py-6 flex items-center w-full">
               <div class="w-9 h-9 rounded-full border-2 border-white flex items-center justify-center text-primary-800 font-bold text-lg">
                 <span class="flex items-center justify-center w-6 h-6 rounded-full bg-primary-200">G</span>
               </div>
-              <h4 class="text-2xl md:text-4xl font-medium tracking-wide text-white ml-2 md:ml-4">Masindo Store</h4>
+              <h4 class="text-2xl md:text-4xl font-medium tracking-wide text-white ml-2 md:ml-4">Masinde Store</h4>
             </a>
           </div>
         </div>

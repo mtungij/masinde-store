@@ -10,7 +10,8 @@ class UserModel extends CI_Model
 
     public function get_user($id)
     {
-        //query user
+       $users =  $this->db->get('User');
+       return $users;
     }
 
     public function create_user($data)
