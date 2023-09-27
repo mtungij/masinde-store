@@ -124,7 +124,7 @@
                       <div class="relative z-0 w-full">
                         <label class="flex items-center gap-3">
                           <input type="checkbox" name="is_superuser" value="1" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
-                          <span>Is a super user?</span>
+                          <span>Make this user Admin</span>
                         </label>
                       </div>
 
