@@ -24,7 +24,7 @@ class Auth extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('login');
         } else {
-            $user = $this->UserModel->get_user($userdata);
+            $user = $this->UserModel->get_login_user($userdata);
             if(!$user) {
                 $this->session->set_flashdata('incorrectUser', 'This user does not exist.');
                 return redirect('');

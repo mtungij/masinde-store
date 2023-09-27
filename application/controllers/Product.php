@@ -46,7 +46,8 @@ class Product extends CI_Controller
 
         $q = $this->ProductModel->create_product($productdata);
         if($q) {
-            $this->session->set_flashdata('create_product', 'Product is created successfully!');
+            $products_url = site_url('product');
+            $this->session->set_flashdata('create_product', "Product is created successfully! view it <a href='$products_url' style='color: orange; text-decoration: underline;'>Here</a>");
             return redirect('product/create_index');
         } else {
             $this->session->set_flashdata('create_product_failure',"<b>Failed!<b>, We could not save this product due to unexpected error.");
