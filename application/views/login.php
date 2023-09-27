@@ -45,19 +45,29 @@
             <h2 class="text-headline-md text-gray-900 dark:text-gray-100 mb-1">Welcome Back!</h2>
             <p class="text-body-lg mb-6">Enter your detail to continue working</p>
           </div>
+          <?php if($this->session->flashdata('incorrectUser')):?>
+              <div class="flex items-center gap-2 relative bg-red-50 text-red-700 p-4 rounded">
+                <i class="material-symbols-outlined">info</i>
+                <p><?= $this->session->flashdata('incorrectUser') ?></p>
+              </div>
+          <?php elseif($this->session->flashdata('incorrectPassword')):?>
+              <div class="flex items-center gap-2 relative bg-red-50 text-red-700 p-4 rounded">
+                <i class="material-symbols-outlined">info</i>
+                <p><?= $this->session->flashdata('incorrectPassword') ?></p>
+              </div>
+          <?php endif?>
 
-
-          <form action="#" class="relative flex flex-col gap-6">
+          <?php echo form_open('auth/login', ['class' => 'relative flex flex-col gap-6'])?>
             <!-- input email -->
             <div class="relative z-0">
-              <input type="email" aria-label="inputemail" name="inputemail" id="inputemail" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
+              <input type="text" aria-label="username" name="username" id="username" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
 
-              <label for="inputemail" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Email</label>
+              <label for="username" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Username</label>
             </div>
 
             <!-- input password outlined -->
             <div class="relative z-0 [&.show_.off]:!block [&.show_.on]:!hidden">
-              <input type="password" aria-label="inputpass" name="inputpass" id="inputpass" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
+              <input type="password" aria-label="inputpass" name="password" id="inputpass" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
 
               <label for="inputpass" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-2.5 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Password</label>
 
@@ -82,23 +92,13 @@
             }
             </script>
             
-            <div class="flex flex-row items-center justify-between">
-              <!-- checked -->
-              <label class="flex items-center gap-3">
-                <input type="checkbox" name="checked-demo" class="w-[18px] h-[18px] accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 rounded-[2px]">
-                <span>Remember me</span>
-              </label>
-
-              <a href="forgot-password.html" class="underline hover:text-primary-600 dark:hover:text-primary-200">Forgot password</a>
-            </div>
-
             <button type="submit" class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
               <span class="material-symbols-outlined">arrow_forward</span>
               Login
             </button>
             
             <p class="text-body-lg">Don't have an account? <a href="#" class="hover:text-primary-600 dark:hover:text-primary-200">Contact your admin to get one</a></p>
-          </form>
+          <?php echo form_close() ?>
         </div>
       </div>
 

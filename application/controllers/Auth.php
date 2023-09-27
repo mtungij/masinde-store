@@ -14,8 +14,8 @@ class Auth extends CI_Controller
     {
         $userdata = [
             'username' => $this->input->post('username'),
-            'password' => $this->input->post('password'),
         ];
+        $password = $this->input->post('password');
 
         $this->form_validation->set_rules('username', 'Username', 'trim|htmlspecialchars|stripslashes');
         $this->form_validation->set_rules('password', 'Password', 'trim|htmlspecialchars|stripslashes');
@@ -24,7 +24,33 @@ class Auth extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('login');
         } else {
-            //check  user
+            $user = $this->UserModel->get_user($userdata);
+            if(!$user) {
+                $this->session->set_flashdata('incorrectUser', 'This user does not exist.');
+                return redirect('');
+            } else {
+                $decryptedPassword = password_verify($password,$user->password);
+                if(!$decryptedPassword) {
+                    $this->session->set_flashdata('incorrectPassword', 'This password is icorrect!');
+                    return redirect('');
+                } else {
+                    $userInfo = [
+                        'userId' =>$user->id,
+                        'firstName' => $user->first_name,
+                        'lastName' => $user->last_name,
+                        'username' => $user->username,
+                        'storeId' => $user->store_id,
+                        'branchId' => $user->branch_id,
+                        'isSuperuser' => $user->is_superuser,
+                        'isStaff' => $user->is_staff,
+                    ];
+                    
+                    $this->session->set_userdata( $userInfo );
+
+                    redirect('welcome/dashboard');
+                    
+                }
+            }
         }
         
         
@@ -119,6 +145,7 @@ class Auth extends CI_Controller
 
     public function logout()
     {
-        //logout
+        $this->session->unset_userdata('userId');
+        redirect('');
     }
 }

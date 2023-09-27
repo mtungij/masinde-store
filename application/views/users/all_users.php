@@ -1,4 +1,31 @@
-<?php include APPPATH.'/views/includes/header.php'?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title  -->
+  <title>Masinde Store</title>
+
+  <!-- Style Css -->
+  <link rel="stylesheet" id="stylesheet" href="<?php echo base_url('assets/css/style.css')?>">
+  <link rel="stylesheet" id="color" href="<?php echo base_url('assets/css/colors.css')?>">
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+  <!-- Icons  -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+
+  <!-- Favicon  -->
+  <link rel="icon" href="<?php echo base_url('assets/img/favicon.png')?>">
+</head>
+
+<body id="body-layout" class="text-body-md relative font-sans font-normal text-gray-700 dark:text-gray-300 bg-surface-500 dark:bg-surfacedark-500 show">
+
+  <?php include APPPATH.'/views/includes/header.php'?>
 
   <main class="lg:flex">
     <!-- sidebar -->
@@ -44,28 +71,30 @@
                 </tr>
               </thead>
               <tbody>
+                <?php $rowId = 1 ?>
+                <?php foreach($users as $user):?>
                 <tr class="[&.selected]:!bg-primary-100 dark:[&.selected]:!bg-primary-700">
                   <td class="!px-0">
-                    01
+                    <?= $user->id < 10 ? '0'.$rowId++ : $rowId ?>
                   </td>
                   <td>
                     <div class="flex items-center gap-3">
                       <div class="flex flex-col">
-                        <h4 class="font-semibold">Alkado Heneliko</h4>
-                        <span class="body-sm text-gray-500">Super User</span>
+                        <h4 class="font-semibold"><?= $user->first_name." ".$user->last_name ?></h4>
+                        <span class="body-sm text-gray-500"><?= $user->is_superuser ? "Admin": "Staff" ?></span>
                       </div>
                     </div>
                   </td>
                   <td>
-                    AlkadoHs
+                    <?= $user->username ?>
                   </td>
-                  <td><a href="mailto:acme@example.com" target="_blank">acme@example.com</a></td>
-                  <td>MBALIZI BRANCH</td>
+                  <td><a href="mailto:acme@example.com" target="_blank"><?= $user->email ?></a></td>
+                  <td>MBALIZI SHOP</td>
                   <td>
-                    <a href="<?= site_url('user/profile/1')?>" class="hover:text-primary-600 dark:hover:text-primary-200">view</a>
+                    <a href="<?= site_url('user/profile/'.$user->id)?>" class="hover:text-primary-600 dark:hover:text-primary-200">view</a>
                   </td>
                 </tr>
-                
+                <?php endforeach?>
               </tbody>
             </table>
           </div>

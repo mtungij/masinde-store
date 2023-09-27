@@ -3,15 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class UserModel extends CI_Model
 {
-    public function get_users()
+    public function get_users(): array
     {
-        //users
+        $users = $this->db->order_by('created_at', 'desc')->get('User')->result();
+        return $users;
     }
 
     public function get_user($id)
     {
-       $users =  $this->db->get('User');
-       return $users;
+       return $this->db->get_where('User', ['id' => $id])->row();
     }
 
     public function create_user($data)

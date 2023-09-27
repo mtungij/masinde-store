@@ -10,6 +10,7 @@ class Welcome extends CI_Controller {
 	}
 
 	public function dashboard() {
-		$this->load->view('dashboard');
+		if($this->session->userdata('userId')) { $this->load->view('dashboard'); }
+		else redirect('');
 	}
 }

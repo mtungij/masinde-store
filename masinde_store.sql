@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2023 at 02:24 PM
+-- Generation Time: Sep 27, 2023 at 07:59 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -33,6 +33,14 @@ CREATE TABLE `branch` (
   `mnj_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `branch`
+--
+
+INSERT INTO `branch` (`id`, `name`, `mnj_id`, `created_at`) VALUES
+(1, 'UYOLE BRANCH', 1, '2023-09-26 09:33:17'),
+(2, 'MBALIZI SHOP', 1, '2023-09-26 09:33:49');
 
 -- --------------------------------------------------------
 
@@ -147,8 +155,8 @@ CREATE TABLE `order_item` (
 
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
-  `branch_id` int(11) NOT NULL,
-  `store_id` int(11) NOT NULL,
+  `branch_id` int(11) DEFAULT NULL,
+  `store_id` int(11) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `brand` varchar(255) NOT NULL,
   `pkj_amount` int(11) NOT NULL,
@@ -164,6 +172,25 @@ CREATE TABLE `product` (
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`id`, `branch_id`, `store_id`, `name`, `brand`, `pkj_amount`, `quantity`, `pkgs_buy_price`, `whole_sale_price`, `retail_sale_price`, `extra_items`, `stock_limit_unit`, `stock_limit`, `expire_date`, `created_at`, `updated_at`) VALUES
+(2, 2, NULL, 'Linus Howe', '', 36, 187, 760, 343, 25, 50, 'itm', 77, 1979, '2023-09-26 09:35:03', NULL),
+(4, 1, 1, 'Leigh Middleton', '', 95, 765, 823, 267, 50, 56, 'pkg', 22, 1978, '2023-09-26 09:38:13', NULL),
+(5, 2, 1, 'Elizabeth Lucas', '', 99, 472, 796, 217, 989, 71, 'itm', 29, 2007, '2023-09-26 09:39:38', NULL),
+(6, 2, 1, 'Elizabeth Lucas', '', 99, 472, 796, 217, 989, 71, 'itm', 29, 2007, '2023-09-26 09:40:16', NULL),
+(7, 1, NULL, 'Hayden Montgomery', 'Enim elit dolorum v', 15, 540, 629, 798, 432, 76, 'pkg', 50, 1991, '2023-09-26 09:47:44', NULL),
+(8, 1, NULL, 'Avram Wallace', 'Sit sunt dolor in q', 30, 219, 619, 678, 236, 23, 'itm', 79, 1987, '2023-09-26 09:48:03', NULL),
+(9, 2, NULL, 'Armando Duffy', 'Veniam hic ut dolor', 24, 560, 460, 922, 933, 25, 'pkg', 36, 1981, '2023-09-26 09:48:31', NULL),
+(10, 2, NULL, 'Raja Glass', 'Aut vitae adipisci e', 13, 99, 688, 580, 877, 25, 'itm', 27, 1976, '2023-09-26 09:48:42', NULL),
+(11, 2, 1, 'Gregory Rollins', 'Occaecat esse sit ', 52, 165, 767, 902, 996, 41, 'itm', 79, 2006, '2023-09-26 09:49:13', NULL),
+(12, 1, 1, 'Nero Alford', 'Deserunt consequuntu', 94, 326, 118, 730, 419, 22, 'pkg', 6, 2000, '2023-09-26 09:57:54', NULL),
+(13, 1, NULL, 'Leroy Hawkins', 'Libero cillum ut ess', 47, 460, 405, 59, 34, 63, 'itm', 34, 2012, '2023-09-26 10:05:38', NULL),
+(14, 1, NULL, 'Alyssa Alvarez', 'Enim veniam quae as', 100, 580, 583, 966, 630, 99, 'itm', 43, 1970, '2023-09-26 10:05:46', NULL),
+(15, 1, 1, 'Merrill Adkins', 'Anim nihil et numqua', 7, 238, 568, 99, 102, 1, 'pkg', 56, 1982, '2023-09-26 10:05:55', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -176,6 +203,13 @@ CREATE TABLE `store` (
   `mnj_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `store`
+--
+
+INSERT INTO `store` (`id`, `name`, `mnj_id`, `created_at`) VALUES
+(1, 'MAIN STORE', 1, '2023-09-26 09:34:50');
 
 -- --------------------------------------------------------
 
@@ -191,12 +225,26 @@ CREATE TABLE `user` (
   `email` varchar(100) NOT NULL,
   `branch_id` int(3) DEFAULT NULL,
   `store_id` int(3) DEFAULT NULL,
-  `is_superuser` int(1) NOT NULL DEFAULT 0,
-  `is_staff` int(1) NOT NULL DEFAULT 0,
-  `is_active` int(1) NOT NULL DEFAULT 0,
+  `is_superuser` int(1) DEFAULT 0,
+  `is_staff` int(1) DEFAULT 0,
+  `is_active` int(1) DEFAULT 0,
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `email`, `branch_id`, `store_id`, `is_superuser`, `is_staff`, `is_active`, `password`, `created_at`) VALUES
+(1, 'alkado', 'heneliko', 'alkadohs', 'alkadosichoen@gmail.com', 0, 1, 1, 1, NULL, '$2y$12$1VBapmDfMLt/k/FFTb00EejG9ue92h0FHEl5MtEAxpgEzU0JaIGRW', '2023-09-25 17:01:08'),
+(2, 'Eden', 'Spencer', 'vyvibylyxu', 'viruhypica@mailinator.com', 2, NULL, 1, NULL, NULL, '$2y$12$s.guuI/Wtj7AL7u90JiqrOYqD2b6wRPEoQc0a1DcFcVuYRoWiJ1iK', '2023-09-26 07:28:36'),
+(3, 'Laurel', 'Valentine', 'Alkadis', 'lanaz@mailinator.com', 0, 1, 1, 1, NULL, '$2y$12$D5V056cjuR55ZJTYyLAsMejvjBjCKWP7wd/Ndr8dsoG81rVQgJugy', '2023-09-26 08:10:34'),
+(4, 'Elaine', 'Palmer', 'nekatyv', 'gijoj@mailinator.com', 0, NULL, 1, NULL, NULL, '$2y$12$uAEOL1QjLIs7CLbi81zM8.tjWNpTvLUX8M.faFms4T6.DIClfN8gK', '2023-09-26 08:18:18'),
+(5, 'Neil', 'Dickson', 'taqyvane', 'hisazovahe@mailinator.com', 0, 1, 1, NULL, NULL, '$2y$12$OJZm3BH6iHt0vpdH4XqfbeIyeb3g.NG3lGyVDrHMqidkPdY7feRAC', '2023-09-26 08:21:32'),
+(6, 'Jason', 'Brennan', 'vareha', 'tomoqiraq@mailinator.com', 2, 1, 1, 1, NULL, '$2y$12$XD6.WvFPWFr5UZOG5Vcn9.L.hehNasse.LiJ7V2dmqRocS/3KLfYK', '2023-09-26 08:31:35'),
+(7, 'Paki', 'Snow', 'nuzevaj', 'xexanopymo@mailinator.com', 1, 1, 1, 1, NULL, '$2y$12$8lIf4QIuf14h.U0l8M5Yz.i/G1IaxCCURj21w143t6tTfb4nHQCb6', '2023-09-26 08:34:25'),
+(8, 'Anne', 'Wynn', 'tyhek', 'zugaqe@mailinator.com', 0, NULL, NULL, NULL, NULL, '$2y$12$sb/JZ2nJJnjzIqOmVEw9y.ayJ.WZdaqyPXbl2xJvZTji9NM0G6C8u', '2023-09-26 11:06:42');
 
 --
 -- Indexes for dumped tables
@@ -295,7 +343,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `branch`
 --
 ALTER TABLE `branch`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cart`
@@ -349,19 +397,19 @@ ALTER TABLE `order_item`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

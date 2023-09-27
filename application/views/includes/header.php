@@ -1,30 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php 
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+$userId = $this->session->userdata('userId');
+$username = $this->session->userdata('username');
+$firstName = $this->session->userdata('firstName');
+$lastName = $this->session->userdata('lastName');
+$storeId = $this->session->userdata('storeId');
+$branchId = $this->session->userdata('branchId');
+$isSuperuser = $this->session->userdata('isSuperuser');
+$isStaff = $this->session->userdata('isStaff');
 
-  <!-- Title  -->
-  <title>Masinde Store</title>
+?>
 
-  <!-- Style Css -->
-  <link rel="stylesheet" id="stylesheet" href="<?php echo base_url('assets/css/style.css')?>">
-  <link rel="stylesheet" id="color" href="<?php echo base_url('assets/css/colors.css')?>">
-
-  <!-- Google font -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
-  <!-- Icons  -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-
-  <!-- Favicon  -->
-  <link rel="icon" href="<?php echo base_url('assets/img/favicon.png')?>">
-</head>
-
-<body id="body-layout" class="text-body-md relative font-sans font-normal text-gray-700 dark:text-gray-300 bg-surface-500 dark:bg-surfacedark-500 show">
-  <!-- preloader -->
+<!-- preloader -->
   <div class="preloader fixed inset-0 z-50 bg-surface-500 dark:bg-surfacedark-500">
     <div class="w-full h-screen flex justify-center items-center">
       <!-- loader -->
@@ -73,66 +60,30 @@
        <!-- <ul id="dropdown0" data-type="dropdownmenu" class="[&.show]:!opacity-100 [&.show]:!visible opacity-0 invisible absolute top-[3.1rem] z-30 transition duration-400 ease-in-out left-auto right-0 transform translate-x-1/3 min-w-[150px] inline-flex flex-col py-2 rounded-xl bg-white dark:bg-gray-900 shadow-md dark:shadow-gray-50/10">
           <li class="relative">
             <a href="#" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
-              <img src="<?php echo base_url('assets/img/flags/US.svg')?>" class="h-4" alt="English">
+              <img src="<?php //echo base_url('assets/img/flags/US.svg')?>" class="h-4" alt="English">
               English
             </a>
           </li>
           <li class="relative">
             <a href="#" class="w-full flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
-              <img src="<?php echo base_url('assets/img/flags/IT.svg')?>" class="h-4" alt="Italy">
+              <img src="<?php// echo base_url('assets/img/flags/IT.svg')?>" class="h-4" alt="Italy">
               Italy
             </a>
           </li>
           <li class="relative">
             <a href="#" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
-              <img src="<?php echo base_url('assets/img/flags/ES.svg')?>" class="h-4" alt="Spain">
+              <img src="<?php //echo base_url('assets/img/flags/ES.svg')?>" class="h-4" alt="Spain">
               Spain
             </a>
           </li>
           <li class="relative">
             <a href="#" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
-              <img src="<?php echo base_url('assets/img/flags/SA.svg')?>" class="h-4" alt="Arabic">
+              <img src="<?php// echo base_url('assets/img/flags/SA.svg')?>" class="h-4" alt="Arabic">
               Arabic
             </a>
           </li>
         </ul>
       </div> -->
-
-      <div class="relative hidden sm:inline-block">
-        <button data-type="dropdown" data-target="#dropdown-apps" class="btn relative !inline-flex !items-center justify-center w-12 h-12 gap-x-2 p-2.5 rounded-[6.25rem] text-sm tracking-[.00714em] text-center font-medium hover:bg-primary-600/[0.08] focus:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08] dark:focus:bg-primary-200/[0.08]">
-          <span aria-label="Apps" data-microtip-position="bottom" role="tooltip" class="material-symbols-outlined !text-[28px] pointer-events-none">apps</span>
-        </button>
-
-        <!-- menus -->
-        <div id="dropdown-apps" data-type="dropdownmenu" class="[&.show]:!opacity-100 [&.show]:!visible opacity-0 invisible absolute top-[3.1rem] z-30 transition duration-400 ease-in-out left-auto right-0 transform md:translate-x-[120px] min-w-[300px] inline-flex flex-col rounded-xl overflow-hidden bg-white dark:bg-gray-900 shadow-md dark:shadow-gray-50/10 max-sm:fixed max-sm:mt-3 max-sm:left-4 max-sm:right-4 p-6">
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            <a href="#" class="py-2 px-3 hover:bg-surface-200 dark:hover:bg-surfacedark-200 rounded-xl flex flex-col items-center gap-1">
-              <span class="material-symbols-outlined !text-4xl text-red-600 dark:text-red-200">email</span>
-              <p class="text-title-sm text-center">Email</p>
-            </a>
-            <a href="#" class="py-2 px-3 hover:bg-surface-200 dark:hover:bg-surfacedark-200 rounded-xl flex flex-col items-center gap-1">
-              <span class="material-symbols-outlined !text-4xl text-yellow-600 dark:text-yellow-200">event</span>
-              <p class="text-title-sm text-center">Calendar</p>
-            </a>
-            <a href="#" class="py-2 px-3 hover:bg-surface-200 dark:hover:bg-surfacedark-200 rounded-xl flex flex-col items-center gap-1">
-              <span class="material-symbols-outlined !text-4xl text-green-600 dark:text-green-200">chat</span>
-              <p class="text-title-sm text-center">Chat</p>
-            </a>
-            <a href="#" class="py-2 px-3 hover:bg-surface-200 dark:hover:bg-surfacedark-200 rounded-xl flex flex-col items-center gap-1">
-              <span class="material-symbols-outlined !text-4xl text-purple-600 dark:text-purple-200">pie_chart</span>
-              <p class="text-title-sm text-center">Chart</p>
-            </a>
-            <a href="#" class="py-2 px-3 hover:bg-surface-200 dark:hover:bg-surfacedark-200 rounded-xl flex flex-col items-center gap-1">
-              <span class="material-symbols-outlined !text-4xl text-pink-600 dark:text-pink-200">widgets</span>
-              <p class="text-title-sm text-center">Widgets</p>
-            </a>
-            <a href="#" class="py-2 px-3 hover:bg-surface-200 dark:hover:bg-surfacedark-200 rounded-xl flex flex-col items-center gap-1">
-              <span class="material-symbols-outlined !text-4xl text-blue-600 dark:text-blue-200">rocket</span>
-              <p class="text-title-sm text-center">Landing</p>
-            </a>
-          </div>
-        </div>
-      </div>
 
       <div class="relative hidden sm:inline-block">
         <!-- trigger bottom sheets -->
@@ -170,7 +121,7 @@
                   </div>
                 </div>
                 <div class="flex-shrink max-w-full px-2 w-3/4">
-                  <div class="text-body-md">Time for a meeting with Mr.Roger</div>
+                  <div class="text-body-md">20 amounts of outStock products</div>
                   <div class="text-gray-500 text-body-md mt-1">5 Minutes Ago</div>
                 </div>
               </div>
@@ -206,13 +157,13 @@
         <!-- menus -->
         <ul id="dropdown1" data-type="dropdownmenu" class="[&.show]:!opacity-100 [&.show]:!visible opacity-0 invisible absolute top-[3.1rem] z-30 transition duration-400 ease-in-out left-auto right-0 min-w-[200px] inline-flex flex-col py-2 rounded-xl bg-white dark:bg-gray-900 shadow-md dark:shadow-gray-50/10 max-sm:fixed max-sm:mt-3 max-sm:left-4 max-sm:right-4">
           <li class="relative">
-            <a href="../user/profile.html" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
+            <a href="<?= site_url('user/profile/'.$userId) ?>" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
             <span class="material-symbols-outlined">person</span>
               Profile
             </a>
           </li>
           <li class="relative">
-            <a href="../user/edit-profile.html" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
+            <a href="#" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
             <span class="material-symbols-outlined">settings</span>
               Settings
             </a>
@@ -224,7 +175,7 @@
             </a>
           </li>
           <li class="relative border-t border-gray-100 dark:border-gray-800">
-            <a href="../auth/logout.html" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
+            <a href="<?= site_url('auth/logout') ?>" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
             <span class="material-symbols-outlined">power_settings_new</span>
               Logout
             </a>

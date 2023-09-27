@@ -25,215 +25,7 @@
 </head>
 
 <body id="body-layout" class="text-body-md relative font-sans font-normal text-gray-700 dark:text-gray-300 bg-surface-500 dark:bg-surfacedark-500 show">
-  <!-- preloader -->
-  <div class="preloader fixed inset-0 z-50 bg-surface-500 dark:bg-surfacedark-500">
-    <div class="w-full h-screen flex justify-center items-center">
-      <!-- loader -->
-      <svg class="circular-loader relative w-[100px] h-[100px]">
-        <circle class="path stroke-primary-600 dark:stroke-primary-200" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle>
-      </svg>
-    </div>
-  </div>
-
-  <header data-type="navtop" class="nav-top [&.show]:translate-y-0 top-0 fixed h-16 px-4 lg:px-8 lg:pl-3 left-0 lg:left-72 right-0 flex flex-row items-center justify-between gap-3 z-50 transition-all duration-300 ease-in-out bg-surface-500 dark:bg-surfacedark-500">
-    <!-- trigger sidebar -->
-    <button data-type="dialogs" data-target="#sidebar" class="relative inline-flex lg:hidden items-center justify-center w-12 h-12 gap-x-2 py-2.5 px-6 rounded-[6.25rem] tracking-[.00714em] text-center font-medium hover:bg-primary-600/[0.08] focus:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08] dark:focus:bg-primary-200/[0.08]">
-      <span class="material-symbols-outlined !text-[28px]">menu</span>
-    </button>
-
-    <!-- trigger compact layout -->
-    <button data-type="toggle" data-target="#body-layout" class="compact-btn group relative hidden  !items-center justify-center w-12 h-12 gap-x-2 py-2.5 px-6 rounded-[6.25rem] tracking-[.00714em] text-center font-medium hover:bg-primary-600/[0.08] focus:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08] dark:focus:bg-primary-200/[0.08]">
-      <span class="material-symbols-outlined !text-[28px] menu-close">menu_open</span>
-      <span class="material-symbols-outlined !text-[28px] menu-open">menu</span>
-    </button>
-
-    <!-- search form -->
-    <div class="relative w-full hidden md:block">
-      <!-- desktop search -->
-      <div class="relative w-full">
-        <button class="absolute left-1 top-1 hidden sm:inline-flex !items-center justify-center w-10 h-10 gap-x-2 p-2.5 rounded-[6.25rem] text-sm tracking-[.00714em] text-center font-medium hover:bg-primary-600/[0.08] focus:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08] dark:focus:bg-primary-200/[0.08]">
-          <span class="material-symbols-outlined !text-2xl">search</span>
-        </button>
-        <input type="search" placeholder="Search..." class="max-sm:absolute max-sm:inset-x-0 block w-40 sm:w-80 md:w-full pl-14 h-12 rounded-full bg-white dark:bg-gray-900 py-2 px-4 ring-0 focus:outline-none focus:shadow">
-      </div>
-    </div>
-
-    <!-- navbar right -->
-    <div class="flex flex-row items-center gap-3 ml-auto md:ml-12">
-      <!-- mobile search trigger -->
-      <button data-type="dialogs" data-target="#dialog_search" class="btn relative inline-flex md:hidden !items-center justify-center w-12 h-12 gap-x-2 p-2.5 rounded-[6.25rem] text-sm tracking-[.00714em] text-center font-medium hover:bg-primary-600/[0.08] focus:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08] dark:focus:bg-primary-200/[0.08]">
-        <span class="material-symbols-outlined !text-[28px]">search</span>
-      </button>
-
-      <div class="relative">
-        <button data-type="dropdown" data-target="#dropdown0" class="btn relative !inline-flex !items-center justify-center w-12 h-12 gap-x-2 p-2.5 rounded-[6.25rem] text-sm tracking-[.00714em] text-center font-medium hover:bg-primary-600/[0.08] focus:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08] dark:focus:bg-primary-200/[0.08]">
-          <span  aria-label="Languages" data-microtip-position="bottom" role="tooltip" class="material-symbols-outlined !text-[28px] pointer-events-none">translate</span>
-        </button>
-
-        <!-- menus -->
-        <ul id="dropdown0" data-type="dropdownmenu" class="[&.show]:!opacity-100 [&.show]:!visible opacity-0 invisible absolute top-[3.1rem] z-30 transition duration-400 ease-in-out left-auto right-0 transform translate-x-1/3 min-w-[150px] inline-flex flex-col py-2 rounded-xl bg-white dark:bg-gray-900 shadow-md dark:shadow-gray-50/10">
-          <li class="relative">
-            <a href="#" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
-              <img src="<?php echo base_url('assets/img/flags/US.svg')?>" class="h-4" alt="English">
-              English
-            </a>
-          </li>
-          <li class="relative">
-            <a href="#" class="w-full flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
-              <img src="<?php echo base_url('assets/img/flags/IT.svg')?>" class="h-4" alt="Italy">
-              Italy
-            </a>
-          </li>
-          <li class="relative">
-            <a href="#" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
-              <img src="<?php echo base_url('assets/img/flags/ES.svg')?>" class="h-4" alt="Spain">
-              Spain
-            </a>
-          </li>
-          <li class="relative">
-            <a href="#" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
-              <img src="<?php echo base_url('assets/img/flags/SA.svg')?>" class="h-4" alt="Arabic">
-              Arabic
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="relative hidden sm:inline-block">
-        <button data-type="dropdown" data-target="#dropdown-apps" class="btn relative !inline-flex !items-center justify-center w-12 h-12 gap-x-2 p-2.5 rounded-[6.25rem] text-sm tracking-[.00714em] text-center font-medium hover:bg-primary-600/[0.08] focus:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08] dark:focus:bg-primary-200/[0.08]">
-          <span aria-label="Apps" data-microtip-position="bottom" role="tooltip" class="material-symbols-outlined !text-[28px] pointer-events-none">apps</span>
-        </button>
-
-        <!-- menus -->
-        <div id="dropdown-apps" data-type="dropdownmenu" class="[&.show]:!opacity-100 [&.show]:!visible opacity-0 invisible absolute top-[3.1rem] z-30 transition duration-400 ease-in-out left-auto right-0 transform md:translate-x-[120px] min-w-[300px] inline-flex flex-col rounded-xl overflow-hidden bg-white dark:bg-gray-900 shadow-md dark:shadow-gray-50/10 max-sm:fixed max-sm:mt-3 max-sm:left-4 max-sm:right-4 p-6">
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            <a href="#" class="py-2 px-3 hover:bg-surface-200 dark:hover:bg-surfacedark-200 rounded-xl flex flex-col items-center gap-1">
-              <span class="material-symbols-outlined !text-4xl text-red-600 dark:text-red-200">email</span>
-              <p class="text-title-sm text-center">Email</p>
-            </a>
-            <a href="#" class="py-2 px-3 hover:bg-surface-200 dark:hover:bg-surfacedark-200 rounded-xl flex flex-col items-center gap-1">
-              <span class="material-symbols-outlined !text-4xl text-yellow-600 dark:text-yellow-200">event</span>
-              <p class="text-title-sm text-center">Calendar</p>
-            </a>
-            <a href="#" class="py-2 px-3 hover:bg-surface-200 dark:hover:bg-surfacedark-200 rounded-xl flex flex-col items-center gap-1">
-              <span class="material-symbols-outlined !text-4xl text-green-600 dark:text-green-200">chat</span>
-              <p class="text-title-sm text-center">Chat</p>
-            </a>
-            <a href="#" class="py-2 px-3 hover:bg-surface-200 dark:hover:bg-surfacedark-200 rounded-xl flex flex-col items-center gap-1">
-              <span class="material-symbols-outlined !text-4xl text-purple-600 dark:text-purple-200">pie_chart</span>
-              <p class="text-title-sm text-center">Chart</p>
-            </a>
-            <a href="#" class="py-2 px-3 hover:bg-surface-200 dark:hover:bg-surfacedark-200 rounded-xl flex flex-col items-center gap-1">
-              <span class="material-symbols-outlined !text-4xl text-pink-600 dark:text-pink-200">widgets</span>
-              <p class="text-title-sm text-center">Widgets</p>
-            </a>
-            <a href="#" class="py-2 px-3 hover:bg-surface-200 dark:hover:bg-surfacedark-200 rounded-xl flex flex-col items-center gap-1">
-              <span class="material-symbols-outlined !text-4xl text-blue-600 dark:text-blue-200">rocket</span>
-              <p class="text-title-sm text-center">Landing</p>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="relative hidden sm:inline-block">
-        <!-- trigger bottom sheets -->
-        <button data-type="dialogs" data-target="#sheets_b" class="btn relative !inline-flex !items-center justify-center w-12 h-12 gap-x-2 p-2.5 rounded-[6.25rem] text-sm tracking-[.00714em] text-center font-medium hover:bg-primary-600/[0.08] focus:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08] dark:focus:bg-primary-200/[0.08]">
-          <span aria-label="Settings" data-microtip-position="bottom" role="tooltip" class="material-symbols-outlined !text-[28px] pointer-events-none">settings</span>
-        </button>
-      </div>
-
-      <div class="relative">
-        <button data-type="dropdown" data-target="#dropdown2" class="btn relative !inline-flex !items-center justify-center w-12 h-12 gap-x-2 p-2.5 rounded-[6.25rem] text-sm tracking-[.00714em] text-center font-medium hover:bg-primary-600/[0.08] focus:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08] dark:focus:bg-primary-200/[0.08]">
-          <span aria-label="Notification" data-microtip-position="bottom" role="tooltip" class="material-symbols-outlined !text-[28px] pointer-events-none ">notifications</span>
-          <span class="pointer-events-none absolute top-2 right-2 w-4 h-4 flex items-center justify-center rounded-full text-[11px] leading-none tracking-[.045em] font-medium bg-error-600 dark:bg-error-200 text-white dark:text-error-800">1</span>
-        </button>
-
-        <!-- menus -->
-        <div id="dropdown2" data-type="dropdownmenu" class="[&.show]:!opacity-100 [&.show]:!visible opacity-0 invisible absolute top-[3.1rem] z-30 transition duration-400 ease-in-out -right-12 sm:right-0 min-w-[300px] inline-flex flex-col py-2 rounded-xl overflow-hidden bg-white dark:bg-gray-900 shadow-md dark:shadow-gray-50/10 max-sm:fixed max-sm:mt-3 max-sm:left-4 max-sm:right-4">
-          <div class="px-6 pt-1.5 pb-3 font-normal border-b border-gray-100 dark:border-gray-800">
-            <div class="relative">
-              <div class="text-title-sm">Notifications</div>
-              <div class="absolute top-0 right-0">
-                <button class="inline-block mr-0">
-                  <span class="material-symbols-outlined pointer-events-none" aria-label="Clear all" data-microtip-position="bottom" role="tooltip">delete</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="max-h-60 overflow-y-auto scrollbars">
-            <!-- item -->
-            <a class="relative" href="notification.html">
-              <div class="unread flex flex-wrap flex-row items-center border-b border-gray-100 dark:border-gray-800 [&.unread]:bg-surface-400 dark:[&.unread]:bg-surfacedark-400 hover:bg-surface-200 dark:hover:bg-surfacedark-200 py-2">
-                <div class="flex-shrink max-w-full px-2 w-1/4 text-center">
-                  <div class="flex justify-center items-center mx-auto w-8 h-8 rounded-full bg-primary-600 dark:bg-primary-200 text-neutral-10 dark:text-neutral-900">
-                    <span class="material-symbols-outlined">diversity_3</span>
-                  </div>
-                </div>
-                <div class="flex-shrink max-w-full px-2 w-3/4">
-                  <div class="text-body-md">Time for a meeting with Mr.Roger</div>
-                  <div class="text-gray-500 text-body-md mt-1">5 Minutes Ago</div>
-                </div>
-              </div>
-            </a>
-
-            <!-- item -->
-            <a class="relative" href="notification.html">
-              <div class="flex flex-wrap flex-row items-center border-b border-gray-100 dark:border-gray-800 [&.unread]:bg-surface-400 dark:[&.unread]:bg-surfacedark-400 hover:bg-surface-200 dark:hover:bg-surfacedark-200 py-2">
-                <div class="flex-shrink max-w-full px-2 w-1/4 text-center">
-                  <div class="flex justify-center items-center mx-auto w-8 h-8 rounded-full bg-primary-600 dark:bg-primary-200 text-neutral-10 dark:text-neutral-900">
-                    <span class="material-symbols-outlined">person</span>
-                  </div>
-                </div>
-                <div class="flex-shrink max-w-full px-2 w-3/4">
-                  <div class="text-body-md">Congratulations you get a new prospect!</div>
-                  <div class="text-gray-500 text-body-md mt-1">1h ago</div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="px-6 pt-3 pb-1.5 text-center text-body-md font-normal">
-            <a href="notification.html" class="hover:underline">Show all Notifications</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="relative">
-        <button data-type="dropdown" data-target="#dropdown1" class="btn w-12 h-12 gap-x-2 py-2.5 flex items-center gap-2 justify-center rounded-full text-sm tracking-[0.15px]">
-          <img src="<?php echo base_url('assets/img/avatar.png')?>" alt="ari budin" class="w-10 h-10 flex-none rounded-full bg-primary-600 dark:bg-primary-200">
-        </button>
-
-        <!-- menus -->
-        <ul id="dropdown1" data-type="dropdownmenu" class="[&.show]:!opacity-100 [&.show]:!visible opacity-0 invisible absolute top-[3.1rem] z-30 transition duration-400 ease-in-out left-auto right-0 min-w-[200px] inline-flex flex-col py-2 rounded-xl bg-white dark:bg-gray-900 shadow-md dark:shadow-gray-50/10 max-sm:fixed max-sm:mt-3 max-sm:left-4 max-sm:right-4">
-          <li class="relative">
-            <a href="profile.html" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
-            <span class="material-symbols-outlined">person</span>
-              Profile
-            </a>
-          </li>
-          <li class="relative">
-            <a href="edit-profile.html" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
-            <span class="material-symbols-outlined">settings</span>
-              Settings
-            </a>
-          </li>
-          <li class="relative">
-            <a href="../docs/support.html" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
-            <span class="material-symbols-outlined">help_center</span>
-              Help
-            </a>
-          </li>
-          <li class="relative border-t border-gray-100 dark:border-gray-800">
-            <a href="../auth/logout.html" class="flex flex-row items-center gap-3 py-2.5 px-6 hover-icon hover:bg-surface-200 dark:hover:bg-surfacedark-200">
-            <span class="material-symbols-outlined">power_settings_new</span>
-              Logout
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </header>
+  <?php include APPPATH.'/views/includes/header.php'?>
 
   <main class="lg:flex">
     <!-- sidebar -->
@@ -260,15 +52,15 @@
                 <img src="<?php echo base_url('assets/img/avatar.png')?>" alt="avatar" class="rounded-full w-24 h-24 bg-primary-600 text-white dark:bg-primary-200 dark:text-neutral-900 border-solid border-white border-2 -mt-3">
               </div>
               <div class="text-center px-4 pb-6 pt-2">
-                <h3 class="text-title-lg text-gray-900 dark:text-gray-100 mb-1">@ari_budin</h3>
-                <p class="text-body-md text-gray-600 dark:text-gray-400">Super User</p>
+                <h3 class="text-title-lg text-gray-900 dark:text-gray-100 mb-1">@<?= $user->username ?></h3>
+                <p class="text-body-md text-gray-600 dark:text-gray-400"><?= $user->is_superuser ? "Admin": "Staff" ?></p>
               </div>
             </div>
             <!-- information -->
             <div class="text-body-md flex flex-col gap-1 px-6 pb-6">
-              <p><strong>Full Name :</strong><span class="ml-2">Ari Budin</span></p>
-              <p><strong>Username :</strong><span class="ml-2">@aria-budin</span></p>
-              <p><strong>Email :</strong><span class="ml-2">yourmail@gmail.com</span></p>
+              <p><strong>Full Name :</strong><span class="ml-2"><?= $user->first_name. " " .$user->last_name ?></span></p>
+              <p><strong>Username :</strong><span class="ml-2">@<?= $user->username ?></span></p>
+              <p><strong>Email :</strong><span class="ml-2"> <?= $user->email ?></span></p>
               <p><strong>Branch :</strong><span class="ml-2"> MBALIZI BRANCH</span></p>
             </div>
           </div>
@@ -296,20 +88,20 @@
                 </div>
                 <hr class="border-gray-200 dark:border-gray-700">
                 <!-- tabs content -->
-                <?php echo form_open('user/update', ['class' => 'flex flex-col'])?>
+                <?php echo form_open('#userupdate', ['class' => 'flex flex-col'])?>
                   <div id="tab-4" role="tabpanel" class="active [&.active]:block hidden py-4 transition duration-400 ease-in-out">
                     <div class="flex flex-col gap-6">
                       <!-- name -->
                       <div class="flex flex-row items-center gap-4">
                         <!-- first name -->
                         <div class="relative z-0 w-full">
-                          <input type="text" aria-label="first_name" name="first_name" id="first_name" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
+                          <input type="text" aria-label="first_name" value="<?= $user->first_name ?>" name="first_name" id="first_name" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
 
                           <label for="first_name" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">First name</label>
                         </div>
                         <!-- last name -->
                         <div class="relative z-0 w-full">
-                          <input type="text" aria-label="last_name" name="last_name" id="last_name" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
+                          <input type="text" aria-label="last_name" name="last_name" value="<?= $user->last_name ?>" id="last_name" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
 
                           <label for="last_name" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Last name</label>
                         </div>
@@ -344,7 +136,7 @@
                       <div class="flex flex-row items-center gap-4">
                         <!-- select outline -->
                         <div class="relative z-0 w-full">
-                          <select id="branch_id" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200">
+                          <select id="branch_id" value="<?= $user->branch_id ?>" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200">
                             <option value="id">UYOLE BRANCH</option>
                             <option value="bid">MBALIZI BRANCH</option>
                           </select>
@@ -352,7 +144,7 @@
 
                         <!-- input email -->
                         <div class="relative z-0 w-full">
-                          <input type="text" aria-label="email" name="email" id="email" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" value="alkado@gmail.com">
+                          <input type="text" aria-label="email" name="email" value="<?= $user->email ?>" id="email" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" value="alkado@gmail.com">
 
                           <label for="email" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Email</label>
                         </div>
@@ -360,22 +152,34 @@
 
                        <div class="relative z-0 w-full">
                         <label class="flex items-center gap-3">
-                          <input type="checkbox" name="store_id" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
+                          <?php if($user->store_id): ?>
+                          <input type="checkbox" name="store_id" checked value="<?= $user->store_id ?>" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
+                          <?php else: ?>
+                          <input type="checkbox" name="store_id" value="<?= $user->store_id ?>" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
+                          <?php endif ?>
                           <span>Is a store member</span>
                         </label>
                       </div>
 
                       <div class="relative z-0 w-full">
                         <label class="flex items-center gap-3">
-                          <input type="checkbox" name="is_supper" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
-                          <span>Is a super user?</span>
+                          <?php if($user->is_superuser): ?>
+                          <input type="checkbox" name="is_supper" checked value="<?= $user->is_superuser ?>"  class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
+                          <?php else: ?>
+                          <input type="checkbox" name="is_supper" value="<?= $user->is_superuser ?>"  class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
+                          <?php endif ?>
+                          <span>Is Admin?</span>
                         </label>
                       </div>
 
 
                       <div class="relative z-0 w-full">
                         <label class="flex items-center gap-3">
-                          <input type="checkbox" name="is_staff" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
+                          <?php if($user->is_staff): ?>
+                          <input type="checkbox" name="is_staff" checked value="<?= $user->is_staff ?>" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
+                          <?php else: ?>
+                          <input type="checkbox" name="is_staff" value="<?= $user->is_staff ?>" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
+                          <?php endif?>
                           <span>Can login to this system</span>
                         </label>
                       </div>
@@ -399,12 +203,12 @@
                         <label for="confipass" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Repeat Password</label>
                       </div>
                       <div class="relative">
-                        <p class="text-gray-500 mb-2 font-bold">Username: <span class="text-primary-600 dark:text-primary-200">@ari_budin</span></p>
+                        <p class="text-gray-500 mb-2 font-bold">Username: <span class="text-primary-600 dark:text-primary-200">@ <?= $user->username ?></span></p>
                         <p class="text-xs text-pink-500 mb-2"><b>Warning:</b> Username should be unique.</p>
                       </div>
                       <!-- input username -->
                       <div class="relative z-0">
-                        <input type="text" aria-label="username" name="username" id="username" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="@ari_budin">
+                        <input type="text" aria-label="username" name="username" value="<?= $user->username ?>" id="username" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="@ari_budin">
 
                         <label for="username" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Username</label>
                       </div>
