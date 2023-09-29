@@ -54,7 +54,7 @@
                   <th class="p-4 font-normal">Price</th>
                   <th class="p-4 font-normal">Quantity</th>
                   <th class="p-4 font-normal">Total Price</th>
-                  <th class="p-4 font-normal"></th>
+                  <th class="p-4 font-normal">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -69,7 +69,13 @@
                       </div>
                     </a>
                   </td>
-                  <td class="py-1 px-2 font-normal "><?= $cartItem->sold_by ?></td>
+                  <td class="py-1 px-2 font-normal ">
+                    <?php if($cartItem->sold_by == 'retail'):?>
+                    <span class="px-3 py-2 bg-indigo-500 text-white rounded"><?= $cartItem->sold_by ?></span>
+                    <?php else:?>
+                    <span class="px-3 py-2 bg-green-500 text-white rounded"><?= $cartItem->sold_by ?></span>
+                    <?php endif?>
+                  </td>
                   <td class="py-1 px-2 font-normal ">
                     <?php if($cartItem->sold_by == "retail"):?>
                       <?= $cartItem->retail_sale_price ?>
@@ -85,7 +91,17 @@
                     </div>
                   </td>
                   <td class="py-1 px-2 font-normal text-center">
-                    Comming...
+                      <?php if($cartItem->sold_by == 'retail'):?>
+                        <?= number_format($cartItem->cart_items_quantity * $cartItem->retail_sale_price) . '/=' ?>
+                      <?php else: ?>
+                        <?= number_format($cartItem->cart_items_quantity * $cartItem->whole_sale_price) . '/=' ?>
+                      <?php endif ?>
+                  </td>
+                  <td class="py-1 px-2 font-normal text-center">
+                    <a href="<?= site_url('cart/delete/$') ?>"></a>
+                    <button title="Cancel" class="p-2 w-10 h-10 outline-none text-white bg-red-600 rounded-xl select-none">
+                      <span class="material-symbols-outlined">close</span>
+                    </button>
                   </td>
                 </tr>
                 <?php endforeach?>
@@ -187,7 +203,7 @@
                     <input type="hidden" name="user_id" value="<?= $userId ?>">
                     <input type="hidden" name="sell_type" value="retail">
                     <input type="hidden" name="product_id" value="<?= $product->id ?>">
-                    <button type="submit"  class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
+                    <button type="submit"  class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-indigo-500 text-white dark:bg-indigo-200 dark:text-indigo-800">
                        Retail
                     </button>
                     <?php echo form_close()?>
@@ -197,10 +213,10 @@
                       <input type="hidden" name="user_id" value="<?= $userId ?>">
                       <input type="hidden" name="sell_type" value="whole">
                       <input type="hidden" name="product_id" value="<?= $product->id ?>">
-                      <button  class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
+                      <button  class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-green-500 text-white dark:bg-green-800 dark:text-white">
                         Whole
-                    </button>
-                      <?php echo form_close()?>
+                      </button>
+                    <?php echo form_close()?>
                   </td>
                 </tr>
                 <?php endforeach ?>
@@ -217,7 +233,7 @@
   <footer class="footer absolute px-4 lg:px-8 lg:pl-3 left-0 lg:left-72 bottom-0 right-0">
     <div class="text-center py-6">
       <!-- Copyright text -->
-      <p><script>document.write(new Date().getFullYear())</script> Goodash - All right reserved</p>
+      <p><script>document.write(new Date().getFullYear())</script> Masinde-store - All right reserved</p>
     </div>
   </footer>
 
