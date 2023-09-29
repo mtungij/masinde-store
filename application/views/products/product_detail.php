@@ -82,7 +82,7 @@
               <h4 class="text-title-md text-gray-700 dark:text-gray-200 mb-2">Product amounts</h4>
               <div class="text-gray-500">
                 <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Containers:</span> <?= $product->pkj_amount ?></p>
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Retail Amount:</span> <?= $product->quantity + $product->extra_items ?? 0 ?></p>
+                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Retail Amount:</span> <?= $product->quantity ?></p>
               </div>
             </div>
 
@@ -92,7 +92,7 @@
                 <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Total Buy Price:</span> <?= $product->pkgs_buy_price ?></p>
                 <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Whole sale Price: </span> <?= number_format($product->whole_sale_price).'/=' ?></p>
                 <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Retail Sale Price: </span> <?= number_format($product->retail_sale_price).'/=' ?></p>
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Total Retail Sale:</span> <?= number_format($product->retail_sale_price * ($product->quantity + $product->extra_items ?? 0 )).'/=' ?></p>
+                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Total Retail Sale:</span> <?= number_format($product->retail_sale_price * $product->quantity).'/=' ?></p>
                 <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Total Whole Sale: </span> <?= number_format($product->whole_sale_price * $product->pkj_amount).'/=' ?></p>
               </div>
             </div>
@@ -355,11 +355,6 @@
                 <input type="number" aria-label="quantity" name="quantity" id="quantity" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:number-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="100">
                 <label for="quantity" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Items Quantity/pkg</label>
             </div>
-            <div class="relative z-0">
-                <input type="number" aria-label="extra_items" name="extra_items" id="extra_items" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="18">
-                <label for="extra_items" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Extra Items</label>
-            </div>
-            <div class="pt-1 px-4 text-xs tracking-[0.4px] hidden">Supporting text</div>
           </div>
 
         </div>

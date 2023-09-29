@@ -50,36 +50,45 @@
               <thead class="bg-gray-100 dark:bg-gray-900 dark:bg-opacity-40">
                 <tr>
                   <th class="p-4 font-normal">Products</th>
-                  <th class="p-4 font-normal">Brand</th>
+                  <th class="p-4 font-normal">Sold as</th>
+                  <th class="p-4 font-normal">Price</th>
                   <th class="p-4 font-normal">Quantity</th>
                   <th class="p-4 font-normal">Total Price</th>
                   <th class="p-4 font-normal"></th>
                 </tr>
               </thead>
               <tbody>
+                <?php foreach($cartItems as $cartItem):?>
                 <tr class="border-b border-gray-100 dark:border-gray-700">
-                  <td class="p-4 font-normal">
+                  <td class="px-2 py-1 font-normal">
                     <a href="#productId">
                       <div class="flex flex-wrap flex-row items-center">
                         <div class="leading-5 dark:text-gray-300 flex-1 mb-1">  
-                          Azam cora
+                          <?= $cartItem->name ?>
                         </div>
                       </div>
                     </a>
                   </td>
-                  <td class="p-4 font-normal text-center ">Azam</td>
-                  <td class="p-4 font-normal text-center">
+                  <td class="py-1 px-2 font-normal "><?= $cartItem->sold_by ?></td>
+                  <td class="py-1 px-2 font-normal ">
+                    <?php if($cartItem->sold_by == "retail"):?>
+                      <?= $cartItem->retail_sale_price ?>
+                    <?php else:?>
+                      <?= $cartItem->whole_sale_price ?>
+                    <?php endif?>
+                  </td>
+                  <td class="py-1 px-2 font-normal text-center">
                     <div class="flex flex-row" style="max-width: 200px;">
                       <div class="relative z-0">
-                        <input type="text" aria-label="qtyinput1" name="qtyinput1" id="qtyinput1" class="w-14 h-10 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" value="1">
+                        <input type="text" aria-label="qtyinput1" name="qtyinput1" id="qtyinput1" class="w-14 h-10 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" value="<?= $cartItem->cart_items_quantity ?>">
                       </div>
                     </div>
                   </td>
-                  <td class="p-4 font-normal text-center">
-                    670,000/=
+                  <td class="py-1 px-2 font-normal text-center">
+                    Comming...
                   </td>
-                  
                 </tr>
+                <?php endforeach?>
             </tbody>
             </table>
            </div>
@@ -140,51 +149,61 @@
                 <tr>
                   <th class="p-4 font-normal">Products</th>
                   <th class="p-4 font-normal">Brand</th>
-                  <th class="p-4 font-normal">Whole Sale</th>
-                  <th class="p-4 font-normal">Retail</th>
-                  <th class="p-4 font-normal">Quantity</th>
+                  <th class="p-4 font-normal">Whole Price</th>
+                  <th class="p-4 font-normal">Retail Price</th>
+                  <th class="p-4 font-normal">Stock</th>
                   <th class="p-4 font-normal">Sell as</th>
                   <th class="p-4 font-normal"></th>
                 </tr>
               </thead>
               <tbody>
+                <?php foreach($products as $product):?>
                 <tr class="border-b border-gray-100 dark:border-gray-700">
                   <td class="p-4 font-normal">
                     <a href="#">
                       <div class="flex flex-wrap flex-row items-center">
                         <div class="leading-5 dark:text-gray-300 flex-1 mb-1">  
-                          Azam cora
+                          <?= $product->name ?>
                         </div>
                       </div>
                     </a>
                   </td>
-                  <td class="p-4 font-normal text-center ">Azam</td>
+                  <td class="p-4 font-normal text-center "><?= $product->brand ? $product->brand: '--//--' ?></td>
                   <td class="p-4 font-normal grid grid-cols-2 gap-2 ">
-                    <span>80,000/=</span>
-                    <span class="bg-red-100 text-red-800 text-xs font-medium px-3 py-1 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">699</span>
+                    <span><?= $product->whole_sale_price . '/=' ?></span>
+                  </td>
+                  <td class="p-4 font-normal ">
+                    <span><?= $product->retail_sale_price . '/=' ?></span>
                   </td>
                   <td class="p-4 font-normal grid grid-cols-2 gap-2 ">
-                    <span>10,000/=</span>
-                    <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">1,600</span>
+                    <?php if($product->quantity > $product->stock_limit):?>
+                    <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"><?= $product->quantity ?></span>
+                    <?php else:?>
+                    <span class="bg-red-100 text-red-800 text-xs font-medium px-3 py-1 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"><?= $product->quantity ?></span>
+                    <?php endif?>
                   </td>
                   <td class="p-4 font-normal text-center">
-                    <div class="flex flex-row" style="max-width: 200px;">
-                      <div class="relative z-0">
-                        <input type="text" aria-label="qtyinput1" name="qtyinput1" id="qtyinput1" class="w-14 h-10 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" value="1">
-                      </div>
-                    </div>
-                  </td>
-                  <td class="p-4 font-normal text-center">
-                    <a href="" class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
+                    <?php echo form_open('cart/create')?>
+                    <input type="hidden" name="user_id" value="<?= $userId ?>">
+                    <input type="hidden" name="sell_type" value="retail">
+                    <input type="hidden" name="product_id" value="<?= $product->id ?>">
+                    <button type="submit"  class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
                        Retail
-                    </a>
+                    </button>
+                    <?php echo form_close()?>
                   </td>
                   <td class="p-4 font-normal text-center">
-                    <a href="" class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
+                    <?php echo form_open('cart/create')?>
+                      <input type="hidden" name="user_id" value="<?= $userId ?>">
+                      <input type="hidden" name="sell_type" value="whole">
+                      <input type="hidden" name="product_id" value="<?= $product->id ?>">
+                      <button  class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
                         Whole
-                    </a>
+                    </button>
+                      <?php echo form_close()?>
                   </td>
                 </tr>
+                <?php endforeach ?>
             </tbody>
             </table>
            </div>

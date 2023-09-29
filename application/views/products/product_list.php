@@ -99,7 +99,7 @@
                   <td><?= number_format($product->whole_sale_price).'/=' ?></td>
                   <td><?= number_format($product->retail_sale_price) ?></td>
                   <td><?= number_format($product->pkj_amount * $product->whole_sale_price).'/=' ?></td>
-                  <td><?= number_format(($product->quantity + ($product->extra_items ?? 0)) * $product->retail_sale_price).'/=' ?></td>
+                  <td><?= number_format($product->quantity * $product->retail_sale_price).'/=' ?></td>
                   <td><?= $product->updated_at ?? '--//--' ?></td>
                   <td>
                     <a href="<?= site_url('product/show/'.$product->id)?>" class="hover:text-primary-600 dark:hover:text-primary-200">view</a>

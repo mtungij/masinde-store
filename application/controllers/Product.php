@@ -8,6 +8,8 @@ class Product extends CI_Controller
     {
         parent::__construct();
         $this->load->model('ProductModel');
+         $this->load->model('CartModel');
+        $this->load->model('CartItemModel');
     }
     public function index()
     {
@@ -38,9 +40,7 @@ class Product extends CI_Controller
             "pkgs_buy_price" => $this->input->post('pkgs_buy_price'),
             "whole_sale_price" => $this->input->post('whole_sale_price'),
             "retail_sale_price" => $this->input->post('retail_sale_price'),
-            "extra_items" => $this->input->post('extra_items'),
             "stock_limit" => $this->input->post('stock_limit'),
-            "stock_limit_unit" => $this->input->post('stock_limit_unit'),
             "expire_date" => $this->input->post('expire_date'),
         ];
 
@@ -66,6 +66,12 @@ class Product extends CI_Controller
     }
 
     public function sell() {
-        $this->load->view('products/sell_product');
+        $userId = $this->session->userdata('userId');
+        if(!$userId) {
+            redirect('');
+        }
+        $cartitems = $this->CartModel->get_cart($userId);
+        $products = $this->ProductModel->get_products();
+        $this->load->view('products/sell_product', ['products' => $products, 'cartItems' => $cartitems]);
     }
 }
