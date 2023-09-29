@@ -29,6 +29,6 @@ class CartItemModel extends CI_Model
 
     public function delete_cart_item($id)
     {
-        $this->db->delete('Cart_item', ['id' => $id]);
+        return $this->db->delete('Cart_item', ['id' => $id]);
     }
 }

@@ -9,7 +9,7 @@ class CartModel extends CI_Model
 
     public function get_cart($user_id)
     {
-        return $this->db->select('c.id, ci.quantity as cart_items_quantity,ci.sold_by,p.name, p.whole_sale_price, p.retail_sale_price')->from('cart c')
+        return $this->db->select('ci.id, ci.quantity as cart_items_quantity,ci.sold_by,p.name, p.whole_sale_price, p.retail_sale_price')->from('cart c')
         ->join('cart_item ci', 'c.id = ci.cart_id')
         ->join('product p', 'ci.product_id = p.id')
         ->where('c.user_id', $user_id)

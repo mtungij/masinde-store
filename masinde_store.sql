@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2023 at 07:59 AM
+-- Generation Time: Sep 29, 2023 at 09:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -50,9 +50,17 @@ INSERT INTO `branch` (`id`, `name`, `mnj_id`, `created_at`) VALUES
 
 CREATE TABLE `cart` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `created_at`) VALUES
+(1, 1, '2023-09-28 22:58:34'),
+(10, 9, '2023-09-29 00:11:28');
 
 -- --------------------------------------------------------
 
@@ -64,8 +72,21 @@ CREATE TABLE `cart_item` (
   `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `cart_id` int(11) NOT NULL
+  `cart_id` int(11) NOT NULL,
+  `sold_by` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart_item`
+--
+
+INSERT INTO `cart_item` (`id`, `product_id`, `quantity`, `cart_id`, `sold_by`) VALUES
+(17, 2, 2, 10, 'whole'),
+(18, 5, 14, 10, 'retail'),
+(20, 12, 5, 1, 'whole'),
+(21, 2, 13, 1, 'retail'),
+(22, 2, 12, 1, 'whole'),
+(23, 4, 1, 1, 'whole');
 
 -- --------------------------------------------------------
 
@@ -158,14 +179,12 @@ CREATE TABLE `product` (
   `branch_id` int(11) DEFAULT NULL,
   `store_id` int(11) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
-  `brand` varchar(255) NOT NULL,
-  `pkj_amount` int(11) NOT NULL,
+  `brand` varchar(255) DEFAULT NULL,
+  `pkj_amount` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `pkgs_buy_price` int(11) DEFAULT NULL,
   `whole_sale_price` int(11) DEFAULT NULL,
   `retail_sale_price` int(11) DEFAULT NULL,
-  `extra_items` int(11) DEFAULT NULL,
-  `stock_limit_unit` varchar(50) DEFAULT NULL,
   `stock_limit` int(11) DEFAULT NULL,
   `expire_date` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -176,20 +195,23 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `branch_id`, `store_id`, `name`, `brand`, `pkj_amount`, `quantity`, `pkgs_buy_price`, `whole_sale_price`, `retail_sale_price`, `extra_items`, `stock_limit_unit`, `stock_limit`, `expire_date`, `created_at`, `updated_at`) VALUES
-(2, 2, NULL, 'Linus Howe', '', 36, 187, 760, 343, 25, 50, 'itm', 77, 1979, '2023-09-26 09:35:03', NULL),
-(4, 1, 1, 'Leigh Middleton', '', 95, 765, 823, 267, 50, 56, 'pkg', 22, 1978, '2023-09-26 09:38:13', NULL),
-(5, 2, 1, 'Elizabeth Lucas', '', 99, 472, 796, 217, 989, 71, 'itm', 29, 2007, '2023-09-26 09:39:38', NULL),
-(6, 2, 1, 'Elizabeth Lucas', '', 99, 472, 796, 217, 989, 71, 'itm', 29, 2007, '2023-09-26 09:40:16', NULL),
-(7, 1, NULL, 'Hayden Montgomery', 'Enim elit dolorum v', 15, 540, 629, 798, 432, 76, 'pkg', 50, 1991, '2023-09-26 09:47:44', NULL),
-(8, 1, NULL, 'Avram Wallace', 'Sit sunt dolor in q', 30, 219, 619, 678, 236, 23, 'itm', 79, 1987, '2023-09-26 09:48:03', NULL),
-(9, 2, NULL, 'Armando Duffy', 'Veniam hic ut dolor', 24, 560, 460, 922, 933, 25, 'pkg', 36, 1981, '2023-09-26 09:48:31', NULL),
-(10, 2, NULL, 'Raja Glass', 'Aut vitae adipisci e', 13, 99, 688, 580, 877, 25, 'itm', 27, 1976, '2023-09-26 09:48:42', NULL),
-(11, 2, 1, 'Gregory Rollins', 'Occaecat esse sit ', 52, 165, 767, 902, 996, 41, 'itm', 79, 2006, '2023-09-26 09:49:13', NULL),
-(12, 1, 1, 'Nero Alford', 'Deserunt consequuntu', 94, 326, 118, 730, 419, 22, 'pkg', 6, 2000, '2023-09-26 09:57:54', NULL),
-(13, 1, NULL, 'Leroy Hawkins', 'Libero cillum ut ess', 47, 460, 405, 59, 34, 63, 'itm', 34, 2012, '2023-09-26 10:05:38', NULL),
-(14, 1, NULL, 'Alyssa Alvarez', 'Enim veniam quae as', 100, 580, 583, 966, 630, 99, 'itm', 43, 1970, '2023-09-26 10:05:46', NULL),
-(15, 1, 1, 'Merrill Adkins', 'Anim nihil et numqua', 7, 238, 568, 99, 102, 1, 'pkg', 56, 1982, '2023-09-26 10:05:55', NULL);
+INSERT INTO `product` (`id`, `branch_id`, `store_id`, `name`, `brand`, `pkj_amount`, `quantity`, `pkgs_buy_price`, `whole_sale_price`, `retail_sale_price`, `stock_limit`, `expire_date`, `created_at`, `updated_at`) VALUES
+(2, 2, NULL, 'Linus Howe', '', 36, 187, 760, 343, 25, 77, 1979, '2023-09-26 09:35:03', NULL),
+(4, 1, 1, 'Leigh Middleton', '', 95, 765, 823, 267, 50, 22, 1978, '2023-09-26 09:38:13', NULL),
+(5, 2, 1, 'Elizabeth Lucas', '', 99, 472, 796, 217, 989, 29, 2007, '2023-09-26 09:39:38', NULL),
+(6, 2, 1, 'Elizabeth Lucas', '', 99, 472, 796, 217, 989, 29, 2007, '2023-09-26 09:40:16', NULL),
+(7, 1, NULL, 'Hayden Montgomery', 'Enim elit dolorum v', 15, 540, 629, 798, 432, 50, 1991, '2023-09-26 09:47:44', NULL),
+(8, 1, NULL, 'Avram Wallace', 'Sit sunt dolor in q', 30, 219, 619, 678, 236, 79, 1987, '2023-09-26 09:48:03', NULL),
+(9, 2, NULL, 'Armando Duffy', 'Veniam hic ut dolor', 24, 560, 460, 922, 933, 36, 1981, '2023-09-26 09:48:31', NULL),
+(10, 2, NULL, 'Raja Glass', 'Aut vitae adipisci e', 13, 99, 688, 580, 877, 27, 1976, '2023-09-26 09:48:42', NULL),
+(11, 2, 1, 'Gregory Rollins', 'Occaecat esse sit ', 52, 165, 767, 902, 996, 79, 2006, '2023-09-26 09:49:13', NULL),
+(12, 1, 1, 'Nero Alford', 'Deserunt consequuntu', 94, 326, 118, 730, 419, 6, 2000, '2023-09-26 09:57:54', NULL),
+(13, 1, NULL, 'Leroy Hawkins', 'Libero cillum ut ess', 47, 460, 405, 59, 34, 34, 2012, '2023-09-26 10:05:38', NULL),
+(14, 1, NULL, 'Alyssa Alvarez', 'Enim veniam quae as', 100, 580, 583, 966, 630, 43, 1970, '2023-09-26 10:05:46', NULL),
+(15, 1, 1, 'Merrill Adkins', 'Anim nihil et numqua', 7, 238, 568, 99, 102, 56, 1982, '2023-09-26 10:05:55', NULL),
+(16, 2, NULL, 'Dalton Bean', 'Facere et nostrud si', 58, 534, 278, 557, 278, 91, 1973, '2023-09-27 06:10:46', NULL),
+(17, 1, NULL, 'Magee Rivera', 'Asperiores quia ipsu', 62, 548, 752, 533, 458, 86, 1985, '2023-09-27 06:11:32', NULL),
+(18, 1, 1, 'Sybil Olson', 'Culpa dicta explica', NULL, 8, 237, 679, 467, 10, 1974, '2023-09-28 21:42:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -244,7 +266,8 @@ INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `email`, `branc
 (5, 'Neil', 'Dickson', 'taqyvane', 'hisazovahe@mailinator.com', 0, 1, 1, NULL, NULL, '$2y$12$OJZm3BH6iHt0vpdH4XqfbeIyeb3g.NG3lGyVDrHMqidkPdY7feRAC', '2023-09-26 08:21:32'),
 (6, 'Jason', 'Brennan', 'vareha', 'tomoqiraq@mailinator.com', 2, 1, 1, 1, NULL, '$2y$12$XD6.WvFPWFr5UZOG5Vcn9.L.hehNasse.LiJ7V2dmqRocS/3KLfYK', '2023-09-26 08:31:35'),
 (7, 'Paki', 'Snow', 'nuzevaj', 'xexanopymo@mailinator.com', 1, 1, 1, 1, NULL, '$2y$12$8lIf4QIuf14h.U0l8M5Yz.i/G1IaxCCURj21w143t6tTfb4nHQCb6', '2023-09-26 08:34:25'),
-(8, 'Anne', 'Wynn', 'tyhek', 'zugaqe@mailinator.com', 0, NULL, NULL, NULL, NULL, '$2y$12$sb/JZ2nJJnjzIqOmVEw9y.ayJ.WZdaqyPXbl2xJvZTji9NM0G6C8u', '2023-09-26 11:06:42');
+(8, 'Anne', 'Wynn', 'tyhek', 'zugaqe@mailinator.com', 0, NULL, NULL, NULL, NULL, '$2y$12$sb/JZ2nJJnjzIqOmVEw9y.ayJ.WZdaqyPXbl2xJvZTji9NM0G6C8u', '2023-09-26 11:06:42'),
+(9, 'Maria', 'Simon', 'maria', 'maria@gmail.com', 1, NULL, 1, 1, NULL, '$2y$12$8lYtL7EiStyuxx5L.p2cFeHMgcSnTx4/xkA/4.tWqSUyenNpqtICG', '2023-09-29 00:04:06');
 
 --
 -- Indexes for dumped tables
@@ -261,7 +284,8 @@ ALTER TABLE `branch`
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cart_user_id` (`user_id`);
 
 --
 -- Indexes for table `cart_item`
@@ -349,13 +373,13 @@ ALTER TABLE `branch`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `expenses`
@@ -397,7 +421,7 @@ ALTER TABLE `order_item`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `store`
@@ -409,7 +433,7 @@ ALTER TABLE `store`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -420,6 +444,12 @@ ALTER TABLE `user`
 --
 ALTER TABLE `branch`
   ADD CONSTRAINT `branch_mnj` FOREIGN KEY (`mnj_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `cart_item`

@@ -98,10 +98,11 @@
                       <?php endif ?>
                   </td>
                   <td class="py-1 px-2 font-normal text-center">
-                    <a href="<?= site_url('cart/delete/$') ?>"></a>
-                    <button title="Cancel" class="p-2 w-10 h-10 outline-none text-white bg-red-600 rounded-xl select-none">
-                      <span class="material-symbols-outlined">close</span>
-                    </button>
+                    <a href="<?= site_url('cartItem/delete/'.$cartItem->id) ?>">
+                      <button title="Cancel" class="p-2 w-10 h-10 outline-none text-white bg-red-600 rounded-xl select-none">
+                        <span class="material-symbols-outlined">close</span>
+                      </button>
+                    </a>
                   </td>
                 </tr>
                 <?php endforeach?>
