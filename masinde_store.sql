@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2023 at 12:53 PM
+-- Generation Time: Sep 30, 2023 at 11:25 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -60,7 +60,9 @@ CREATE TABLE `cart` (
 
 INSERT INTO `cart` (`id`, `user_id`, `created_at`) VALUES
 (1, NULL, '2023-09-28 22:58:34'),
-(10, NULL, '2023-09-29 00:11:28');
+(10, NULL, '2023-09-29 00:11:28'),
+(11, 13, '2023-09-30 12:27:25'),
+(12, 14, '2023-09-30 13:24:25');
 
 -- --------------------------------------------------------
 
@@ -85,7 +87,11 @@ INSERT INTO `cart_item` (`id`, `product_id`, `quantity`, `cart_id`, `sold_by`) V
 (20, 12, 5, 1, 'whole'),
 (21, 2, 13, 1, 'retail'),
 (22, 2, 12, 1, 'whole'),
-(23, 4, 1, 1, 'whole');
+(23, 4, 1, 1, 'whole'),
+(25, 2, 2, 11, 'retail'),
+(26, 2, 3, 11, 'whole'),
+(29, 2, 3, 12, 'retail'),
+(30, 2, 2, 12, 'whole');
 
 -- --------------------------------------------------------
 
@@ -151,6 +157,8 @@ CREATE TABLE `loan_flow` (
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `total_price` int(11) NOT NULL,
+  `amount_paid` int(11) DEFAULT NULL,
   `created_at` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -276,7 +284,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `email`, `branch_id`, `position_id`, `is_staff`, `is_active`, `password`, `created_at`) VALUES
-(13, 'Idona', 'Stone', 'ricyzuqin', 'cijonufav@mailinator.com', 2, NULL, 0, NULL, '$2y$12$Qu91erVOklmWv0hJBMU8pOCE32XVY32EyPNA54WKzxEyZJHDgbkVm', '2023-09-30 07:41:00');
+(13, 'Idona', 'Stone', 'ricyzuqin', 'cijonufav@mailinator.com', 2, NULL, 0, NULL, '$2y$12$Qu91erVOklmWv0hJBMU8pOCE32XVY32EyPNA54WKzxEyZJHDgbkVm', '2023-09-30 07:41:00'),
+(14, 'alkado', 'heneliko', 'alkadohs', 'email@gmail.com', 1, 1, 0, NULL, '$2y$12$vkUt.z11VOrCeiC8SgITcuPXo5Hy6djikUeFNuCN0hHAAKyzSRch6', '2023-09-30 11:07:07');
 
 --
 -- Indexes for dumped tables
@@ -390,13 +399,13 @@ ALTER TABLE `branch`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `expenses`
@@ -456,7 +465,7 @@ ALTER TABLE `store`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables

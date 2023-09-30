@@ -22,6 +22,7 @@
 
   <!-- Favicon  -->
   <link rel="icon" href="<?php echo base_url('assets/img/favicon.png')?>">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body id="body-layout" class="text-body-md relative font-sans font-normal text-gray-700 dark:text-gray-300 bg-surface-500 dark:bg-surfacedark-500 show">
@@ -60,7 +61,7 @@
               <tbody>
                 <?php foreach($cartItems as $cartItem):?>
                 <tr class="border-b border-gray-100 dark:border-gray-700">
-                  <td class="px-2 py-1 font-normal">
+                  <td class="px-2 font-normal">
                     <a href="#productId">
                       <div class="flex flex-wrap flex-row items-center">
                         <div class="leading-5 dark:text-gray-300 flex-1 mb-1">  
@@ -69,35 +70,35 @@
                       </div>
                     </a>
                   </td>
-                  <td class="py-1 px-2 font-normal ">
+                  <td class="font-normal ">
                     <?php if($cartItem->sold_by == 'retail'):?>
                     <span class="px-3 py-2 bg-indigo-500 text-white rounded"><?= $cartItem->sold_by ?></span>
                     <?php else:?>
                     <span class="px-3 py-2 bg-green-500 text-white rounded"><?= $cartItem->sold_by ?></span>
                     <?php endif?>
                   </td>
-                  <td class="py-1 px-2 font-normal ">
+                  <td id="salePrice" class="font-normal ">
                     <?php if($cartItem->sold_by == "retail"):?>
                       <?= $cartItem->retail_sale_price ?>
                     <?php else:?>
                       <?= $cartItem->whole_sale_price ?>
                     <?php endif?>
                   </td>
-                  <td class="py-1 px-2 font-normal text-center">
+                  <td class="font-normal text-center">
                     <div class="flex flex-row" style="max-width: 200px;">
                       <div class="relative z-0">
-                        <input type="text" aria-label="qtyinput1" name="qtyinput1" id="qtyinput1" class="w-14 h-10 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" value="<?= $cartItem->cart_items_quantity ?>">
+                        <input type="number" id="quntity" aria-label="qtyinput1" name="qtyinput1" id="qtyinput1" class="w-20 h-8 block leading-5 relative p-2 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" value="<?= $cartItem->cart_items_quantity ?>">
                       </div>
                     </div>
                   </td>
-                  <td class="py-1 px-2 font-normal text-center">
+                  <td id="totalPrice" class=" font-normal text-center">
                       <?php if($cartItem->sold_by == 'retail'):?>
                         <?= number_format($cartItem->cart_items_quantity * $cartItem->retail_sale_price) . '/=' ?>
                       <?php else: ?>
                         <?= number_format($cartItem->cart_items_quantity * $cartItem->whole_sale_price) . '/=' ?>
                       <?php endif ?>
                   </td>
-                  <td class="py-1 px-2 font-normal text-center">
+                  <td class="font-normal text-center">
                     <a href="<?= site_url('cartItem/delete/'.$cartItem->id) ?>">
                       <button title="Cancel" class="p-2 w-10 h-10 outline-none text-white bg-red-600 rounded-xl select-none">
                         <span class="material-symbols-outlined">close</span>
@@ -427,7 +428,21 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+    $(function() {
+
+       var TotalValue = 0;
+
+       $("tr #quantity").each(function(index,value){
+         currentRow = parseFloat($(this).text());
+         TotalValue += currentRow
+       });
   
+      document.getElementById('totalPrice').innerHTML = TotalValue;
+
+
+});
+</script>
   <script src="<?php echo base_url('assets/js/tailmater.js')?>"></script>
 
 
