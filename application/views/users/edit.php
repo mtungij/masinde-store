@@ -53,7 +53,7 @@
               </div>
               <div class="text-center px-4 pb-6 pt-2">
                 <h3 class="text-title-lg text-gray-900 dark:text-gray-100 mb-1">@<?= $user->username ?></h3>
-                <p class="text-body-md text-gray-600 dark:text-gray-400"><?= $user->is_superuser ? "Admin": "Staff" ?></p>
+                <p class="text-body-md text-gray-600 dark:text-gray-400">Staff</p>
               </div>
             </div>
             <!-- information -->
@@ -140,6 +140,16 @@
                             <option value="id">UYOLE BRANCH</option>
                             <option value="bid">MBALIZI BRANCH</option>
                           </select>
+                          <label for="branch_id" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Branch</label>
+                        </div>
+
+                        <div class="relative z-0 w-full">
+                          <select id="position_id" value="<?= $user->position_id ?>" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200">
+                            <option value="1">Admin</option>
+                            <option value="2">Seller</option>
+                            <option value="3">Supplier</option>
+                          </select>
+                          <label for="position_id" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Branch</label>
                         </div>
 
                         <!-- input email -->
@@ -148,28 +158,6 @@
 
                           <label for="email" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Email</label>
                         </div>
-                      </div>
-
-                       <div class="relative z-0 w-full">
-                        <label class="flex items-center gap-3">
-                          <?php if($user->store_id): ?>
-                          <input type="checkbox" name="store_id" checked value="<?= $user->store_id ?>" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
-                          <?php else: ?>
-                          <input type="checkbox" name="store_id" value="<?= $user->store_id ?>" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
-                          <?php endif ?>
-                          <span>Is a store member</span>
-                        </label>
-                      </div>
-
-                      <div class="relative z-0 w-full">
-                        <label class="flex items-center gap-3">
-                          <?php if($user->is_superuser): ?>
-                          <input type="checkbox" name="is_supper" checked value="<?= $user->is_superuser ?>"  class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
-                          <?php else: ?>
-                          <input type="checkbox" name="is_supper" value="<?= $user->is_superuser ?>"  class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
-                          <?php endif ?>
-                          <span>Is Admin?</span>
-                        </label>
                       </div>
 
 

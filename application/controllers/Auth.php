@@ -68,9 +68,7 @@ class Auth extends CI_Controller
             'username' => $this->input->post('username'),
             'email' => $this->input->post('email'),
             'branch_id' => $this->input->post('branch_id'),
-            'store_id' => $this->input->post('store_id'),
-            'is_superuser' => $this->input->post('is_superuser'),
-            'is_staff' => $this->input->post('is_staff'),
+            'position_id' => $this->input->post('position_id'),
             'is_active' => $this->input->post('is_active'),
             'password' => $this->input->post('password'),
         ];

@@ -44,6 +44,12 @@
               </ul>
             </li>
             <li class="relative">
+              <a href="<?= site_url('settings') ?>" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="compact-title">System Settings</span>
+              </a>
+            </li>
+            <li class="relative">
               <a href="javascript:void(0)" data-type="collapse" data-target="#dashboard2" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
                 <span class="material-symbols-outlined">groups</span>
                 <span class="compact-title">Staff</span>
@@ -67,6 +73,7 @@
                 </li> -->
               </ul>
             </li>
+
             <li class="relative">
               <a href="javascript:void(0)" data-type="collapse" data-target="#dashboard3" class="active flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
                 <span class="material-symbols-outlined">shopping_cart</span>
@@ -187,13 +194,7 @@
           </div>
           <ul class="sidebar-menu flex flex-col">
             <!-- Apps -->
-            <li class="relative">
-              <a href="../apps/chats.html" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
-                <span class="material-symbols-outlined">sms</span>
-                <span class="compact-title">Chats</span>
-                <span class="compact-hide w-5 h-5 flex items-center justify-center rounded-full text-[11px] leading-none tracking-[.045em] font-medium bg-surface-200 dark:bg-surfacedark-200 ml-auto">12</span>
-              </a>
-            </li>
+            
             <li class="relative">
               <a href="../apps/calendar.html" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
                 <span class="material-symbols-outlined">calendar_today</span>

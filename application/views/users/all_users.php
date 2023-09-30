@@ -81,7 +81,6 @@
                     <div class="flex items-center gap-3">
                       <div class="flex flex-col">
                         <h4 class="font-semibold"><?= $user->first_name." ".$user->last_name ?></h4>
-                        <span class="body-sm text-gray-500"><?= $user->is_superuser ? "Admin": "Staff" ?></span>
                       </div>
                     </div>
                   </td>
