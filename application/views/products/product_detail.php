@@ -81,19 +81,18 @@
             <div class="px-6 py-8 flex flex-col rounded-xl bg-white dark:bg-gray-900">
               <h4 class="text-title-md text-gray-700 dark:text-gray-200 mb-2">Product amounts</h4>
               <div class="text-gray-500">
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Containers:</span> <?= $product->pkj_amount ?></p>
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Retail Amount:</span> <?= $product->quantity ?></p>
+                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Quantity:</span> <?= $product->quantity ?></p>
               </div>
             </div>
 
             <div class="px-6 py-8 flex flex-col rounded-xl bg-white dark:bg-gray-900">
               <h4 class="text-title-md text-gray-700 dark:text-gray-200 mb-2">Pricing</h4>
               <div class="text-gray-500">
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Total Buy Price:</span> <?= $product->pkgs_buy_price ?></p>
+                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Buy Price:</span> <?= $product->quantity ?></p>
                 <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Whole sale Price: </span> <?= number_format($product->whole_sale_price).'/=' ?></p>
                 <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Retail Sale Price: </span> <?= number_format($product->retail_sale_price).'/=' ?></p>
                 <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Total Retail Sale:</span> <?= number_format($product->retail_sale_price * $product->quantity).'/=' ?></p>
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Total Whole Sale: </span> <?= number_format($product->whole_sale_price * $product->pkj_amount).'/=' ?></p>
+                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Total Whole Sale: </span> <?= number_format($product->whole_sale_price * $product->quantity).'/=' ?></p>
               </div>
             </div>
 
@@ -103,7 +102,7 @@
                 <p class="mb-1">
                     <span class="font-semibold text-gray-700 dark:text-gray-200">Stock Limit:</span>
                     <span><?= $product->stock_limit ?></span>
-                    <?php if($product->stock_limit >= $product->pkj_amount):?>
+                    <?php if($product->stock_limit >= $product->quantity):?>
                     <span class="inline-block leading-tight text-center text-label-md py-1 px-3 text-red-800 dark:text-red-800 bg-red-100 dark:bg-red-100 rounded-full">out of stock</span>
                     <?php  else: ?>
                     <span class="inline-block leading-tight text-center text-label-md py-1 px-3 text-green-800 dark:text-green-800 bg-green-100 dark:bg-green-100 rounded-full">InStock</span>

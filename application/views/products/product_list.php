@@ -65,7 +65,6 @@
                   <th data-sortable="false">S/N</th>
                   <th data-sortable="false">Product Name</th>
                   <th data-sortable="false">Brand</th>
-                  <th data-sortable="true">Packages</th>
                   <th data-sortable="true">Quantity</th>
                   <th data-sortable="true">Buy Price</th>
                   <th data-sortable="true">Whole Sale Price</th>
@@ -93,12 +92,11 @@
                   <td>
                     <?= $product->brand ?>
                   </td>
-                  <td><?= $product->pkj_amount?></td>
                   <td><?= $product->quantity ?></td>
-                  <td><?= number_format($product->pkgs_buy_price).'/=' ?></td>
+                  <td><?= number_format($product->buy_price).'/=' ?></td>
                   <td><?= number_format($product->whole_sale_price).'/=' ?></td>
                   <td><?= number_format($product->retail_sale_price) ?></td>
-                  <td><?= number_format($product->pkj_amount * $product->whole_sale_price).'/=' ?></td>
+                  <td><?= number_format($product->quantity * $product->whole_sale_price).'/=' ?></td>
                   <td><?= number_format($product->quantity * $product->retail_sale_price).'/=' ?></td>
                   <td><?= $product->updated_at ?? '--//--' ?></td>
                   <td>

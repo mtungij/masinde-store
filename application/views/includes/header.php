@@ -4,7 +4,6 @@ $userId = $this->session->userdata('userId');
 $username = $this->session->userdata('username');
 $firstName = $this->session->userdata('firstName');
 $lastName = $this->session->userdata('lastName');
-$storeId = $this->session->userdata('storeId');
 $branchId = $this->session->userdata('branchId');
 $isSuperuser = $this->session->userdata('isSuperuser');
 $isStaff = $this->session->userdata('isStaff');

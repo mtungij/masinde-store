@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from goodash.tailwinddashboard.com/ecommerce/shopping-cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Sep 2023 19:18:21 GMT -->
 <head>
   <!-- Required meta tags -->
   <meta charset="UTF-8">
@@ -34,7 +33,7 @@
     <?php include APPPATH.'/views/includes/sidebar.php'?>
 
     <!-- content -->
-    <div class="main-content flex-grow min-h-[100%] py-20 relative px-4 lg:pr-8 lg:pl-3">
+    <div class="main-content flex-grow min-h-[100%] py-20 relative px-2 lg:pr-8 lg:pl-3">
       <!-- heading -->
       <div class="flex flex-row justify-between items-center pt-2 pb-6">
         <h2 class="text-title-lg">Shopping Cart</h2>
@@ -42,15 +41,47 @@
       
       <!-- content 1 -->
       <div class="grid grid-cols-1 gap-4 md:gap-6">
-        <!-- card -->
+        <!-- Error and success alerts -->
         <div class="sm:px-6 py-8 flex flex-col rounded-xl bg-white dark:bg-gray-900">
+          <?php if($this->session->flashdata('product_quantity_less_than_one')): ?>
+            <div class="flex items-center gap-2 relative bg-red-50 border border-red-400 text-red-700 p-4 my-4 rounded">
+              <i class="material-symbols-outlined">info</i>
+              <p> <?= $this->session->flashdata('product_quantity_less_than_one') ?> </p>
+            </div>
+            <?php elseif($this->session->flashdata('product_quantity_increased')): ?>
+             <div class="flex items-center gap-2 relative bg-green-50 border border-green-400 text-green-700 p-4 my-4 rounded">
+              <i class="material-symbols-outlined">info</i>
+              <p><?= $this->session->flashdata('product_quantity_increased') ?></p>
+            </div>
+            <?php elseif($this->session->flashdata('added_to_cart')): ?>
+              <div class="flex items-center gap-2 relative bg-green-50 border border-green-400 text-green-700 p-4 my-4 rounded">
+                <i class="material-symbols-outlined">info</i>
+                <p><?= $this->session->flashdata('added_to_cart') ?></p>
+              </div>
+            <?php elseif($this->session->flashdata('stockEmptyOnUpdateCart')): ?>
+              <div class="flex items-center gap-2 relative bg-red-50 text-red-700 border border-red-400 p-4 my-4 rounded">
+                <i class="material-symbols-outlined">info</i>
+                <p> <?= $this->session->flashdata('stockEmptyOnUpdateCart') ?> </p>
+            </div>
+            <?php elseif($this->session->flashdata('orderPlacedSuccessfully')): ?>
+              <div class="flex items-center gap-2 relative bg-green-50 border border-green-400 text-green-700 p-4 my-4 rounded">
+                <i class="material-symbols-outlined">info</i>
+                <p><?= $this->session->flashdata('orderPlacedSuccessfully') ?></p>
+              </div>
+            <?php elseif($this->session->flashdata('cart_item_updated')): ?>
+              <div class="flex items-center gap-2 relative bg-green-50 text-green-700 p-4 my-4 rounded">
+                <i class="material-symbols-outlined">info</i>
+                <p><?= $this->session->flashdata('cart_item_updated') ?></p>
+              </div>
+          <?php endif ?>
+
           <div class="w-full mb-6 overflow-x-auto">
 
           <div class="relative overflow-auto scrollbars">
           <table class=" table-bordered-bottom table-hover w-full text-left text-gray-600 dark:text-gray-400">
               <thead class="bg-gray-100 dark:bg-gray-900 dark:bg-opacity-40">
                 <tr>
-                  <th class="p-4 font-normal">Products</th>
+                  <th class="p-4 font-normal">Product Name</th>
                   <th class="p-4 font-normal">Sold as</th>
                   <th class="p-4 font-normal">Price</th>
                   <th class="p-4 font-normal">Quantity</th>
@@ -59,7 +90,11 @@
                 </tr>
               </thead>
               <tbody>
+                <?php $cart_id = null?>
+                <?php $cart_price = 0?>
+                <?php $rowId = 1 ?>
                 <?php foreach($cartItems as $cartItem):?>
+                  <?php $cart_id = $cartItem->cart_id; ?>
                 <tr class="border-b border-gray-100 dark:border-gray-700">
                   <td class="px-2 font-normal">
                     <a href="#productId">
@@ -74,10 +109,10 @@
                     <?php if($cartItem->sold_by == 'retail'):?>
                     <span class="px-3 py-2 bg-indigo-500 text-white rounded"><?= $cartItem->sold_by ?></span>
                     <?php else:?>
-                    <span class="px-3 py-2 bg-green-500 text-white rounded"><?= $cartItem->sold_by ?></span>
+                    <span class="px-3 py-2 text-white rounded" style="background: #f97316;"><?= $cartItem->sold_by ?></span>
                     <?php endif?>
                   </td>
-                  <td id="salePrice" class="font-normal ">
+                  <td id="salePrice<?= $rowId++ ?>" class="font-normal ">
                     <?php if($cartItem->sold_by == "retail"):?>
                       <?= $cartItem->retail_sale_price ?>
                     <?php else:?>
@@ -87,15 +122,23 @@
                   <td class="font-normal text-center">
                     <div class="flex flex-row" style="max-width: 200px;">
                       <div class="relative z-0">
-                        <input type="number" id="quntity" aria-label="qtyinput1" name="qtyinput1" id="qtyinput1" class="w-20 h-8 block leading-5 relative p-2 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" value="<?= $cartItem->cart_items_quantity ?>">
+                        <input type="number" onchange="calculateTotalPrice(event)" data-soldby="<?= $cartItem->sold_by ?>" data-cartid="<?= $cartItem->cart_id ?>" data-productid="<?= $cartItem->product_id ?>" id="<?= $cartItem->id ?>"  class="w-20 h-8 block leading-5 relative p-2 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" value="<?= $cartItem->cart_items_quantity ?>">
                       </div>
                     </div>
                   </td>
-                  <td id="totalPrice" class=" font-normal text-center">
+                  <td id="totalPrice<?= $rowId++ ?>" class=" font-normal text-center">
                       <?php if($cartItem->sold_by == 'retail'):?>
-                        <?= number_format($cartItem->cart_items_quantity * $cartItem->retail_sale_price) . '/=' ?>
+                        <?php
+                         $cart_item_price = $cartItem->cart_items_quantity * $cartItem->retail_sale_price;
+                         $cart_price += $cart_item_price;
+                        ?>
+                        <?= number_format($cart_item_price) . '/=' ?>
                       <?php else: ?>
-                        <?= number_format($cartItem->cart_items_quantity * $cartItem->whole_sale_price) . '/=' ?>
+                        <?php
+                         $cart_item_price = $cartItem->cart_items_quantity * $cartItem->whole_sale_price;
+                         $cart_price += $cart_item_price;
+                        ?>
+                        <?= number_format($cart_item_price) . '/=' ?>
                       <?php endif ?>
                   </td>
                   <td class="font-normal text-center">
@@ -107,54 +150,44 @@
                   </td>
                 </tr>
                 <?php endforeach?>
+                <tr class="border-b border-gray-100 dark:border-gray-700">
+                    <td class="p-4 font-normal text-center bg-green-100 " colspan="4"><b>Overall Price(Total)</b></td>
+                    <td class="p-4 bg-green-500  totals" style="color: white; font-weight: bold" colspan="2"> <?= number_format($cart_price).'/=' ?> </td>
+                </tr>
             </tbody>
             </table>
            </div>
 
 
-            <div class="flex flex-wrap flex-row">
-              <div class="flex-shrink max-w-full px-4 w-full sm:w-1/2">
-                <div class="my-6" id="coupon">
-                  <div class="relative flex flex-row gap-4 items-center w-full mb-6">
-                    <input type="text" aria-label="inputtext" name="inputtext" id="inputtext" class="grow h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder="Discount code" value="">
-                    <button class="btn-tonal relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] text-sm tracking-[.00714em] font-medium hover:shadow bg-secondary-100 text-primary-900 dark:bg-secondary-700 dark:text-secondary-100">
-                      Apply
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex-shrink max-w-full px-4 w-full sm:w-1/2 table-custom mb-6">
-                <table class="table-auto w-full text-left text-gray-600 dark:text-gray-400">
-                  <tbody>
-                    <tr class="border-b border-gray-100 dark:border-gray-700">
-                      <td class="p-4 font-normal text-right"><b>Sub-Total</b></td>
-                      <td class="p-4 font-normal text-right totals">670,000/=</td>
-                    </tr>
-                    <tr class="border-b border-gray-100 dark:border-gray-700">
-                      <td class="p-4 font-normal text-right"><b>Discount</b></td>
-                      <td class="p-4 font-normal text-right totals">-2,000/=</td>
-                    </tr>
-                    <tr class="border-b border-gray-100 dark:border-gray-700">
-                      <td class="p-4 font-normal text-right"><b>Total</b></td>
-                      <td class="p-4 font-normal text-right totals">668,000</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-            </div>
-
             <div class="flex-shrink max-w-full px-4 w-full">
-                <div class="relative pt-4 flex flex-col sm:flex-row gap-4 items-center justify-between">
-                  <a href="#" class="max-sm:hidden btn-tonal relative flex max-sm:w-full sm:inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] text-sm tracking-[.00714em] font-medium hover:shadow bg-secondary-100 text-primary-900 dark:bg-secondary-700 dark:text-secondary-100">
-                   <!-- blanck -->
-                  </a>
+                <div class="relative pt-4 flex flex-col sm:flex-row gap-4 items-center justify-end">
+                  <?php echo form_open('debt/sell_by_debt') ?>
+                  <input type="hidden" name="cart_price" value="<?= number_format($cart_price) ?>">
+                  <input type="hidden" name="cart_id" value="<?= $cart_id ?>">
+                  <input type="hidden" name="user_id" value="<?= $userId ?>">
+                  <input type="hidden" name="branch_id" value="<?= $branchId ?>">
+                  <input type="hidden" name="sell_type" value="debt">
+                  <?php if($cart_price != 0):?>
+                  <button type="submitt" class="btn btn-tonal relative flex max-sm:w-full sm:inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] text-sm tracking-[.00714em] font-medium hover:shadow bg-red-100 text-primary-900 dark:bg-secondary-700 dark:text-secondary-100">
+                      Sell By Debt
+                  </button>
+                  <?php endif?>
+                  <?php echo form_close()?>
 
-                  <a href="#addorder" class="btn relative flex max-sm:w-full sm:inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
-                    Sell Now
+                  <?php echo form_open('order/create')?>
+                  <input type="hidden" name="cart_price" value="<?= $cart_price ?>">
+                  <input type="hidden" name="cart_id" value="<?= $cart_id ?>">
+                  <input type="hidden" name="user_id" value="<?= $userId ?>">
+                  <input type="hidden" name="branch_id" value="<?= $branchId ?>">
+                  <input type="hidden" name="sell_type" value="cash">
+                  <input type="hidden" name="amount_paid"value="<?= $cart_price ?>" >
+                  <?php if($cart_price != 0):?>
+                  <button type="submit" class="btn relative flex max-sm:w-full sm:inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
+                    Sell By Cash
                     <span class="material-symbols-outlined">arrow_forward</span>
-                  </a>
+                  </button>
+                  <?php endif ?>
+                  <?php echo form_close()?>
                 </div>
               </div>
 
@@ -165,7 +198,7 @@
             <table class="table-sorter table-bordered-bottom table-hover w-full text-left text-gray-600 dark:text-gray-400">
               <thead class="bg-gray-100 dark:bg-gray-900 dark:bg-opacity-40">
                 <tr>
-                  <th class="p-4 font-normal">Products</th>
+                  <th class="p-4 font-normal">Product Name</th>
                   <th class="p-4 font-normal">Brand</th>
                   <th class="p-4 font-normal">Whole Price</th>
                   <th class="p-4 font-normal">Retail Price</th>
@@ -194,10 +227,10 @@
                     <span><?= $product->retail_sale_price . '/=' ?></span>
                   </td>
                   <td class="p-4 font-normal grid grid-cols-2 gap-2 ">
-                    <?php if($product->quantity > $product->stock_limit):?>
-                    <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"><?= $product->quantity ?></span>
+                    <?php if($product->inventory > $product->stock_limit):?>
+                    <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"><?= $product->inventory ?></span>
                     <?php else:?>
-                    <span class="bg-red-100 text-red-800 text-xs font-medium px-3 py-1 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"><?= $product->quantity ?></span>
+                    <span class="bg-red-100 text-red-800 text-xs font-medium px-3 py-1 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"><?= $product->inventory ?></span>
                     <?php endif?>
                   </td>
                   <td class="p-4 font-normal text-center">
@@ -215,7 +248,7 @@
                       <input type="hidden" name="user_id" value="<?= $userId ?>">
                       <input type="hidden" name="sell_type" value="whole">
                       <input type="hidden" name="product_id" value="<?= $product->id ?>">
-                      <button  class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-green-500 text-white dark:bg-green-800 dark:text-white">
+                      <button  class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium text-white text-white" style="background: #f97316">
                         Whole
                       </button>
                     <?php echo form_close()?>
@@ -443,6 +476,42 @@
 
 });
 </script>
+  <script>
+        function calculateTotalPrice(e) {
+          const quantity = e.target.value;
+          const id = e.target.id;
+          const productId = e.target.dataset.productid;
+          const soldBy = e.target.dataset.soldby;
+          const cartId = e.target.dataset.cartid
+
+          //use ajax to send data to the server: base_url('cartItem/update')
+           const data = new FormData()
+            data.append('id', id)
+            data.append('product_id', productId)
+            data.append('cart_id', cartId)
+            data.append('quantity', quantity)
+            data.append('sold_by', soldBy)
+
+            fetch('<?php echo base_url('cartItem/update/')?>', {
+              method: 'POST',
+              body: data
+            })
+
+            .then(response => response.json()) 
+            .then(data => {
+              location.reload()
+              console.dir(data)
+              // if(data.status == 'success') {
+              //   document.getElementById('totalPrice'+id).innerHTML = data.totalPrice
+              // }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+        }
+
+       
+  </script>
   <script src="<?php echo base_url('assets/js/tailmater.js')?>"></script>
 
 

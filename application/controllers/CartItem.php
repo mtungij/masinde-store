@@ -14,6 +14,31 @@ class CartItem extends CI_Controller
     {
         //all 
     }
+    
+    //update cart item
+    public function update()
+    {
+        //get cart item sent from ajax
+        $id = $this->input->post('id');
+        $quantity = $this->input->post('quantity');
+        $data = [
+            'quantity' => $this->input->post('quantity'),
+            'cart_id' => $this->input->post('cart_id'),
+            'product_id' => $this->input->post('product_id'),
+            'sold_by' => $this->input->post('sold_by'),
+        ];
+
+        //select product inventory then if product inventory is less than quantity, return error message else update cart item
+        $product = $this->db->query("SELECT inventory FROM product WHERE id = $data[product_id]")->row();
+        if($product->inventory < $quantity) {
+            $this->session->set_flashdata('stockEmptyOnUpdateCart', "The product quantity you are trying to sell is out of stock, You can sell less than $product->inventory products only.");
+            echo json_encode("Product inventory is less than $quantity");
+            return;
+        } else {
+            $this->db->update('cart_item', $data, ['id' => $id]);
+            echo json_encode("Cart item is updated successfully");
+        }
+    }
 
     public function delete($id)
     {

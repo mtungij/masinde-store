@@ -31,10 +31,18 @@ class Cart extends CI_Controller
          $sellType = $this->input->post('sell_type');
          $productId = $this->input->post('product_id');
 
+         //if product quantity is less than 1, redirect back with error message
+        $product = $this->ProductModel->get_product($productId);
+        if($product->quantity < 1) {
+            $this->session->set_flashdata('product_quantity_less_than_one', 'You can not sell this product because, Product quantity is less than 1');
+            return redirect('product/sell');
+        } 
+
          $cart = $this->CartModel->get_latest_cart($userId);
          $latest_cart = null;
          if(!$cart) {
                 $this->db->trans_start();
+                    //create new cart
                 $this->CartModel->create_cart(["user_id" => $userId]);
                 $latest_cart = $this->CartModel->get_latest_cart($userId);
                 $this->CartItemModel->create_cart_item(['cart_id' => $latest_cart->id, 'product_id' => $productId, 'quantity'=>1, 'sold_by' => $sellType]);
@@ -42,18 +50,19 @@ class Cart extends CI_Controller
                 
                 $this->session->set_flashdata('new_cart_created', 'New cart is created with 1 product.');
                 redirect('product/sell');
+                
          } else {
             $latest_cart = $this->CartModel->get_latest_cart($userId);
             $cartItem = $this->CartItemModel->get_latest_cart_item($productId, $latest_cart->id, $sellType);
             if(!$cartItem) {
                 $this->CartItemModel->create_cart_item(['cart_id' => $latest_cart->id, 'product_id' => $productId, 'quantity'=>1, 'sold_by' => $sellType]);
-                $this->session->set_flashdata('added_to_cart', 'Product is added to the cart');
+                $this->session->set_flashdata('added_to_cart', 'Product is successfully added to the cart');
 
                 redirect('product/sell');
             } else {
                 $cartItem = $this->CartItemModel->get_latest_cart_item($productId, $latest_cart->id, $sellType);
                 $this->db->query("UPDATE cart_item SET quantity = $cartItem->quantity + 1 WHERE cart_id = $latest_cart->id AND product_id = $cartItem->product_id AND sold_by = '$sellType'");
-                $this->session->set_flashdata('product_quantity_increased', 'The quantity of this product was increased');
+                $this->session->set_flashdata('product_quantity_increased', 'We found this product to the cart, Now we increased the quantity by 1 instead of adding it again.');
                 redirect('product/sell');
             }
          }

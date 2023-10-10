@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- Mirrored from goodash.tailwinddashboard.com/ecommerce/add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Sep 2023 19:18:20 GMT -->
 <head>
   <!-- Required meta tags -->
   <meta charset="UTF-8">
@@ -8,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title  -->
-  <title>Add Product</title>
+  <title>Add Staff</title>
 
   <!-- Style Css -->
   <link rel="stylesheet" id="stylesheet" href="<?php echo base_url('assets/css/style.css')?>">
@@ -26,17 +27,17 @@
 </head>
 
 <body id="body-layout" class="text-body-md relative font-sans font-normal text-gray-700 dark:text-gray-300 bg-surface-500 dark:bg-surfacedark-500 show">
-<?php  include APPPATH.'/views/includes/header.php'?>
+
+  <?php include APPPATH.'/views/includes/header.php'?>
 
   <main class="lg:flex">
     <!-- sidebar -->
     <?php include APPPATH.'/views/includes/sidebar.php'?>
-
     <!-- content -->
     <div class="main-content flex-grow min-h-[100%] py-20 relative px-4 lg:pr-8 lg:pl-3">
       <!-- heading -->
       <div class="flex flex-row justify-between items-center pt-2 pb-6">
-        <h2 class="text-title-lg">Add Product</h2>
+        <h2 class="text-title-lg">Add New Debt</h2>
       </div>
 
       <!-- content 1 -->
@@ -44,100 +45,70 @@
         <div class="py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
           <!-- tabs -->
           <div class="tabs flex flex-col w-full">
-
-            <!-- tabs content -->
-            <?php echo form_open('product/create', ['class' => 'flex flex-col'])?>
-              <div id="tab-4" role="tabpanel" class="active [&.active]:block hidden py-4 transition duration-400 ease-in-out">
-                <div class="flex flex-col gap-8">
-                  <!-- heading -->
-                  <div class="flex flex-col pt-4 pb-2">
-                    <?php if($this->session->flashdata('create_product')
-                    ):?>
-                    <div class="flex items-center gap-2 relative bg-green-50 text-green-700 p-4 rounded">
-                        <i class="material-symbols-outlined">info</i>
-                        <p><?= $this->session->flashdata('create_product');
-                         ?></p>
-                    </div>
-                    <?php elseif($this->session->flashdata('create_product_failure')):?>
-                      <div class="flex items-center gap-2 relative bg-red-50 text-red-700 p-4 rounded">
-                        <i class="material-symbols-outlined">info</i>
-                        <p><?= $this->session->flashdata('create_product_failure');
-                         ?></p>
-                    </div>
-                    <?php else: ?>
-                     <div class="flex items-center gap-2 relative bg-yellow-50 text-yellow-700 p-4 rounded">
-                        <i class="material-symbols-outlined">info</i>
-                        <p>Be carefully when adding new product because this is the heart of your sales!</p>
-                    </div>
-
-                    <?php endif ?>
+            <!-- tabs header -->
+            <div class="relative flex flex-row items-center">
+              <?php if (validation_errors()):?>
+               <div class="flex items-center gap-2 relative bg-red-50 text-red-700 p-4 rounded">
+                  <i class="material-symbols-outlined">info</i>
+                  <div>
+                      <?php echo validation_errors(); ?>
                   </div>
-                  <!-- divider -->
-                  <hr class="border-gray-200 dark:border-gray-700">
-             
-                      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="relative z-0">
-                          <input type="text" aria-label="product_name" name="name" required id="product_name" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" ">
-                          <label for="product_name" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Product Name</label>
-                        </div>
-                        <div class="relative z-0">
-                          <input type="text" aria-label="brand" name="brand" id="brand" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" ">
-                          <label for="brand" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Brand</label>
-                        </div>
-                        <div class="relative z-0">
-                          <input type="text" aria-label="unit" name="unit" id="unit" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" ">
-                          <label for="unit" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Unit</label>
-                        </div>
-                        <div class="relative z-0">
-                          <select id="branch_id" name="branch_id" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200">
-                            <option value="">----select---</option>
-                            <option value="1">Branch A</option>
-                            <option value="2">Branch B</option>
-                          </select>
-                          <label for="branch_id" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Branch</label>
-                        </div>
-                        
-                        <div class="relative z-0">
-                          <input type="number" aria-label="quantity" name="quantity" id="quantity" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " required>
-                          <label for="quantity" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Products amount</label>
-                        </div>
-                       
-                        <div class="relative z-0">
-                          <input type="number" aria-label="pkgs_buy_price" required name="pkgs_buy_price" id="pkgs_buy_price" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" ">
-                          <label for="pkgs_buy_price" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Buy Price</label>
-                        </div>
-                        <div class="relative z-0">
-                          <input type="number" aria-label="whole_sale_price" name="whole_sale_price" required id="whole_sale_price" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" ">
-                          <label for="whole_sale_price" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Whole Sale Price</label>
-                        </div>
-                        <div class="relative z-0">
-                          <input type="number" aria-label="retail_sale_price" name="retail_sale_price" id="retail_sale_price" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" ">
-                          <label for="retail_sale_price" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Retail Sale Price</label>
-                        </div>
-                        <!-- input text -->
-                        <div class="relative z-0">
-                          <input type="number" aria-label="stock_limit" name="stock_limit" required id="stock_limit" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" ">
-                          <label for="stock_limit" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Stock Limit</label>
-                        </div>
-                       
-                        <div class="relative z-0">
-                          <input type="date" aria-label="expire_date" name="expire_date" id="expire_date" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" ">
-                          <label for="expire_date" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Expire Date</label>
-                        </div>
+              </div>
+              <?php elseif($this->session->flashdata('register_success')): ?>
+                  <div class="flex items-center gap-2 relative bg-green-50 text-green-700 p-4 rounded">
+                    <i class="material-symbols-outlined">info</i>
+                    <p><?= $this->session->flashdata('register_success');
+                     ?></p>
+                  </div>
+              <?php endif?>
+            </div>
+              
+            <!-- tabs content -->
+            <div class="flex flex-col">
+              <?php echo form_open('order/create', ['id' => 'tab-4', 'role' => 'tabpanel', 'class' => 'active [&.active]:block hidden py-4 transition duration-400 ease-in-out'])?>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 
+                    <!-- debt hidden inputs -->
+                    <input type="hidden" name="user_id" value="<?= $debt['user_id'] ?>">
+                    <input type="hidden" name="branch_id" value="<?= $debt['branch_id'] ?>">
+
+                    <input type="hidden" name="cart_id" value="<?= $debt['cart_id'] ?>">
+                    <input type="hidden" name="cart_price" value="<?= $debt['total_price'] ?>">
+                    <input type="hidden" name="sell_type" value="<?= $debt['sold_by'] ?>">
+ 
+                    <input type="hidden" name="branch_id" value="<?= $branchId ?>">
+
+                     <div class="relative z-0">
+                        <input type="number" aria-label="amount_paid" name="amount_paid" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" required>
+                        <label for="paid_amount" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Paid Amount</label>
                       </div>
 
-                  
-                </div>
-              </div>
+                      <div class="relative z-0">
+                        <input type="text" aria-label="customer_name" name="customer_name" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" required>
+                        <label for="customer_name" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Customer Full Name</label>
+                      </div>
 
+                      <div class="relative z-0">
+                        <input type="number" aria-label="phone" name="customer_phone" id="phone" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
+                        <label for="phone" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Phone Number</label>
+                      </div>
               
-              <div class="relative pt-4 flex justify-end">
-                <button type="submit" class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
-                  Add product
-                  <span class="material-symbols-outlined">arrow_forward</span>
-                </button>
-              </div>
-            <?php echo form_close() ?>
+                      <div class="relative z-0">
+                        <input type="text" aria-label="address" name="customer_address" id="address" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
+                        <label for="address" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Address</label>
+                      </div>
+
+                </div>
+
+                <div class="relative pt-4 flex justify-end">
+                  <button class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
+                    Sell By Debt
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                  </button>
+                </div>
+              <?php echo form_close()?>
+
+            </div>
           </div>
         </div>
       </div>
@@ -147,7 +118,7 @@
   <footer class="footer absolute px-4 lg:px-8 lg:pl-3 left-0 lg:left-72 bottom-0 right-0">
     <div class="text-center py-6">
       <!-- Copyright text -->
-      <p><script>document.write(new Date().getFullYear())</script> Goodash - All right reserved</p>
+      <p><script>document.write(new Date().getFullYear())</script> Masinde-store - All right reserved</p>
     </div>
   </footer>
 
