@@ -8,6 +8,8 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model('UserModel');
+        $this->load->model('BranchModel');
+        
     }
     public function index()
     {
@@ -22,7 +24,8 @@ class User extends CI_Controller
 
     public function create_index()
     {
-        $this->load->view('users/add_user');
+        $branches = $this->BranchModel->get_branches();
+        $this->load->view('users/add_user', ['branches' => $branches]);
     }
 
     public function update()

@@ -8,6 +8,7 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->model('UserModel');
+        $this->load->model('BranchModel');
     }
 
     public function login() 
@@ -26,14 +27,15 @@ class Auth extends CI_Controller
         } else {
             $user = $this->UserModel->get_login_user($userdata);
             if(!$user) {
-                $this->session->set_flashdata('incorrectUser', 'This user does not exist.');
+                $this->session->set_flashdata('incorrectUser', 'Incorrest username or password!');
                 return redirect('');
             } else {
                 $decryptedPassword = password_verify($password,$user->password);
                 if(!$decryptedPassword) {
-                    $this->session->set_flashdata('incorrectPassword', 'This password is icorrect!');
-                    return redirect('');
+                    $this->session->set_flashdata('incorrectPassword', 'Incorrest username or password!');
+                    return redirect('','refresh');
                 } else {
+                    $branch = $this->db->query("SELECT branch.name FROM user JOIN branch ON branch.id = user.branch_id WHERE user.id = $user->id")->row();
                     $userInfo = [
                         'userId' =>$user->id,
                         'firstName' => $user->first_name,
@@ -41,7 +43,8 @@ class Auth extends CI_Controller
                         'username' => $user->username,
                         'storeId' => $user->store_id,
                         'branchId' => $user->branch_id,
-                        'isSuperuser' => $user->is_superuser,
+                        'branchName' => $branch->name,
+                        'position' => $user->position,
                         'isStaff' => $user->is_staff,
                     ];
                     
@@ -68,8 +71,8 @@ class Auth extends CI_Controller
             'username' => $this->input->post('username'),
             'email' => $this->input->post('email'),
             'branch_id' => $this->input->post('branch_id'),
-            'position_id' => $this->input->post('position_id'),
-            'is_active' => $this->input->post('is_active'),
+            'position' => $this->input->post('position_id'),
+            'salary' => $this->input->post('salary'),
             'password' => $this->input->post('password'),
         ];
 

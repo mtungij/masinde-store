@@ -9,6 +9,7 @@ class Cart extends CI_Controller
         $this->load->model('ProductModel');
         $this->load->model('CartModel');
         $this->load->model('CartItemModel');
+        $this->load->model('ProductBranchModel');
         
     }
 
@@ -27,16 +28,17 @@ class Cart extends CI_Controller
 
     public function create()
     {
+         $branchId = $this->session->userdata('branchId');
          $userId = $this->input->post('user_id');
          $sellType = $this->input->post('sell_type');
          $productId = $this->input->post('product_id');
 
          //if product quantity is less than 1, redirect back with error message
-        $product = $this->ProductModel->get_product($productId);
-        if($product->quantity < 1) {
-            $this->session->set_flashdata('product_quantity_less_than_one', 'You can not sell this product because, Product quantity is less than 1');
-            return redirect('product/sell');
-        } 
+            $product = $this->ProductBranchModel->get_productbranch_by_id($productId, $branchId);
+            if($product->quantity < 1) {
+                $this->session->set_flashdata('product_quantity_less_than_1', 'Product quantity is less than 1, please add more products to the inventory.');
+                redirect('product/sell');
+            }
 
          $cart = $this->CartModel->get_latest_cart($userId);
          $latest_cart = null;

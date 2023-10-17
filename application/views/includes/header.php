@@ -5,6 +5,7 @@ $username = $this->session->userdata('username');
 $firstName = $this->session->userdata('firstName');
 $lastName = $this->session->userdata('lastName');
 $branchId = $this->session->userdata('branchId');
+$branchName = $this->session->userdata('branchName');
 $isSuperuser = $this->session->userdata('isSuperuser');
 $isStaff = $this->session->userdata('isStaff');
 

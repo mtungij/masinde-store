@@ -85,7 +85,7 @@
                   <td>
                     <div class="flex items-center gap-3">
                       <div class="flex flex-col">
-                        <h4 class="font-semibold"><?= $product->product_name ?></h4>
+                        <h4 class="font-semibold"><?= $product->name ?></h4>
                       </div>
                     </div>
                   </td>
@@ -100,7 +100,7 @@
                   <td><?= number_format($product->quantity * $product->retail_sale_price).'/=' ?></td>
                   <td><?= $product->updated_at ?? '--//--' ?></td>
                   <td>
-                    <a href="<?= site_url('product/show/'.$product->product_id)?>" class="hover:text-primary-600 dark:hover:text-primary-200">view</a>
+                    <a href="<?= site_url('product/show/'.$product->id)?>" class="hover:text-primary-600 dark:hover:text-primary-200">view</a>
                   </td>
                 </tr>
                 <?php endforeach?>

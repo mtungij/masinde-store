@@ -8,6 +8,7 @@ class CartItem extends CI_Controller
     {
         parent::__construct();
         $this->load->model('CartItemModel');
+        $this->load->model('ProductBranchModel');
         
     }
     public function index()
@@ -29,7 +30,7 @@ class CartItem extends CI_Controller
         ];
 
         //select product inventory then if product inventory is less than quantity, return error message else update cart item
-        $product = $this->db->query("SELECT inventory FROM product WHERE id = $data[product_id]")->row();
+        $product = $this->ProductBranchModel->get_productbranch_by_id($data['product_id'], $this->session->userdata('branchId'));
         if($product->inventory < $quantity) {
             $this->session->set_flashdata('stockEmptyOnUpdateCart', "The product quantity you are trying to sell is out of stock, You can sell less than $product->inventory products only.");
             echo json_encode("Product inventory is less than $quantity");

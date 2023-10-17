@@ -8,12 +8,14 @@ class Product extends CI_Controller
     {
         parent::__construct();
         $this->load->model('ProductModel');
+        $this->load->model('BranchModel');
          $this->load->model('CartModel');
         $this->load->model('CartItemModel');
+        $this->load->model('ProductBranchModel');
     }
     public function index()
     {
-        $products = $this->ProductModel->get_products();
+        $products = $this->ProductBranchModel->get_productsbranch($this->session->userdata('branchId'));
         $this->load->view('products/product_list', ['products' => $products]);
     }
 
@@ -25,26 +27,35 @@ class Product extends CI_Controller
 
     public function create_index()
     {
-        $this->load->view('products/add_product');
+        $branches = $this->BranchModel->get_branches();
+        $this->load->view('products/add_product', ['branches' => $branches]);
     }
 
     public function create()
     {
+
         $productdata = [
             "name" => $this->input->post('name'),
             "brand" => $this->input->post('brand'),
-            "branch_id" => $this->input->post('branch_id'),
             "unit" => $this->input->post('unit'),
-            "quantity" => $this->input->post('quantity'),
-            "inventory" => $this->input->post('quantity'),
             "buy_price" => $this->input->post('pkgs_buy_price'),
             "whole_sale_price" => $this->input->post('whole_sale_price'),
             "retail_sale_price" => $this->input->post('retail_sale_price'),
-            "stock_limit" => $this->input->post('stock_limit'),
             "expire_date" => $this->input->post('expire_date'),
         ];
 
-        $q = $this->ProductModel->create_product($productdata);
+         $product_id = $this->ProductModel->create_product($productdata);
+
+         $product_branchdata = [
+            "branch_id" => $this->input->post('branch_id'),
+            "product_id" => $product_id,
+            "quantity" => $this->input->post('quantity'),
+            "inventory" => $this->input->post('quantity'),
+            "stock_limit" => $this->input->post('stock_limit'), 
+        ];
+
+        $q = $this->ProductBranchModel->create_productbranch($product_branchdata);
+
         if($q) {
             $products_url = site_url('product');
             $this->session->set_flashdata('create_product', "Product is created successfully! view it <a href='$products_url' style='color: orange; text-decoration: underline;'>Here</a>");
@@ -67,11 +78,12 @@ class Product extends CI_Controller
 
     public function sell() {
         $userId = $this->session->userdata('userId');
+        $branchId = $this->session->userdata('branchId');
         if(!$userId) {
             redirect('');
         }
         $cartitems = $this->CartModel->get_cart($userId);
-        $products = $this->ProductModel->get_products();
+        $products = $this->ProductBranchModel->get_productsbranch($branchId);
         $this->load->view('products/sell_product', ['products' => $products, 'cartItems' => $cartitems]);
     }
 }

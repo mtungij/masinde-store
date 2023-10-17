@@ -4,8 +4,13 @@ class DebtModel extends CI_Model
 {
     //create methods
     public function get_debts() {
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get('debts');
+        //use join to get debt info, the name of the customer(debter) and the name of the user(seller) and branch_name
+        $this->db->select('d.id, d.customer_name, d.amount_paid, d.amount_due, d.customer_phone as phone, customer_address as address, b.name as branch, u.username as staff');
+        $this->db->from('debt d');
+        $this->db->join('orders od', 'od.order_number = d.order_id');
+        $this->db->join('user u', 'u.id = od.user_id');
+        $this->db->join('branch b', 'b.id = od.branch_id');
+        $query = $this->db->get();
         return $query->result();
     }
 

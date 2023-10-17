@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from goodash.tailwinddashboard.com/ecommerce/add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Sep 2023 19:18:20 GMT -->
+<!-- Mirrored from goodash.tailwinddashboard.com/apps/chats.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Sep 2023 19:18:10 GMT -->
 <head>
   <!-- Required meta tags -->
   <meta charset="UTF-8">
@@ -9,138 +9,146 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title  -->
-  <title>Add Staff</title>
+  <title>Masinde Store| Transfer Product</title>
 
   <!-- Style Css -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <link rel="stylesheet" id="stylesheet" href="<?php echo base_url('assets/css/style.css')?>">
   <link rel="stylesheet" id="color" href="<?php echo base_url('assets/css/colors.css')?>">
-  <link rel="stylesheet" id="editors" href="<?php echo base_url('assets/css/vendor/editor.css')?>">
-  <link rel="stylesheet" id="dropzonex" href="<?php echo base_url('assets/css/vendor/dropzone.css')?>">
 
   <!-- Google font -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
   <!-- Icons  -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <!-- jquery cdn -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <script>
+      $(document).ready(function() {
+          $('.select2').select2();
+      });
+  </script>
 
   <!-- Favicon  -->
   <link rel="icon" href="<?php echo base_url('assets/img/favicon.png')?>">
+
 </head>
 
 <body id="body-layout" class="text-body-md relative font-sans font-normal text-gray-700 dark:text-gray-300 bg-surface-500 dark:bg-surfacedark-500 show">
-
-  <?php include APPPATH.'/views/includes/header.php'?>
+ <?php include APPPATH.'/views/includes/header.php'?>
 
   <main class="lg:flex">
-    <!-- sidebar -->
     <?php include APPPATH.'/views/includes/sidebar.php'?>
 
     <!-- content -->
     <div class="main-content flex-grow min-h-[100%] py-20 relative px-4 lg:pr-8 lg:pl-3">
+      <!-- heading -->
       <div class="flex flex-row justify-between items-center pt-2 pb-6">
-        <h2 class="text-title-lg">Add New Staff</h2>
+        <h2 class="text-title-lg">Transfer Products</h2>
       </div>
+      
+      <div class="bg-white max-w-full rounded-lg p-2 lg:p-4 ">
 
-      <div class="grid grid-cols-1 gap-4 md:gap-6">
-        <div class="py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
-          <div class="tabs flex flex-col w-full">
-            <div class="relative flex flex-row items-center">
-              <?php if (validation_errors()):?>
-               <div class="flex items-center gap-2 relative bg-red-50 text-red-700 p-4 rounded">
-                  <i class="material-symbols-outlined">info</i>
-                  <div>
-                      <?php echo validation_errors(); ?>
-                  </div>
+        <?php if(validation_errors()):?>
+          <div id="alert_b" class="show [&.show]:flex hidden justify-between items-center relative bg-red-50 text-red-700 px-6 py-8 rounded">
+            <div>
+              <div class="flex flex-row justify-between">
+                <div><?php echo validation_errors() ?></div>
+                <button type="button" data-close="#alert_b">
+                  <span class="text-2xl">×</span>
+                </button>
               </div>
-              <?php elseif($this->session->flashdata('register_success')): ?>
-                  <div class="flex items-center gap-2 relative bg-green-50 text-green-700 p-4 rounded">
-                    <i class="material-symbols-outlined">info</i>
-                    <p><?= $this->session->flashdata('register_success');
-                     ?></p>
-                  </div>
-              <?php endif?>
-            </div>
-              
-            <div class="flex flex-col">
-              <?php echo form_open('Auth/register', ['id' => 'tab-4', 'role' => 'tabpanel', 'class' => 'active [&.active]:block hidden py-4 transition duration-400 ease-in-out'])?>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                 
-                     <div class="relative z-0">
-                        <input type="text" aria-label="first_name" name="first_name" value="<?= set_value('first_name'); ?>" id="title-product" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
-                        <label for="first_name" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">First Name</label>
-                      </div>
-
-                      <div class="relative z-0">
-                        <input type="text" aria-label="last_name" name="last_name" value="<?= set_value('last_name'); ?>" id="title-product" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
-                        <label for="last_name" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Last Name</label>
-                      </div>
-
-                      <div class="relative z-0">
-                        <input type="text" aria-label="username" name="username" value="<?= set_value('username'); ?>" id="username" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
-                        <label for="username" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Username</label>
-                      </div>
-              
-                      <div class="relative z-0">
-                        <input type="email" aria-label="email" name="email" value="<?= set_value('email'); ?>" id="email" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
-                        <label for="email" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Email</label>
-                      </div>
-
-                      <div class="relative z-0">
-                        <input type="number" aria-label="salary" name="salary" value="<?= set_value('salary'); ?>" id="salary" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
-                        <label for="salary" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Salary</label>
-                      </div>
-                  
-                      <div class="relative z-0">
-                        <select id="branch_id" name="branch_id" value="<?= set_value('branch_id'); ?>" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200">
-                          <option value="">Select</option>
-                          <!-- loop through branches -->
-                          <?php foreach($branches as $branch):?>
-                            <option value="<?= $branch->id?>"><?= $branch->name?></option>
-                          <?php endforeach?>
-                        </select>
-                        <label for="branch_id" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Branch</label>
-                      </div>
-
-                      <div class="relative z-0">
-                        <select id="position" name="position_id" value="<?= set_value('position_id'); ?>" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200">
-                          <option value="">Select</option>
-                          <option value="admin">Admin</option>
-                          <option value="seller">Seller</option>
-                          <option value="vendor">Vendor</option>
-                        </select>
-                        <label for="position_id" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Position</label>
-                      </div>
-
-                      <div class="relative z-0 w-full">
-                        <input type="password" aria-label="password" name="password" id="password" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" value="">
-                        <label for="password" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Password</label>
-                      </div>
-
-                      <div class="relative z-0 w-full">
-                        <input type="password" aria-label="confipass" name="confipass" id="confipass" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" value="">
-                        <label for="confipass" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Confirm Password</label>
-                      </div>
-
-                </div>
-
-                <div class="relative pt-4 flex justify-end">
-                  <button class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
-                    Register Staff
-                    <span class="material-symbols-outlined">arrow_forward</span>
-                  </button>
-                </div>
-              <?php echo form_close()?>
-
             </div>
           </div>
+        <?php endif?>
+
+        <?php if($this->session->flashdata('transfer_quantity_error')):?>
+          <div class="flex items-center gap-2 relative bg-red-50 text-red-700 p-4 rounded">
+            <i class="material-symbols-outlined">info</i>
+            <p><?= $this->session->flashdata('transfer_quantity_error') ?></p>
+          </div>
+        <?php elseif($this->session->flashdata('transfer_success')):?>
+          <div class="flex items-center gap-2 relative bg-green-50 text-green-700 p-4 rounded">
+            <i class="material-symbols-outlined">info</i>
+            <p><?= $this->session->flashdata('transfer_success') ?></p>
+          </div>
+        <?php endif;?>
+
+
+
+         <?php echo form_open('store/transfer_product', ["class" => "my-2 grid grid-cols-1 items-start gap-4 md:grid-cols-2 lg:grid-cols-3"])?>
+         <input type="hidden" name="transfer_from" value="<?= $branchId ?>">
+         <div class="relative z-0">
+            <select class="select2 w-full" name="product_id" style="padding: 4px">
+              <option value="">--Select Product--</option>
+              <?php foreach($products as $product):?>
+                <option value="<?= $product->product_id?>"><?= $product->product_name ?> ~ <span style="color: green"><?= $product->inventory ?></span></option>
+              <?php endforeach;?>
+            </select>
+          </div>
+
+          <div class="relative z-0">
+            <input type="number" aria-label="quantity" name="quantity" id="quantity" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="">
+            <label for="quantity" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Quantity</label>
+          </div>
+
+          <div class="relative z-0">
+            <select id="transfer_to" name="transfer_to" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200">
+              <option value="">--Transer-to--</option>
+              <?php foreach($branches as $branch):?>
+                <?php if($branch->id == $branchId) {  continue;  }?>
+                <option value="<?= $branch->id?>"><?= $branch->name ?></option>
+              <?php endforeach;?>
+            </select>
+          </div>
+          <div class="relative z-0">
+            <button type="submit" class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
+              Transfer
+            </button>
+          </div>
+        <?php echo form_close()?>
+
+        <br>
+        <br>
+
+        <!-- Recently Transferred Products -->
+        <div class="overflow-x-auto" style="white-space:nowrap;">
+          <h2 class="text-xl underline">Recently Transferred Products</h2>
+          <table class="table-bordered-bottom table-hover">
+            <thead>
+              <tr>
+                <th>S/NO</th>
+                <th>Product</th>
+                <th>Transfered To</th>
+                <th>Quantity</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php $rowId = 1?>
+              <?php foreach($transfers as $transfer):?>
+              <tr class="[&.selected]:!bg-primary-100 dark:[&.selected]:!bg-primary-700">
+                <td class="flex items-center gap-3"><?= $rowId < 10 ? "0".$rowId++ : $rowId ?></td>
+                <td><?= $transfer->product_name ?></td>
+                <td><?= $transfer->branch_name ?></td>
+                <td><?= $transfer->quantity ?></td>
+                <td><?= $transfer->created_at ?></td>
+              </tr>
+              <?php endforeach;?>
+            </tbody>
+          </table>
         </div>
       </div>
+      <!-- ADD SYSTEM SETTINGS HERE -->
+            
     </div>
   </main>
 
   <footer class="footer absolute px-4 lg:px-8 lg:pl-3 left-0 lg:left-72 bottom-0 right-0">
     <div class="text-center py-6">
       <!-- Copyright text -->
-      <p><script>document.write(new Date().getFullYear())</script> Goodash - All right reserved</p>
+      <p><script>document.write(new Date().getFullYear())</script> Masindestore - All right reserved</p>
     </div>
   </footer>
 
@@ -336,10 +344,13 @@
 
   <!-- Tailmater javascript -->
   <script src="<?php echo base_url('assets/js/tailmater.js')?>"></script>
-  <!-- vendors -->
-  <script src="<?php echo base_url('assets/vendors/simplemde/dist/simplemde.min.js')?>"></script>
-  <script src="<?php echo base_url('assets/vendors/dropzone/dist/dropzone-min.js')?>"></script><!-- uploader images -->
-  <script src="<?php echo base_url('assets/js/vendor.js')?>"></script>
+  <script>
+    const el = document.getElementById('chatbox');
+    // id of the chat container ---------- ^^^
+    if (el) {
+      el.scrollTop = el.scrollHeight;
+    }
+  </script>
 </body>
 
 </html>

@@ -8,6 +8,8 @@ class Order extends CI_Controller
         parent::__construct();
         $this->load->model('OrderModel');
         $this->load->model('OrderItemModel');
+        $this->load->model('ProductBranchModel');
+        
     }
 
     public function index()
@@ -32,11 +34,12 @@ class Order extends CI_Controller
     {
         $cart_id = $this->input->post('cart_id');
         $branch_id = $this->input->post('branch_id');
+        $cart_price = $this->input->post('cart_price');
         $order_id = "INV-".uniqid();
     
         $data = [
             'order_number' => $order_id,
-            'total_price' => $this->input->post('cart_price'),
+            'total_price' => $cart_price,
             'user_id' => $this->input->post('user_id'), 
             'branch_id' => $branch_id,
             'sell_by' => $this->input->post('sell_type'),
@@ -47,18 +50,31 @@ class Order extends CI_Controller
         //select all cartItems associated with this cart
         $cartItems = $this->db->query("SELECT product_id,quantity,sold_by FROM cart_item WHERE cart_id = $cart_id")->result();
         //loop through the cartItems and insert them into the order_items table
+
         foreach($cartItems as $cartItem){
+            //product inventory update
+            $product = $this->ProductBranchModel->get_productbranch_by_id($cartItem->product_id, $branch_id);
+            
+            //if sold by retail get the unit price by retail from the product table else get the unit price by wholesale
+            $unit_price = 0;
+            if($cartItem->sold_by == 'retail'){
+                $unit_price = $product->retail_sale_price;
+            }else{
+                $unit_price = $product->whole_sale_price;
+            }
+
             $data = [
                 'order_id' => $order_id,
                 'product_id' => $cartItem->product_id,
                 'quantity' => $cartItem->quantity,
                 'sold_by' => $cartItem->sold_by,
+                'unit_price' => $unit_price,
+                'profit' => ($unit_price - $product->buy_price) * $cartItem->quantity,
             ];
 
-            //product inventory update
-            $product = $this->db->query("SELECT inventory FROM product WHERE id = $cartItem->product_id")->row();
+
             $new_inventory = $product->inventory - $cartItem->quantity;
-            $this->db->query("UPDATE product SET inventory = $new_inventory WHERE id = $cartItem->product_id");
+            $this->db->query("UPDATE product_branch SET inventory = $new_inventory WHERE product_id = $cartItem->product_id AND branch_id = $branch_id");
 
             $this->OrderItemModel->create_order_item($data);
         }
@@ -74,7 +90,7 @@ class Order extends CI_Controller
                 'customer_phone' => $this->input->post('customer_phone'),
                 'customer_address' => $this->input->post('customer_address'),
                 'amount_paid' => $this->input->post('amount_paid'),
-                'amount_due' => $this->input->post('cart_price'),
+                'amount_due' => $cart_price,
             ];
             $this->db->insert('debt', $data);
         }

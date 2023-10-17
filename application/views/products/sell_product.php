@@ -107,9 +107,9 @@
                   </td>
                   <td class="font-normal ">
                     <?php if($cartItem->sold_by == 'retail'):?>
-                    <span class="px-3 py-2 bg-indigo-500 text-white rounded"><?= $cartItem->sold_by ?></span>
+                    <span class="px-3 py-2 bg-indigo-500 text-white rounded"><?= $cartItem->sold_by . ' Sale' ?></span>
                     <?php else:?>
-                    <span class="px-3 py-2 text-white rounded" style="background: #f97316;"><?= $cartItem->sold_by ?></span>
+                    <span class="px-3 py-2 text-white rounded" style="background: #f97316;"><?= $cartItem->sold_by . ' Sale' ?></span>
                     <?php endif?>
                   </td>
                   <td id="salePrice<?= $rowId++ ?>" class="font-normal ">
@@ -162,7 +162,7 @@
             <div class="flex-shrink max-w-full px-4 w-full">
                 <div class="relative pt-4 flex flex-col sm:flex-row gap-4 items-center justify-end">
                   <?php echo form_open('debt/sell_by_debt') ?>
-                  <input type="hidden" name="cart_price" value="<?= number_format($cart_price) ?>">
+                  <input type="hidden" name="cart_price" value="<?= $cart_price ?>">
                   <input type="hidden" name="cart_id" value="<?= $cart_id ?>">
                   <input type="hidden" name="user_id" value="<?= $userId ?>">
                   <input type="hidden" name="branch_id" value="<?= $branchId ?>">
@@ -214,7 +214,7 @@
                     <a href="#">
                       <div class="flex flex-wrap flex-row items-center">
                         <div class="leading-5 dark:text-gray-300 flex-1 mb-1">  
-                          <?= $product->name ?>
+                          <?= $product->product_name ?>
                         </div>
                       </div>
                     </a>
@@ -237,9 +237,9 @@
                     <?php echo form_open('cart/create')?>
                     <input type="hidden" name="user_id" value="<?= $userId ?>">
                     <input type="hidden" name="sell_type" value="retail">
-                    <input type="hidden" name="product_id" value="<?= $product->id ?>">
-                    <button type="submit"  class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-indigo-500 text-white dark:bg-indigo-200 dark:text-indigo-800">
-                       Retail
+                    <input type="hidden" name="product_id" value="<?= $product->product_id ?>">
+                    <button type="submit"  class="btn relative  py-1 px-4 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-indigo-500 text-white dark:bg-indigo-200 dark:text-indigo-800" style="white-space: nowrap">
+                       Retail Sale
                     </button>
                     <?php echo form_close()?>
                   </td>
@@ -247,9 +247,9 @@
                     <?php echo form_open('cart/create')?>
                       <input type="hidden" name="user_id" value="<?= $userId ?>">
                       <input type="hidden" name="sell_type" value="whole">
-                      <input type="hidden" name="product_id" value="<?= $product->id ?>">
-                      <button  class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium text-white text-white" style="background: #f97316">
-                        Whole
+                      <input type="hidden" name="product_id" value="<?= $product->product_id ?>">
+                      <button  class="btn relative py-1 px-4 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium text-white text-white" style="background: #f97316; white-space: nowrap;">
+                        Whole Sale
                       </button>
                     <?php echo form_close()?>
                   </td>

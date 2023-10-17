@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title  -->
-  <title>Masinde Store</title>
+  <title>Masinde Store | Debts</title>
 
   <!-- Style Css -->
   <link rel="stylesheet" id="stylesheet" href="<?php echo base_url('assets/css/style.css')?>">
@@ -34,7 +34,7 @@
     <div class="main-content flex-grow min-h-[100%] py-20 relative px-4 lg:pr-8 lg:pl-3">
       <!-- heading -->
       <div class="flex flex-row justify-between items-center pt-2 pb-6">
-        <h2 class="text-title-lg">All Products</h2>
+        <h2 class="text-title-lg">All Debts</h2>
         
         <!-- action -->
         <div class="flex flex-row gap-3 items-center">
@@ -46,7 +46,7 @@
           </div>
 
           <!-- add new -->
-          <a href="<?= site_url('product/create_index')?>" class="btn relative flex flex-row items-center justify-center gap-x-2 py-2 px-4 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
+          <a href="<?= site_url('debt/create_index')?>" class="btn relative flex flex-row items-center justify-center gap-x-2 py-2 px-4 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
             <span class="material-symbols-outlined">add</span>
             Add New
          </a>
@@ -63,21 +63,19 @@
               <thead>
                 <tr>
                   <th data-sortable="false">S/N</th>
-                  <th data-sortable="false">Product Name</th>
-                  <th data-sortable="false">Brand</th>
-                  <th data-sortable="true">Quantity</th>
-                  <th data-sortable="true">Buy Price</th>
-                  <th data-sortable="true">Whole Sale Price</th>
-                  <th data-sortable="true">Retail Sale Price</th>
-                  <th data-sortable="true">Whole Sale Revenue</th>
-                  <th data-sortable="true">Retail Sale Revenue</th>
-                  <th data-sortable="true">Last update</th>
+                  <th data-sortable="false">Customer Name</th>
+                  <th data-sortable="false">Phone</th>
+                  <th data-sortable="true">Address</th>
+                  <th data-sortable="true">Branch</th>
+                  <th data-sortable="true">Debt Provider</th>
+                  <th data-sortable="true">Paid Amount</th>
+                  <th data-sortable="true">Due Amount</th>
                   <th data-sortable="false">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <?php $rowId = 1?>
-                <?php foreach($products as $product):?>
+                <?php foreach($debts as $debt):?>
                 <tr class="[&.selected]:!bg-primary-100 dark:[&.selected]:!bg-primary-700">
                   <td class="!px-0">
                     <?= $rowId < 10 ? "0".$rowId++: $rowId ?>
@@ -85,22 +83,20 @@
                   <td>
                     <div class="flex items-center gap-3">
                       <div class="flex flex-col">
-                        <h4 class="font-semibold"><?= $product->product_name ?></h4>
+                        <h4 class="font-semibold"><?= $debt->customer_name ?></h4>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <?= $product->brand ?>
+                    <?= $debt->phone ?>
                   </td>
-                  <td><?= $product->quantity ?></td>
-                  <td><?= number_format($product->buy_price).'/=' ?></td>
-                  <td><?= number_format($product->whole_sale_price).'/=' ?></td>
-                  <td><?= number_format($product->retail_sale_price) ?></td>
-                  <td><?= number_format($product->quantity * $product->whole_sale_price).'/=' ?></td>
-                  <td><?= number_format($product->quantity * $product->retail_sale_price).'/=' ?></td>
-                  <td><?= $product->updated_at ?? '--//--' ?></td>
+                  <td><?= $debt->address ?></td>
+                  <td><?= $debt->branch ?></td>
+                  <td><?= $debt->staff ?></td>
+                  <td><?= number_format($debt->amount_paid) ?></td>
+                  <td><?= number_format($debt->amount_due) ?></td>
                   <td>
-                    <a href="<?= site_url('product/show/'.$product->product_id)?>" class="hover:text-primary-600 dark:hover:text-primary-200">view</a>
+                    <a href="<?= site_url('debt/show/'.$debt->id)?>" class="hover:text-primary-600 dark:hover:text-primary-200">view</a>
                   </td>
                 </tr>
                 <?php endforeach?>

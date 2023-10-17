@@ -18,11 +18,7 @@ class ProductModel extends CI_Model
     public function create_product($data)
     {
         $q = $this->db->insert('product', $data);
-        if($q) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->db->insert_id();
     }
 
 
