@@ -25,6 +25,11 @@ class ProductBranchModel extends CI_Model
     }
 
 
+    public function product_branch_count()
+    {
+        return $this->db->query('SELECT SUM(inventory) AS total_products_count FROM product_branch')->row();
+    }
+
     public function get_productbranch_by_branch_id($id) {
         $this->db->select('product_branch.*, product.name as product_name,branch.name as branch_name');
         $this->db->from('product_branch');

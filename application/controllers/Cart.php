@@ -35,7 +35,7 @@ class Cart extends CI_Controller
 
          //if product quantity is less than 1, redirect back with error message
             $product = $this->ProductBranchModel->get_productbranch_by_id($productId, $branchId);
-            if($product->quantity < 1) {
+            if($product->inventory < 1) {
                 $this->session->set_flashdata('product_quantity_less_than_1', 'Product quantity is less than 1, please add more products to the inventory.');
                 redirect('product/sell');
             }

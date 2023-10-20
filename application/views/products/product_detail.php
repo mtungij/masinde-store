@@ -35,7 +35,7 @@
     <div class="main-content flex-grow min-h-[100%] py-20 relative px-4 lg:pr-8 lg:pl-3">
       <!-- heading -->
       <div class="flex flex-row justify-between items-center pt-2 pb-6">
-        <h2 class="text-title-lg">-- <?= $product->name ?></h2>
+        <h2 class="text-title-lg">#~ <?= $product->product_name ?></h2>
 
         <div class="flex flex-row gap-3 items-center pr-4">
           <button data-type="dialogs" data-target="#dialog_detail" class="btn relative inline-flex flex-row items-center justify-center gap-x-1 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
@@ -46,10 +46,10 @@
 
       <!-- content 1 -->
       <div class="grid grid-cols-1 gap-4 md:gap-6">
-        <div class="flex-shrink max-w-full px-4 w-full">
+        <!--<div class="flex-shrink max-w-full px-4 w-full">
           <div class="px-6 py-8 flex flex-col gap-8 rounded-xl bg-white dark:bg-gray-900 mb-6">
               
-            <!-- ALERTS -->
+            ALERTS
             <div class="flex items-center gap-2 relative bg-red-50 text-red-700 p-4 rounded">
                 <i class="material-symbols-outlined">info</i>
                 <p>This product is out of stock, consider adding the new products!</p>
@@ -58,22 +58,22 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
             <div class="px-6 py-8 flex flex-col rounded-xl bg-white dark:bg-gray-900">
-              <!-- title -->
+              title
                 <div class="flex flex-row justify-between items-center mb-3">
-                    <h3 class="text-title-md text-gray-800 dark:text-gray-200">Sales</h3>
+                    <h3 class="text-title-md text-gray-800 dark:text-gray-200">Total Sales</h3>
                 </div>
                 <div class="relative flex items-center justify-between">
-                    <h4 class="text-display-sm text-gray-800 dark:text-gray-200">1,000</h4>
+                    <h4 class="text-display-sm text-gray-800 dark:text-gray-200"><?//= $total_sales->total_sales ?></h4>
                     <span class="text-label-lg flex items-center gap-1 px-2 py-1 rounded-full text-green-800 dark:text-green-100 bg-green-100 dark:bg-green-800">
                     <span class="material-symbols-outlined !text-sm">arrow_upward</span>15%
                     </span>
                 </div>
-            </div>
+            </div> -->
 
             <div class="px-6 py-8 flex flex-col rounded-xl bg-white dark:bg-gray-900">
               <h4 class="text-title-md text-gray-700 dark:text-gray-200 mb-2">Product Info</h4>
               <div class="text-gray-500">
-                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Name: </span><?= $product->name ?> </p>
+                <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Name: </span><?= $product->product_name ?> </p>
                 <p class="mb-1"><span class="font-semibold text-gray-700 dark:text-gray-200">Brand:</span> <?= $product->brand ? $product->brand: '--//--' ?></p>
               </div>
             </div>
@@ -333,7 +333,7 @@
     <div class="z-50 flex flex-col w-11/12 sm:w-[480px] h-auto bg-surface-100 dark:bg-surfacedark-100 rounded-[28px] overflow-hidden">
       <div class="flex flex-col gap-4 justify-start">
         <div class="flex justify-between items-center px-6 py-4 bg-surface-400 dark:bg-surfacedark-400">
-          <h3 class="text-title-lg text-gray-900 dark:text-gray-100">Pepsi Big</h3>
+          <h3 class="text-title-lg text-gray-900 dark:text-gray-100"><?= $product->product_name ?></h3>
 
           <!-- close -->
           <div data-close="#dialog_detail" class="material-symbols-outlined cursor-pointer">close</div>
@@ -343,16 +343,12 @@
           <!-- timeline -->
           <div class="relative grid gap-3">
             <div class="relative z-0">
-                <input type="number" aria-label="name" name="name" id="name" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="78">
-                <label for="name" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200" required>Product Name</label>
+                <input type="number" aria-label="quantity" name="quantity" id="quantity" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="<?= $product->inventory ?>">
+                <label for="quantity" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200" required>Quantity</label>
             </div>
             <div class="relative z-0">
-                <input type="number" aria-label="pkgs_amount" name="pkgs_amount" id="pkgs_amount" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="78">
-                <label for="pkgs_amount" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200" required>Packages amount</label>
-            </div>
-            <div class="relative z-0">
-                <input type="number" aria-label="quantity" name="quantity" id="quantity" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:number-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="100">
-                <label for="quantity" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Items Quantity/pkg</label>
+                <input type="number" aria-label="stock_limit" name="stock_limit" id="stock_limit" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:number-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " value="<?= $product->stock_limit ?>">
+                <label for="stock_limit" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Stock Limit</label>
             </div>
           </div>
 

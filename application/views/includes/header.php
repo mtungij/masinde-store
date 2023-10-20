@@ -9,6 +9,18 @@ $branchName = $this->session->userdata('branchName');
 $isSuperuser = $this->session->userdata('isSuperuser');
 $isStaff = $this->session->userdata('isStaff');
 
+
+//format prices
+function format_prices($price) {
+    if($price >= 1_000_000) {
+        return round($price/1_000_000, 3)."M";
+    } elseif($price >= 1_000) {
+        return round($price/1_000, 3)."K";
+    } else {
+        return $price;
+    }
+}
+
 ?>
 
 <!-- preloader -->

@@ -21,7 +21,7 @@ class Product extends CI_Controller
 
     public function show($id)
     {
-        $product = $this->ProductModel->get_product($id);
+        $product = $this->ProductBranchModel->get_productbranch_by_id($id, $this->session->userdata('branchId'));
         $this->load->view('products/product_detail', ['product' => $product]);
     }
 

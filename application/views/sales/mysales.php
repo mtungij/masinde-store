@@ -2,290 +2,138 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Title  -->
-  <title>Masinde Store| Sales</title>
+  <title>Masinde Store | My Seles</title>
 
-  <!-- Style Css -->
   <link rel="stylesheet" id="stylesheet" href="<?php echo base_url('assets/css/style.css')?>">
   <link rel="stylesheet" id="color" href="<?php echo base_url('assets/css/colors.css')?>">
 
-  <!-- Google font -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
-  <!-- Icons  -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 
-  <!-- Favicon  -->
   <link rel="icon" href="<?php echo base_url('assets/img/favicon.png')?>">
 </head>
 
 <body id="body-layout" class="text-body-md relative font-sans font-normal text-gray-700 dark:text-gray-300 bg-surface-500 dark:bg-surfacedark-500 show">
-  <!-- header -->
-<?php  include APPPATH.'/views/includes/header.php'?>
+
+    <?php include APPPATH.'/views/includes/header.php'?>
   <main class="lg:flex">
-    <!-- sidebar -->
-    <?php include APPPATH.'/views/includes/sidebar.php'?>
+   <?php include APPPATH.'/views/includes/sidebar.php'?>
     <!-- content -->
     <div class="main-content flex-grow min-h-[100%] py-20 relative px-4 lg:pr-8 lg:pl-3">
       <!-- heading -->
       <div class="flex flex-row justify-between items-center pt-2 pb-6">
-        <h2 class="text-title-lg">Sales</h2>
+        <h2 class="text-title-lg">Your Sales</h2>
       </div>
-
+      
       <!-- content 1 -->
-      <div class="max-sm:flex gap-4 sm:grid sm:grid-cols-4 md:gap-6 mb-4 md:mb-6 max-sm:-mx-4 max-sm:px-4 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+      <div class="max-md:flex gap-4 md:grid md:grid-cols-3 md:gap-6 mb-6 md:mb-8 max-md:-mx-4 max-md:px-4 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
         <!-- small card -->
-        <div class="p-6 max-sm:w-60 max-sm:flex-shrink-0 flex flex-col justify-between rounded-xl bg-white dark:bg-gray-900 overflow-hidden">
-          <!-- title -->
-          <div class="flex flex-row justify-between items-center mb-3">
-            <h3 class="text-title-md text-gray-800 dark:text-gray-200">Today's Sales</h3>
-          </div>
-          <div class="relative flex items-center justify-between">
-            <h4 class="text-display-sm text-gray-800 dark:text-gray-200"><?= format_prices($day_sales) ?></h4>
-            <span class="text-label-lg flex items-center gap-1 px-2 py-1 rounded-full text-green-800 dark:text-green-100 bg-green-100 dark:bg-green-800">
-              <span class="material-symbols-outlined !text-sm">arrow_upward</span><?= $day_sales_percentage . "%" ?>
-            </span>
+        <div class="max-sm:w-72 max-sm:flex-shrink-0 flex flex-col justify-between rounded-xl bg-white dark:bg-gray-900 overflow-hidden">
+          <div class="flex flex-col gap-4">
+            <!-- title -->
+            <div class="pt-4 px-6 flex flex-row gap-2 items-center justify-between">
+              <div class="flex flex-row items-center gap-2">
+                <span class="material-symbols-outlined !text-lg text-yellow-500">military_tech</span>
+                <h3 class="text-title-md text-gray-800 dark:text-gray-200">Today</h3>
+              </div>
+
+              <span class="flex flex-row items-center gap-1 text-green-500" aria-label="Vs Yesterday" data-microtip-position="left" role="tooltip">
+                <span class="material-symbols-outlined">trending_up</span>
+              </span>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700">
+            <!-- info -->
+            <div class="pb-4 px-6 flex flex-col text-gray-500">
+              <span class="text-body-md">Sales: <?= format_prices($today_sales["today_sales"]) ?></span>
+              <span class="text-body-md">Revenue: <?= "Tsh. ".format_prices($today_sales["revenue"]) ?></span>
+            </div>
           </div>
         </div>
+        
         <!-- small card -->
-        <div class="p-6 max-sm:w-60 max-sm:flex-shrink-0 flex flex-col justify-between rounded-xl bg-white dark:bg-gray-900 overflow-hidden">
-          <!-- title -->
-          <div class="flex flex-row justify-between items-center mb-3">
-            <h3 class="text-title-md text-gray-800 dark:text-gray-200">Month Sales(<?= date('m') ?>)</h3>
-          </div>
-          <div class="relative flex items-center justify-between">
-            <h4 class="text-display-sm text-gray-800 dark:text-gray-200"><?= format_prices($month_sales) ?></h4>
-            <span class="text-label-lg flex items-center gap-1 px-2 py-1 rounded-full text-green-800 dark:text-green-100 bg-green-100 dark:bg-green-800">
-              <span class="material-symbols-outlined !text-sm">arrow_upward</span><?= $month_sales_percentage . "%" ?>
-            </span>
+        <div class="max-sm:w-72 max-sm:flex-shrink-0 flex flex-col justify-between rounded-xl bg-white dark:bg-gray-900 overflow-hidden">
+          <div class="flex flex-col gap-4">
+            <!-- title -->
+            <div class="pt-4 px-6 flex flex-row gap-2 items-center justify-between">
+              <div class="flex flex-row items-center gap-2">
+                <span class="material-symbols-outlined !text-lg text-blue-500">military_tech</span>
+                <h3 class="text-title-md text-gray-800 dark:text-gray-200">This Month</h3>
+              </div>
+
+              <span class="flex flex-row items-center gap-1 text-green-500" aria-label="Vs Last Week" data-microtip-position="left" role="tooltip">
+                <span class="material-symbols-outlined">trending_up</span>
+              </span>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700">
+            <!-- info -->
+            <div class="pb-4 px-6 flex flex-col text-gray-500">
+              <span class="text-body-md">Sales: <?= format_prices($monthly_sales["monthly_sales"]) ?></span>
+              <span class="text-body-md">Revenue: <?= "Tsh. ".format_prices($monthly_sales["revenue"]) ?></span>
+            </div>
           </div>
         </div>
+
         <!-- small card -->
-        <div class="p-6 max-sm:w-60 max-sm:flex-shrink-0 flex flex-col justify-between rounded-xl bg-white dark:bg-gray-900 overflow-hidden">
-          <!-- title -->
-          <div class="flex flex-row justify-between items-center mb-3">
-            <h3 class="text-title-md text-gray-800 dark:text-gray-200">Year Sales(<?= date('Y')?>)</h3>
-          </div>
-          <div class="relative flex items-center justify-between">
-            <h4 class="text-display-sm text-gray-800 dark:text-gray-200"><?= format_prices($year_sales) ?></h4>
-            <span class="text-label-lg flex items-center gap-1 px-2 py-1 rounded-full text-green-800 dark:text-green-100 bg-green-100 dark:bg-green-800">
-              <span class="material-symbols-outlined !text-sm">arrow_upward</span><?= $year_sales_percentage . "%" ?>
-            </span>
-          </div>
-        </div>
-        <!-- small card -->
-        <div class="p-6 max-sm:w-60 max-sm:flex-shrink-0 flex flex-col justify-between rounded-xl bg-white dark:bg-gray-900 overflow-hidden">
-          <!-- title -->
-          <div class="flex flex-row justify-between items-center mb-3">
-            <h3 class="text-title-md text-gray-800 dark:text-gray-200">General Sales</h3>
-          </div>
-          <div class="relative flex items-center justify-between">
-            <h4 class="text-display-sm text-gray-800 dark:text-gray-200"><?= number_format($general_sales) ?></h4>
+        <div class="max-sm:w-72 max-sm:flex-shrink-0 flex flex-col justify-between rounded-xl bg-white dark:bg-gray-900 overflow-hidden">
+          <div class="flex flex-col gap-4">
+            <!-- title -->
+            <div class="pt-4 px-6 flex flex-row gap-2 items-center justify-between">
+              <div class="flex flex-row items-center gap-2">
+                <span class="material-symbols-outlined !text-lg text-green-500">military_tech</span>
+                <h3 class="text-title-md text-gray-800 dark:text-gray-200">All Sales</h3>
+              </div>
+
+              <span class="flex flex-row items-center gap-1 text-green-500" aria-label="Vs Last Week" data-microtip-position="left" role="tooltip">
+                <span class="material-symbols-outlined">trending_up</span>
+              </span>
+            </div>
+            <hr class="border-gray-100 dark:border-gray-700">
+            <!-- info -->
+            <div class="pb-4 px-6 flex flex-col text-gray-500">
+              <span class="text-body-md">Sales: <?= format_prices($sales_summary["total_sales"]) ?></span>
+              <span class="text-body-md">Revenue: <?= format_prices($sales_summary["revenue"]) ?></span>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- content 2 -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
-        <div class="sm:col-span-2">
-          <!-- card -->
-          <div class="py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
-            <div class="flex flex-row gap-2 items-center justify-between pb-3">
-              <h3 class="text-title-md text-gray-800 dark:text-gray-200">Sales vs Target</h3>
-            </div>
-            <div class="relative">
-              <canvas class="max-w-100" id="SalesTargetLine"></canvas>
-            </div>
-          </div>
-        </div>
-        <div>
-          <!-- card -->
-          <div class="flex flex-col rounded-xl bg-white dark:bg-gray-900">
-            <div class="flex flex-row gap-2 items-center justify-between pt-8 px-6 pb-3">
-              <h3 class="text-title-md text-gray-800 dark:text-gray-200">Top 7 monthly Sales</h3>
-            </div>
-            <div class="relative pb-6">
-              <ul>
-                <?php $rowId = 1?>
-                <?php foreach($top10_monthly_products as $top_sells):?>
-                <li>
-                  <a href="#" class="flex items-center gap-2 py-3 px-6 hover:bg-surface-100 dark:hover:bg-surfacedark-100">
-                    <div class="w-8 h-8 flex justify-center items-center">#1</div>
-                    <div class="flex items-center gap-2">
-                      <img src="<?php echo base_url('assets/img/avatar.png')?>" class="w-8 h-8 rounded-full overflow-hidden bg-surface-200 dark:bg-surfacedark-200" alt="avatar">
-                      <div class="flex flex-col">
-                        <h4 class="text-title-sm font-medium"><?= $top_sells->product_name ?></h4>
-                        <span class="text-label-md text-gray-500">Sales</span>
-                      </div>
-                    </div>
-                    <div class="text-title-sm font-medium ml-auto"><?= format_prices($top_sells->total_quantity) ?></div>
-                  </a>
-                </li>
+      <div class="grid grid-cols-1 sm:gap-4 md:gap-6">
+        <!-- card -->
+        <div class="py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
+          <div class="relative overflow-auto scrollbars">
+            <table class="table-sorter table-bordered-bottom table-hover">
+              <thead>
+                <tr>
+                  <th data-sortable="false">Transaction ID</th>
+                  <th>Total Price</th>
+                  <th>Amount Paid</th>
+                  <th>Sold By</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach($sales as $sale):?>
+                <tr>
+                  <td>
+                    <a href="#" class="flex items-center gap-3 hover:text-primary-600 dark:hover:text-primary-200">
+                      <h6 class="text-title-sm"><?= "#".$sale->order_number ?></h6>
+                    </a>
+                  </td>
+                  <td><?= number_format($sale->total_price) ?></td>
+                  <td><?= number_format($sale->amount_paid) ?></td>
+                  <td><?= $sale->sell_by ?></td>
+                  <td>
+                    <?= $sale->created_at ?>
+                  </td>
+                </tr>
                 <?php endforeach ?>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- content 3 -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
-        <div>
-          <!-- card -->
-          <div class="py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
-            <div class="flex flex-row gap-2 items-center justify-between pb-3">
-              <h3 class="text-title-md text-gray-800 dark:text-gray-200">Sales by Channel</h3>
-            </div>
-            <div class="relative grid grid-cols-2 gap-4">
-              <div class="relative">
-                <canvas class="max-w-100" id="ChannelChart"></canvas>
-              </div>
-              <div>
-                <table class="text-label-lg w-full text-left mt-4">
-                  <tbody>
-                    <tr>
-                      <th class="py-1 font-medium">
-                        Chrome
-                      </th>
-                      <td class="text-right">
-                        <span class="inline-block w-3 h-3 mr-1 rounded-full bg-yellow-500"></span>61%
-                      </td>
-                    </tr>
-                    <tr>
-                      <th class="py-1 font-medium">
-                        Mozilla
-                      </th>
-                      <td class="text-right">
-                        <span class="inline-block w-3 h-3 mr-1 rounded-full bg-pink-500"></span>29%
-                      </td>
-                    </tr>
-                    <tr>
-                      <th class="py-1 font-medium">
-                        Safari
-                      </th>
-                      <td class="text-right">
-                        <span class="inline-block w-3 h-3 mr-1 rounded-full bg-sky-400"></span>7.5%
-                      </td>
-                    </tr>
-                    <tr>
-                      <th class="py-1 font-medium">
-                        Others
-                      </th>
-                      <td class="text-right">
-                        <span class="inline-block w-3 h-3 mr-1 rounded-full bg-green-500"></span>2.5%
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <!-- card -->
-          <div class="py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
-            <div class="flex flex-row gap-2 items-center justify-between pb-3">
-              <h3 class="text-title-md text-gray-800 dark:text-gray-200">Sales Growth</h3>
-            </div>
-            <div class="relative">
-              <canvas class="max-w-100" id="Growth"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- content 4 -->
-      <div class="max-sm:flex gap-4 sm:grid sm:grid-cols-2 md:gap-6 mb-4 md:mb-6 max-sm:-mx-4 max-sm:px-4 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-        <!-- card -->
-        <div class="max-sm:w-80 max-sm:flex-shrink-0 flex flex-col rounded-xl bg-white dark:bg-gray-900">
-          <div class="flex flex-row gap-2 items-center justify-between pt-8 px-6 pb-3">
-            <h3 class="text-title-md text-gray-800 dark:text-gray-200">Sales by Products</h3>
-          </div>
-          <div class="relative flex flex-col pb-6">
-            <a href="#" class="flex items-center justify-between py-3 px-6 hover:bg-surface-100 dark:hover:bg-surfacedark-100">
-              <div class="flex items-center gap-3">
-                <img class="h-8 w-8" src="<?php echo base_url('assets/img/products/product.png')?>" alt="product images">
-                <div class="flex flex-col">
-                  <div class="leading-5">
-                    Nike Women's Race Running Shoe
-                  </div>
-                  <div class="text-xs leading-5 text-gray-500">
-                    Women shoes
-                  </div>
-                </div>
-              </div>
-              <span>154 Sold</span>
-            </a>
-            <a href="#" class="flex items-center justify-between py-3 px-6 hover:bg-surface-100 dark:hover:bg-surfacedark-100">
-              <div class="flex items-center gap-3">
-                <img class="h-8 w-8" src="<?php echo base_url('assets/img/products/product.png')?>" alt="product images">
-                <div class="flex flex-col">
-                  <div class="leading-5">
-                    Apple 2020 MacBook Air Laptop M1 Chip
-                  </div>
-                  <div class="text-xs leading-5 text-gray-500">
-                    Computer
-                  </div>
-                </div>
-              </div>
-              <span>114 Sold</span>
-            </a>
-            <a href="#" class="flex items-center justify-between py-3 px-6 hover:bg-surface-100 dark:hover:bg-surfacedark-100">
-              <div class="flex items-center gap-3">
-                <img class="h-8 w-8" src="<?php echo base_url('assets/img/products/product.png')?>" alt="product images">
-                <div class="flex flex-col">
-                  <div class="leading-5">
-                    Leather Desk Pad Protector & Mouse Pad
-                  </div>
-                  <div class="text-xs leading-5 text-gray-500">
-                    Computer accessories
-                  </div>
-                </div>
-              </div>
-              <span>94 Sold</span>
-            </a>
-            <a href="#" class="flex items-center justify-between py-3 px-6 hover:bg-surface-100 dark:hover:bg-surfacedark-100">
-              <div class="flex items-center gap-3">
-                <img class="h-8 w-8" src="<?php echo base_url('assets/img/products/product.png')?>" alt="product images">
-                <div class="flex flex-col">
-                  <div class="leading-5">
-                    Aothia Large Dual Monitor Stand Riser
-                  </div>
-                  <div class="text-xs leading-5 text-gray-500">
-                    Computer
-                  </div>
-                </div>
-              </div>
-              <span>65 Sold</span>
-            </a>
-            <a href="#" class="flex items-center justify-between py-3 px-6 hover:bg-surface-100 dark:hover:bg-surfacedark-100">
-              <div class="flex items-center gap-3">
-                <img class="h-8 w-8" src="<?php echo base_url('assets/img/products/product.png')?>" alt="product images">
-                <div class="flex flex-col">
-                  <div class="leading-5">
-                    Blink Video Doorbell and chime app alerts
-                  </div>
-                  <div class="text-xs leading-5 text-gray-500">
-                    Smarthome
-                  </div>
-                </div>
-              </div>
-              <span>34 Sold</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- card -->
-        <div class="py-8 px-6 max-sm:w-80 max-sm:flex-shrink-0 flex flex-col rounded-xl bg-white dark:bg-gray-900">
-          <div class="flex flex-row gap-2 items-center justify-between pb-3">
-            <h3 class="text-title-md text-gray-800 dark:text-gray-200">Sales by Category</h3>
-          </div>
-          <div class="relative">
-            <canvas class="max-w-100" id="ProductChartTwo"></canvas>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -462,25 +310,21 @@
             <div class="relative" aria-label="Layout Default" data-microtip-position="top" role="tooltip" >
               <label for="layout-default" class="setLayout cursor-pointer flex flex-row items-center gap-2">
               <input type="radio" class="z-10 hidden opacity-0" name="layouts" id="layout-default" value="layout-default">
-              <img class="w-12 sm:w-24 rounded h-auto border border-gray-200 dark:border-gray-700 mb-1" src="<?php echo base_url('assets/img/layouts/default.jpg')?>" alt="layouts">
               </label>
             </div>
             <div class="relative" aria-label="Layout Compact" data-microtip-position="top" role="tooltip" >
               <label for="layout-compact" class="setLayout cursor-pointer flex flex-row items-center gap-2">
               <input type="radio" class="z-10 hidden opacity-0" name="layouts" id="layout-compact" value="layout-compact">
-              <img class="w-12 sm:w-24 rounded h-auto border border-gray-200 dark:border-gray-700 mb-1" src="<?php echo base_url('assets/img/layouts/compact.jpg')?>" alt="layouts">
               </label>
             </div>
             <div class="relative" aria-label="Layout Compact Text" data-microtip-position="top" role="tooltip" >
               <label for="layout-compact-text" class="setLayout cursor-pointer flex flex-row items-center gap-2">
               <input type="radio" class="z-10 hidden opacity-0" name="layouts" id="layout-compact-text" value="layout-compact-text">
-              <img class="w-12 sm:w-24 rounded h-auto border border-gray-200 dark:border-gray-700 mb-1" src="<?php echo base_url('assets/img/layouts/compact-text.jpg')?>" alt="layouts">
               </label>
             </div>
             <div class="relative" aria-label="Layout Classic" data-microtip-position="top" role="tooltip" >
               <label for="layout-classic" class="setLayout cursor-pointer flex flex-row items-center gap-2">
               <input type="radio" class="z-10 hidden opacity-0" name="layouts" id="layout-classic" value="layout-classic">
-              <img class="w-12 sm:w-24 rounded h-auto border border-gray-200 dark:border-gray-700 mb-1" src="<?php echo base_url('assets/img/layouts/classic.jpg')?>" alt="layouts">
               </label>
             </div>
           </div>
@@ -488,14 +332,23 @@
       </div>
     </div>
   </div>
-  
-  <!-- Charts js -->
-  <script src="<?php echo base_url('assets/vendors/chart.js/dist/chart.umd.js')?>"></script>
-  <!-- Chart config -->
-  <script src="<?php echo base_url('assets/js/charts/sales.js')?>"></script>
-  
+
   <!-- Tailmater javascript -->
   <script src="<?php echo base_url('assets/js/tailmater.js')?>"></script>
+  <!-- table sorter -->
+  <script src="<?php echo base_url('assets/vendors/simple-datatables/dist/umd/simple-datatables.js')?>"></script><!--sort table-->
+  <script>
+  const myTablesorter = function () {
+    const els = document.querySelectorAll(".table-sorter");
+    if ( els != null) {
+      for( let i = 0; i < els.length; i++)
+      {
+        const table = new simpleDatatables.DataTable((els[i]));
+      }
+    };
+  }
+  myTablesorter();
+  </script>
 </body>
 
 </html>

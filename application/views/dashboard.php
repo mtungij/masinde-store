@@ -70,32 +70,21 @@
             <!-- bg -->
             <div class="absolute right-0 top-0 opacity-50 text-surface-400 dark:text-surfacedark-400 !text-[100px] material-symbols-outlined">account_balance_wallet</div>
 
-            <h2 class="text-headline-md mt-1"><span></span>31k</h2>
+            <h2 class="text-headline-md mt-1"><span></span><?= format_prices($total_products->total_products_count) ?></h2>
             <div class="flex justify-between items-center gap-2 z-10">
               <h3 class="text-body-md text-gray-800 dark:text-gray-200">Total products</h3>
               <span class="col-span-2 text-body-sm text-green-500 text-right">+10%</span>
             </div>
           </div>
-          <!-- card -->
-          <div class="max-sm:w-60 max-sm:flex-shrink-0 relative py-8 px-6 overflow-hidden flex flex-col gap-2 rounded-xl bg-white dark:bg-gray-900">
-            <!-- bg -->
-            <div class="absolute right-0 top-0 opacity-50 text-surface-400 dark:text-surfacedark-400 !text-[100px] material-symbols-outlined">shopping_cart</div>
-
-            <h2 class="text-headline-md mt-1"><span>Tsh </span> 50M</h2>
-            <div class="flex justify-between items-center gap-2 z-10">
-              <h3 class="text-body-md text-gray-800 dark:text-gray-200">Total Buy Price</h3>
-              <span class="col-span-2 text-body-sm text-green-500 text-right">+10%</span>
-            </div>
-          </div>
+         
           <!-- card -->
          <div class="max-sm:w-60 max-sm:flex-shrink-0 relative py-8 px-6 overflow-hidden flex flex-col gap-2 rounded-xl bg-white dark:bg-gray-900">
             <!-- bg -->
             <div class="absolute right-0 top-0 opacity-50 text-surface-400 dark:text-surfacedark-400 !text-[100px] material-symbols-outlined">person</div>
  
-            <h2 class="text-headline-md mt-1"><span>Tsh </span> 65M </h2>
+            <h2 class="text-headline-md mt-1"><span>Tsh </span> <?= format_prices($total_revenue->total_revenue) ?> </h2>
             <div class="flex justify-between items-center gap-2 z-10">
               <h3 class="text-body-md text-gray-800 dark:text-gray-200">Total Revenue</h3>
-              <span class="col-span-2 text-body-sm text-green-500 text-right">+21%</span>
             </div>
           </div>
           <!-- card -->
@@ -103,182 +92,142 @@
             <!-- bg -->
             <div class="absolute right-0 top-0 opacity-50 text-surface-400 dark:text-surfacedark-400 !text-[100px] material-symbols-outlined">person_pin</div>
 
-            <h2 class="text-headline-md mt-1">100k</h2>
+            <h2 class="text-headline-md mt-1"><?= format_prices($total_sales->total_sales) ?></h2>
             <div class="flex justify-between items-center gap-2 z-10">
               <h3 class="text-body-md text-gray-800 dark:text-gray-200">Total Sales</h3>
-              <span class="col-span-2 text-body-sm text-red-500 text-right">-9%</span>
             </div>
           </div>
+
+           <!-- card -->
+          <div class="max-sm:w-60 max-sm:flex-shrink-0 relative py-8 px-6 overflow-hidden flex flex-col gap-2 rounded-xl bg-white dark:bg-gray-900">
+            <!-- bg -->
+            <div class="absolute right-0 top-0 opacity-50 text-surface-400 dark:text-surfacedark-400 !text-[100px] material-symbols-outlined">shopping_cart</div>
+
+            <h2 class="text-headline-md mt-1"><span></span> <?= format_prices($total_sales_per_day->total_sales_per_day) ?></h2>
+            <div class="flex justify-between items-center gap-2 z-10">
+              <h3 class="text-body-md text-gray-800 dark:text-gray-200">Today's Sales</h3>
+            </div>
+          </div>
+
         </div>
       </div>
 
       <!-- content 2 -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
-        <div class="max-sm:order-2">
+        <div class="max-sm:order-2 grid gap-6">
           <!-- card -->
           <div class="py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
             <div class="flex flex-row gap-2 items-center justify-between pb-3">
-              <h3 class="text-title-md text-gray-800 dark:text-gray-200">Sales by Branch/Store</h3>
+              <h3 class="text-title-md text-gray-800 dark:text-gray-200" style="font-weight:bold">#2 Stock Per Branch/Store</h3>
             </div>
+            <?php foreach($products_branches as $branch): ?>
             <div class="relative">
               <div class="flex flex-col gap-1 py-2">
                 <div class="flex items-center justify-between">
                   <div class="flex items-center">
-                    UYOLE SHOP
+                    <?= $branch->name ?>
                   </div>
-                  <span>16,050</span>
+                  <span><?= format_prices($branch->total_products_amount) ?></span>
                 </div>
+                <?php 
+                  $percentage = round(($branch->total_products_amount / $total_products->total_products_count) * 100);
+                ?>
                 <!-- linear progress -->
                 <div class="flex bg-surface-500 dark:bg-surfacedark-500 h-1 mt-2">
-                  <div class="flex bg-green-600 dark:bg-green-200" role="progressbar" style="width: 69%;" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-              <div class="flex flex-col gap-1 py-2">
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center">
-                    MBALIZI SHOP
-                  </div>
-                  <span>3,050</span>
-                </div>
-                <!-- linear progress -->
-                <div class="flex bg-surface-500 dark:bg-surfacedark-500 h-1 mt-2">
-                  <div class="flex bg-green-600 dark:bg-green-200" role="progressbar" style="width: 19%;" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-              <div class="flex flex-col gap-1 py-2">
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center">
-                    HOME SHOP
-                  </div>
-                  <span>2,150</span>
-                </div>
-                <!-- linear progress -->
-                <div class="flex bg-surface-500 dark:bg-surfacedark-500 h-1 mt-2">
-                  <div class="flex bg-green-600 dark:bg-green-200" role="progressbar" style="width: 12%;" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-              <div class="flex flex-col gap-1 py-2">
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center">
-                    MAIN STORE
-                  </div>
-                  <span>1,750</span>
-                </div>
-                <!-- linear progress -->
-                <div class="flex bg-surface-500 dark:bg-surfacedark-500 h-1 mt-2">
-                  <div class="flex bg-green-600 dark:bg-green-200" role="progressbar" style="width: 9%;" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-              <div class="flex flex-col gap-1 py-2">
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center">
-                    <img src="<?php echo base_url('assets/img/flags/JP.svg')?>" class="w-6 h-6 mr-2" alt="social">
-                    SELF SALES
-                  </div>
-                  <span>1,250</span>
-                </div>
-                <!-- linear progress -->
-                <div class="flex bg-surface-500 dark:bg-surfacedark-500 h-1 mt-2">
-                  <div class="flex bg-green-600 dark:bg-green-200" role="progressbar" style="width: 8%;" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="flex bg-green-600 dark:bg-green-200" role="progressbar" style="width: <?= $percentage ?>%;" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
             </div>
+            <?php endforeach ?>
           </div>
+
+
+          <!-- card -->
+          <div class="py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
+            <div class="flex flex-row gap-2 items-center justify-between pb-3">
+              <h3 class="text-title-md text-gray-800 dark:text-gray-200" style="font-weight:bold">#3 Sales Per Branch/Store</h3>
+            </div>
+            <?php foreach($sales_branches as $branch): ?>
+            <div class="relative">
+              <div class="flex flex-col gap-1 py-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center">
+                    <?= $branch->name ?>
+                  </div>
+                  <div class="flex gap-4">
+                    <div class="grid">
+                       <span><?= format_prices($branch->total_sales) ?></span>
+                       <span class="text-sm" style="color: #94a3b8;">Sales</span>
+                    </div>
+                    <div class="grid">
+                      <span><?= format_prices($branch->total_revenue) ?></span>
+                      <span class="text-sm" style="color: #94a3b8;">Revenue</span>
+                    </div>
+                  </div>
+                </div>
+                <?php 
+                  $percentage = round(($branch->total_sales / $total_sales->total_sales) * 100);
+                ?>
+                <!-- linear progress -->
+                <div class="flex bg-surface-500 dark:bg-surfacedark-500 h-1 mt-2">
+                  <div class="flex bg-green-600 dark:bg-green-200" role="progressbar" style="width: <?= $percentage ?>%;" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+            <?php endforeach ?>
+          </div>
+
+          
         </div>
 
         <div class="max-sm:order-1 sm:col-span-2">
           <!-- card -->
           <div class="flex flex-col rounded-xl bg-white dark:bg-gray-900">
             <div class="py-8 px-6 flex flex-row gap-2 items-center justify-between pb-3">
-              <h3 class="text-title-md text-gray-800 dark:text-gray-200">Recently Sales</h3>
+              <h3 class="text-title-md text-gray-800 dark:text-gray-200 text-bold" style="font-weight:bold">#1 Top 10 Selling products</h3>
             </div>
             <div class="relative pb-6 overflow-auto">
               <table class="table-bordered-bottom text-body-sm">
                 <thead class="text-gray-800 dark:text-gray-200 border-b border-gray-100 dark:border-gray-800">
                   <tr class="[&_th]:px-6 [&_th]:py-5 title-md bg-surface-100 dark:bg-surfacedark-100">
                     <th>
+                      S/N
+                    </th>
+                    <th>
                       Product Name
                     </th>
                     <th>
-                      Amount
+                      Branch
                     </th>
                     <th>
-                      Status
+                      Sales
                     </th>
-                    <th>
-                      Invoive
-                    </th>
+       
                   </tr>
                 </thead>
                 <tbody class="[&_td]:px-6 [&_td]:py-3 text-body-sm">
+                  <?php $rowId = 1?>
+                  <?php foreach($top10_products as $product):?>
                   <tr>
+                    <td><?= $rowId < 10 ? "0".$rowId++ : $rowId ?></td>
                     <td>
                       <div class="flex flex-col">
-                        Azam cora
-                        <span class="text-label-md text-gray-500 mt-1">Uyole</span>
+                        <?= $product->product_name ?>
                       </div>
                     </td>
                     <td>
-                      <span>Tsh</span> 650k
+                      <?= $product->branch_name ?>
                     </td>
-                    <td>
+                    <!-- <td>
                       <div class="inline-block leading-tight text-center text-label-md py-1 px-3 text-gray-800 dark:text-gray-100 bg-primary-100 dark:bg-primary-900 rounded-full">Process</div>
-                    </td>
+                    </td> -->
                     <td>
-                      <a href="#" class="hover:text-primary-500">#INV9834</a>
+                      <a href="#" class="hover:text-primary-500">
+                        <?= format_prices($product->total_quantity) ?>
+                      </a>
                     </td>
                   </tr>
-                  <tr>
-                    <td>
-                      <div class="flex flex-col">
-                        Pepsi Big
-                        <span class="text-label-md text-gray-500 mt-1">Mbalizi</span>
-                      </div>
-                    </td>
-                    <td>
-                      <span>Tsh</span> 362k
-                    </td>
-                    <td>
-                      <div class="inline-block leading-tight text-center text-label-md py-1 px-3 text-gray-800 dark:text-gray-100 bg-yellow-100 dark:bg-yellow-900 rounded-full">Shipping</div>
-                    </td>
-                    <td>
-                      <a href="#" class="hover:text-primary-500">#INV9834</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="flex flex-col">
-                        Juice Orange
-                        <span class="text-label-md text-gray-500 mt-1">Home shop</span>
-                      </div>
-                    </td>
-                    <td>
-                      <span>Tsh</span> 142k
-                    </td>
-                    <td>
-                      <div class="inline-block leading-tight text-center text-label-md py-1 px-3 text-gray-800 dark:text-gray-100 bg-green-100 dark:bg-green-900 rounded-full">Complete</div>
-                    </td>
-                    <td>
-                      <a href="#" class="hover:text-primary-500">#INV9834</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="flex flex-col">
-                        Chocolate Orange
-                        <span class="text-label-md text-gray-500 mt-1">Mbalizi</span>
-                      </div>
-                    </td>
-                    <td>
-                      <span>Tsh</span> 50k
-                    </td>
-                    <td>
-                      <div class="inline-block leading-tight text-center text-label-md py-1 px-3 text-gray-800 dark:text-gray-100 bg-red-100 dark:bg-red-900 rounded-full">Cancelled</div>
-                    </td>
-                    <td>
-                      <a href="#" class="hover:text-primary-500">#INV9834</a>
-                    </td>
-                  </tr>
+                  <?php endforeach ?>
                 </tbody>
               </table>
             </div>
@@ -291,21 +240,29 @@
         <!-- card -->
         <div class="relative overflow-hidden max-sm:w-60 max-sm:flex-shrink-0 py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
           <div class="flex flex-row gap-2 items-center justify-between pb-3">
-            <h3 class="text-title-md text-gray-800 dark:text-gray-200">Total customers</h3>
-            <span class="col-span-2 text-body-sm text-green-500 text-right">+16%</span>
+            <h3 class="text-title-md text-gray-800 dark:text-gray-200">Total Profit</h3>
+             <span class="col-span-2 text-body-sm text-green-500 text-right">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
+              </svg>
+            </span>
           </div>
           <div class="relative">
-            <h4 class="text-headline-sm">890,167<span></span></h4>
+            <h4 class="text-headline-sm"><?= number_format($total_profit->total_profit) ?><span></span></h4>
           </div>
 
           <hr class="border-surface-500 dark:border-surfacedark-500 my-5">
 
           <div class="flex flex-row gap-2 items-center justify-between pb-3">
-            <h3 class="text-title-md text-gray-800 dark:text-gray-200">Avg. Sales </h3>
-            <span class="col-span-2 text-body-sm text-green-500 text-right">+34%</span>
+            <h3 class="text-title-md text-gray-800 dark:text-gray-200">Today's Profit </h3>
+            <span class="col-span-2 text-body-sm text-green-500 text-right">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
+              </svg>
+            </span>
           </div>
           <div class="relative">
-            <h4 class="text-headline-sm"><span>Tsh</span> 960k</h4>
+            <h4 class="text-headline-sm"><span>Tsh</span> <?= number_format($profit_per_day->total_profit_per_day) ?></h4>
           </div>
           <!-- bg -->
           <div class="absolute -right-4 -bottom-24">
@@ -327,21 +284,33 @@
         <!-- card -->
         <div class="relative overflow-hidden max-sm:w-60 max-sm:flex-shrink-0 py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
           <div class="flex flex-row gap-2 items-center justify-between pb-3">
-            <h3 class="text-title-md text-gray-800 dark:text-gray-200">Avg. Daily sales</h3>
-            <span class="col-span-2 text-body-sm text-red-500 text-right">-8%</span>
+            <h3 class="text-title-md text-gray-800 dark:text-gray-200">Avg. Sales Revenue</h3>
+            <span class="col-span-2 text-body-sm text-red-500 text-right">
+               <span class="col-span-2 text-body-sm text-green-500 text-right">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
+              </svg>
+            </span>
+            </span>
           </div>
           <div class="relative">
-            <h4 class="text-headline-sm">500k</h4>
+            <h4 class="text-headline-sm"><?= format_prices($avarage_sales->avarage_sales_per_day) . " Tsh" ?></h4>
           </div>
 
           <hr class="border-surface-500 dark:border-surfacedark-500 my-5">
 
           <div class="flex flex-row gap-2 items-center justify-between pb-3">
-            <h3 class="text-title-md text-gray-800 dark:text-gray-200">Conversion Rate</h3>
-            <span class="col-span-2 text-body-sm text-red-500 text-right">-6%</span>
+            <h3 class="text-title-md text-gray-800 dark:text-gray-200">Today's Revenue</h3>
+            <span class="col-span-2 text-body-sm text-red-500 text-right">
+               <span class="col-span-2 text-body-sm text-green-500 text-right">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
+              </svg>
+            </span>
+            </span>
           </div>
           <div class="relative">
-            <h4 class="text-headline-sm">90<span>%</span></h4>
+            <h4 class="text-headline-sm"><?= format_prices($total_revenue_per_day->total_revenue_per_day) ?><span> Tsh</span></h4>
           </div>
 
           <!-- bg -->
@@ -360,83 +329,32 @@
           <!-- card -->
           <div class="flex flex-col rounded-xl bg-white dark:bg-gray-900">
             <div class="pt-5 px-6 flex flex-row gap-2 items-center justify-between pb-3">
-              <h3 class="text-title-md text-gray-800 dark:text-gray-200">Bestseller</h3>
+              <h3 class="text-title-md text-gray-800 dark:text-gray-200">Out Of Stock Products</h3>
             </div>
             <div class="relative pb-6 overflow-hidden">
               <table class="table-bordered-bottom text-body-sm">
                 <tbody class="[&_td]:px-6 [&_td]:py-3 text-body-sm">
+                  <?php $rowId = 1?>
+                  <?php foreach($branch_out_of_stock as $branch_out):?>
                   <tr>
                     <td>
-                      <span class="text-left">#1</span>
+                      <span class="text-left"><?= $rowId < 10 ? "0".$rowId++ : $rowId ?></span>
                     </td>
                     <td>
                       <a href="#">
                         <div class="flex flex-row items-center gap-4">
                           <div class="flex flex-col">
-                            Azam Cora
-                            <span class="text-label-md text-gray-500 mt-1">Drink</span>
+                            <?= $branch_out->product_name ?>
                           </div>
                         </div>
                       </a>
                     </td>
+                    <td> <?= $branch_out->branch_name ?> </td>
                     <td>
-                      <span class="text-left">2,226 Sales</span>
+                      <span class="text-left"><?= $branch_out->total_out_of_stock ?></span>
                     </td>
                   </tr>
-                  <tr>
-                    <td>
-                      <span class="text-left">#2</span>
-                    </td>
-                    <td>
-                      <a href="#">
-                        <div class="flex flex-row items-center gap-4">
-                          <div class="flex flex-col">
-                            Pepsi soda
-                            <span class="text-label-md text-gray-500 mt-1">Drink</span>
-                          </div>
-                        </div>
-                      </a>
-                    </td>
-                    <td>
-                      <span class="text-left">2,126 Sales</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <span class="text-left">#3</span>
-                    </td>
-                    <td>
-                      <a href="#">
-                        <div class="flex flex-row items-center gap-4">
-                          <div class="flex flex-col">
-                            Mafuta ya kupikia
-                            <span class="text-label-md text-gray-500 mt-1">Cooking</span>
-                          </div>
-                        </div>
-                      </a>
-                    </td>
-                    <td>
-                      <span class="text-left">1,996 Sales</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <span class="text-left">#4</span>
-                    </td>
-                    <td>
-                      <a href="#">
-                        <div class="flex flex-row items-center gap-4">
-                          <div class="flex flex-col">
-                            Millinda Soda
-                            <span class="text-label-md text-gray-500 mt-1">Drink</span>
-                          </div>
-                        </div>
-                      </a>
-                    </td>
-                    <td>
-                      <span class="text-left">1,726 Sales</span>
-                    </td>
-                  </tr>
+                  <?php endforeach ?>
                 </tbody>
               </table>
             </div>
@@ -446,101 +364,9 @@
           <!-- card -->
           <div class="py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
             <div class="flex flex-row gap-2 items-center justify-between pb-3">
-              <h3 class="text-title-md text-gray-800 dark:text-gray-200">Recent Actifity</h3>
+              <h3 class="text-title-md text-gray-800 dark:text-gray-200">Expired Products</h3>
             </div>
-            <div class="relative">
-              <ul class="h-72 overflow-y-auto scrollbars show mt-2 mb-6">
-                <li class="flex">
-                  <div class="relative flex-shrink-0 w-12 text-center">
-                    <span class="absolute left-1/2 ml-0 top-10 -bottom-4 border-l border-dashed border-gray-200 dark:border-gray-700"></span>
-                    <div class="h-12 w-12 flex justify-center items-center rounded-full bg-surface-400 dark:bg-surfacedark-400 mr-auto">
-                      <span class="material-symbols-outlined text-primary-600 dark:text-primary-200">shopping_cart</span>
-                    </div>
-                  </div>
-
-                  <div class="ml-6 pb-8">
-                    <div class="flex flex-row justify-between pb-2">
-                      <div class="text-label-md text-gray-500">Aug 7, 02.21 am</div>
-                    </div>
-                    <p class="text-body-md">Lulu added new stock! <a href="#" class="text-primary-600 dark:text-primary-200">"#INV3432"</a></p>
-                  </div>
-                </li>
-                <li class="flex">
-                  <div class="relative flex-shrink-0 w-12 text-center">
-                    <span class="absolute left-1/2 ml-0 top-10 -bottom-4 border-l border-dashed border-gray-200 dark:border-gray-700"></span>
-                    <div class="h-12 w-12 flex justify-center items-center rounded-full bg-surface-400 dark:bg-surfacedark-400 mr-auto">
-                      <span class="material-symbols-outlined text-primary-600 dark:text-primary-200">inventory</span>
-                    </div>
-                  </div>
-
-                  <div class="ml-6 pb-8">
-                    <div class="flex flex-row justify-between pb-2">
-                      <div class="text-label-md text-gray-500">Aug 6, 02.21 am</div>
-                    </div>
-                    <p class="text-body-md">Imma logged out! </p>
-                  </div>
-                </li>
-                <li class="flex">
-                  <div class="relative flex-shrink-0 w-12 text-center">
-                    <span class="absolute left-1/2 ml-0 top-10 -bottom-4 border-l border-dashed border-gray-200 dark:border-gray-700"></span>
-                    <div class="h-12 w-12 flex justify-center items-center rounded-full bg-surface-400 dark:bg-surfacedark-400 mr-auto">
-                      <span class="material-symbols-outlined text-primary-600 dark:text-primary-200">local_shipping</span>
-                    </div>
-                  </div>
-
-                  <div class="ml-6 pb-8">
-                    <div class="flex flex-row justify-between pb-2">
-                      <div class="text-label-md text-gray-500">Aug 6, 20.10 pm</div>
-                    </div>
-                    <p class="text-body-md">Order has been shipped <a href="#" class="text-primary-600 dark:text-primary-200">"#INV3430"</a></p>
-                  </div>
-                </li>
-                <li class="flex">
-                  <div class="relative flex-shrink-0 w-12 text-center">
-                    <span class="absolute left-1/2 ml-0 top-10 -bottom-4 border-l border-dashed border-gray-200 dark:border-gray-700"></span>
-                    <div class="h-12 w-12 flex justify-center items-center rounded-full bg-surface-400 dark:bg-surfacedark-400 mr-auto">
-                      <span class="material-symbols-outlined text-primary-600 dark:text-primary-200">local_shipping</span>
-                    </div>
-                  </div>
-
-                  <div class="ml-6 pb-8">
-                    <div class="flex flex-row justify-between pb-2">
-                      <div class="text-label-md text-gray-500">Aug 6, 18.34 pm</div>
-                    </div>
-                    <p class="text-body-md">Order has been shipped <a href="#" class="text-primary-600 dark:text-primary-200">"#INV3429"</a></p>
-                  </div>
-                </li>
-                <li class="flex">
-                  <div class="relative flex-shrink-0 w-12 text-center">
-                    <span class="absolute left-1/2 ml-0 top-10 -bottom-4 border-l border-dashed border-gray-200 dark:border-gray-700"></span>
-                    <div class="h-12 w-12 flex justify-center items-center rounded-full bg-surface-400 dark:bg-surfacedark-400 mr-auto">
-                      <span class="material-symbols-outlined text-primary-600 dark:text-primary-200">local_shipping</span>
-                    </div>
-                  </div>
-
-                  <div class="ml-6 pb-8">
-                    <div class="flex flex-row justify-between pb-2">
-                      <div class="text-label-md text-gray-500">Aug 6, 03.21 am</div>
-                    </div>
-                    <p class="text-body-md">Order has been shipped <a href="#" class="text-primary-600 dark:text-primary-200">"#INV3428"</a></p>
-                  </div>
-                </li>
-                <li class="flex">
-                  <div class="relative flex-shrink-0 w-12 text-center">
-                    <span class="absolute left-1/2 ml-0 top-10 -bottom-4 border-l border-dashed border-gray-200 dark:border-gray-700"></span>
-                    <div class="h-12 w-12 flex justify-center items-center rounded-full bg-surface-400 dark:bg-surfacedark-400 mr-auto">
-                      <span class="material-symbols-outlined text-primary-600 dark:text-primary-200">local_shipping</span>
-                    </div>
-                  </div>
-
-                  <div class="ml-6 pb-8">
-                    <div class="flex flex-row justify-between pb-2">
-                      <div class="text-label-md text-gray-500">Aug 6, 03.21 am</div>
-                    </div>
-                    <p class="text-body-md">Order has been shipped <a href="#" class="text-primary-600 dark:text-primary-200">"#INV3428"</a></p>
-                  </div>
-                </li>
-              </ul>
+            
             </div>
           </div>
         </div>
