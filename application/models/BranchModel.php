@@ -9,9 +9,10 @@ class BranchModel extends CI_Model
         return $branches;
     }
 
-    public function get_branch($id)
+    public function get_branch()
     {
-       $branch =  $this->db->get_where('branch', ['id' => $id])->row();
+
+        $branch = $this->db->get('branch')->result();
        return $branch;
     }
 
