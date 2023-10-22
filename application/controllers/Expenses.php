@@ -9,6 +9,7 @@ class Expenses extends CI_Controller
     parent::__construct();
     $this->load->model('ExpensesModel');
     $this->load->model('BranchModel');
+    $this->load->model('UserModel');
     
    }
 
@@ -86,9 +87,88 @@ class Expenses extends CI_Controller
                return redirect('Expenses/requirest_ex');
             }
             
-   
-   
+         }
 
+         public function salary_index()
+         {
+           $branc= $this->BranchModel->get_branches();
+           $staff= $this->UserModel->get_users();
+         //   echo "<pre>";
+         //   print_r($staff);
+         //   echo "<pre>";
+            $this->load->view('expenses/salary',['branc'=> $branc,'staff'=> $staff]);
+            
+         }
+
+         public function salary()
+         {
+            
+
+        //data validation
+        $config = [
+            [
+                'field' => 'branch_name',
+                'label' => 'Branch Name',
+                'rules' => 'trim|required',
+                'errors' => [
+                    'required' => 'branch name is required',
+                ],
+            ],
+            [
+                'field' => 'staff_name',
+                'label' => 'staff Name',
+                'rules' => 'trim|required',
+                'errors' => [
+                  'required' => 'branch name is required',
+              ],
+            ],
+            [
+               'field' => 'staff_name',
+               'label' => 'staff Name',
+               'rules' => 'trim|required',
+               'errors' => [
+                 'required' => 'Staff name is required',
+             ],
+           ],
+            [
+                'field' => 'salary_amount',
+                'label' => 'Salary',
+                'rules' => 'trim|required',
+                'errors' => [
+                  'required' => 'Salary Amount is required',
+                ],
+            ],
+           
+            [
+                'field' => 'pay_date',
+                'label' => 'Pay date',
+                'rules' => 'trim|required',
+                'errors' => [
+                  'required' => 'Pay datet is required',
+                ],
+            ],
+           
+            
+        ];
+
+        $this->form_validation->set_rules($config);
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('expenses/salary');
+        } else {
+         $userdata = [
+            'branch_name' => $this->input->post('branch_name'),
+            'staff_name' => $this->input->post('staff_name'),
+            'salary_amount' => $this->input->post('salary_amount'),
+            'pay_date' => $this->input->post('pay_date'),
+         
+        ];
+         $this->ExpensesModel->create_salary($userdata);
+
+             $this->session->set_flashdata('register_success', "<b>{$userdata['salary_amount']}</b> is registered successfully!");
+           redirect('expenses/salary');
+        }
 
          }
+         
 }

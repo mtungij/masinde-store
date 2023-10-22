@@ -44,4 +44,13 @@ class ExpensesModel extends CI_Model
     }
 
 
+public function create_salary($userdata)
+{
+
+    $this->db->insert('salary', $userdata);
+        return true;
+ 
+}
+
+
 }
