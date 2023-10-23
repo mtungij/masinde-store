@@ -5,13 +5,13 @@ class ProductModel extends CI_Model
 {
     public function get_products()
     {
-        $products = $this->db->get('Product')->result();
+        $products = $this->db->get('product')->result();
         return $products;
     }
 
     public function get_product($id)
     {
-       $product =  $this->db->get_where('Product', ['id' => $id])->row();
+       $product =  $this->db->get_where('product', ['id' => $id])->row();
        return $product;
     }
 
