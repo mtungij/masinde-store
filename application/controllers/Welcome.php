@@ -72,7 +72,7 @@ class Welcome extends CI_Controller {
 						LEFT JOIN product p on p.id = oi.product_id 
 						LEFT JOIN orders o on o.order_number = oi.order_id
 						LEFT JOIN branch b on b.id = o.branch_id
-						GROUP BY oi.product_id 
+						GROUP BY oi.product_id, b.name 
 						ORDER BY total_quantity 
 						DESC LIMIT 10'
 					)->result();
@@ -85,7 +85,7 @@ class Welcome extends CI_Controller {
 				LEFT JOIN branch b on b.id = pb.branch_id 
 				LEFT JOIN product p on p.id = pb.product_id
 				WHERE pb.inventory <= pb.stock_limit 
-				GROUP BY branch_id'
+				GROUP BY pb.branch_id, p.name'
 				)->result();
 
 
