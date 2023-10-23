@@ -65,7 +65,6 @@
                   <th data-sortable="false">S/NO</th>
                   <th data-sortable="false">Full Name</th>
                   <th data-sortable="false">Username</th>
-                  <th data-sortable="false">Email</th>
                   <th data-sortable="false">Branch</th>
                   <th data-sortable="false">Action</th>
                 </tr>
@@ -87,7 +86,6 @@
                   <td>
                     <?= $user->username ?>
                   </td>
-                  <td><a href="mailto:acme@example.com" target="_blank"><?= $user->email ?></a></td>
                   <td><?= $user->branch_name ?></td>
                   <td>
                     <a href="<?= site_url('user/profile/'.$user->id)?>" class="hover:text-primary-600 dark:hover:text-primary-200">view</a>

@@ -84,7 +84,7 @@ class Product extends CI_Controller
             "buy_price" => $this->input->post('buy_price'),
             "whole_sale_price" => $this->input->post('whole_sale_price'),
             "retail_sale_price" => $this->input->post('retail_sale_price'),
-            "expire_date" => $this->input->post('expire_date'),
+            // "expire_date" => $this->input->post('expire_date'),
         ];
         $this->db->insert('product', $productdata);
         $this->session->set_flashdata('productRegistered', 'New Product Registered Successfully!');
