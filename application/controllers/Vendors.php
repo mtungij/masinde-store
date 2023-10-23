@@ -57,7 +57,7 @@ class Vendors extends CI_Controller
     public function delete($id)
     {
         $this->VendorModel->delete_vendor_product($id);
-        $this->session->set_flashdata('vp_confirmation', 'Vendor seles is confirmed that it\'s correct!');
+        $this->session->set_flashdata('vp_confirmation', 'Vendor sales is confirmed that it\'s correct!');
         redirect('vendors');
     }
 }

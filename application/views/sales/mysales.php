@@ -109,10 +109,10 @@
             <table class="table-sorter table-bordered-bottom table-hover">
               <thead>
                 <tr>
-                  <th data-sortable="false">Transaction ID</th>
+                  <th data-sortable="false">Invoice ID</th>
                   <th>Total Price</th>
                   <th>Amount Paid</th>
-                  <th>Sold By</th>
+                  <th>Payment Method</th>
                   <th>Date</th>
                 </tr>
               </thead>
@@ -128,7 +128,7 @@
                   <td><?= number_format($sale->amount_paid) ?></td>
                   <td><?= $sale->sell_by ?></td>
                   <td>
-                    <?= $sale->created_at ?>
+                    <?= date('Y/m/d H:m:i', strtotime($sale->created_at))  ?>
                   </td>
                 </tr>
                 <?php endforeach ?>

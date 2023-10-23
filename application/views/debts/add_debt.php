@@ -102,7 +102,7 @@
 
                 <div class="relative pt-4 flex justify-end">
                   <button class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
-                    Sell By Debt
+                    Sell By Credit
                     <span class="material-symbols-outlined">arrow_forward</span>
                   </button>
                 </div>

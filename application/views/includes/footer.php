@@ -201,6 +201,12 @@
   <script src="<?php echo base_url('assets/js/charts/ecommerce.js')?>"></script>
 
   <script src="<?php echo base_url('assets/vendors/simple-datatables/dist/umd/simple-datatables.js')?>"></script><!--sort table-->
+  <script src="<?php echo base_url('assets/js/prism.js')?>"></script>
+
+  <script src="<?php echo base_url('assets/vendors/flatpickr/dist/flatpickr.min.js')?>"></script><!-- input date -->
+  <script src="<?php echo base_url('assets/vendors/flatpickr/dist/plugins/rangePlugin.js')?>"></script><!-- input range date -->
+  <script src="<?php echo base_url('assets/js/vendor.js')?>"></script>
+
   <script>
   const myTablesorter = function () {
     const els = document.querySelectorAll(".table-sorter");

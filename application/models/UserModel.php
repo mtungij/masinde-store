@@ -5,7 +5,8 @@ class UserModel extends CI_Model
 {
     public function get_users(): array
     {
-        $users = $this->db->order_by('created_at', 'desc')->get('User')->result();
+        //get users and their branches
+        $users = $this->db->query("SELECT u.*, b.name as branch_name FROM user u JOIN branch b ON u.branch_id = b.id")->result();
         return $users;
     }
 

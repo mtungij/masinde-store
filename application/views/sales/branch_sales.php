@@ -49,8 +49,8 @@
             <hr class="border-gray-100 dark:border-gray-700">
             <!-- info -->
             <div class="pb-4 px-6 flex flex-col text-gray-500">
-              <span class="text-body-md">Sales: <?= $sales_summary["total_sales"] ?></span>
-              <span class="text-body-md">Revenue: <?= "Tsh. ".number_format($sales_summary["revenue"]) ?></span>
+              <span class="text-body-md">Sales: <?= $today_sales["today_sales"] ?></span>
+              <span class="text-body-md">Revenue: <?= "Tsh. ".number_format($today_sales["revenue"]) ?></span>
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
             <div class="pt-4 px-6 flex flex-row gap-2 items-center justify-between">
               <div class="flex flex-row items-center gap-2">
                 <span class="material-symbols-outlined !text-lg text-blue-500">military_tech</span>
-                <h3 class="text-title-md text-gray-800 dark:text-gray-200">Weekly</h3>
+                <h3 class="text-title-md text-gray-800 dark:text-gray-200">Month Sales(<?= date('Y') ?>)</h3>
               </div>
 
               <span class="flex flex-row items-center gap-1 text-green-500" aria-label="Vs Last Week" data-microtip-position="left" role="tooltip">
@@ -73,8 +73,8 @@
             <hr class="border-gray-100 dark:border-gray-700">
             <!-- info -->
             <div class="pb-4 px-6 flex flex-col text-gray-500">
-              <span class="text-body-md">Sales: <?= $sales_summary["total_sales"] ?></span>
-              <span class="text-body-md">Revenue: <?= "Tsh. ".number_format($sales_summary["revenue"]) ?></span>
+              <span class="text-body-md">Sales: <?= $monthly_sales["monthly_sales"] ?></span>
+              <span class="text-body-md">Revenue: <?= "Tsh. ".number_format($monthly_sales["revenue"]) ?></span>
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@
             <div class="pt-4 px-6 flex flex-row gap-2 items-center justify-between">
               <div class="flex flex-row items-center gap-2">
                 <span class="material-symbols-outlined !text-lg text-green-500">military_tech</span>
-                <h3 class="text-title-md text-gray-800 dark:text-gray-200">Monthly</h3>
+                <h3 class="text-title-md text-gray-800 dark:text-gray-200">All Sales</h3>
               </div>
 
               <span class="flex flex-row items-center gap-1 text-error-500" aria-label="Vs Last Month" data-microtip-position="left" role="tooltip">
@@ -97,8 +97,8 @@
             <hr class="border-gray-100 dark:border-gray-700">
             <!-- info -->
             <div class="pb-4 px-6 flex flex-col text-gray-500">
-              <span class="text-body-md">Sales: 940</span>
-              <span class="text-body-md">Revenue: $928,234</span>
+              <span class="text-body-md">Sales: <?= format_prices($sales_summary['total_sales']) ?></span>
+              <span class="text-body-md">Revenue: <?= format_prices($sales_summary['revenue']) ?></span>
             </div>
           </div>
         </div>
@@ -108,14 +108,14 @@
       <div class="grid grid-cols-1 sm:gap-4 md:gap-6">
         <!-- card -->
         <div class="py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
-          <div class="relative overflow-auto scrollbars">
+          <div class="relative overflow-auto scrollbars" style="white-space: nowrap">
             <table class="table-sorter table-bordered-bottom table-hover">
               <thead>
                 <tr>
-                  <th data-sortable="false">Transaction ID</th>
+                  <th data-sortable="false">Invoice ID</th>
                   <th>Total Price</th>
                   <th>Amount Paid</th>
-                  <th>Sold By</th>
+                  <th>Payment Method</th>
                   <th>Date</th>
                 </tr>
               </thead>
@@ -131,7 +131,7 @@
                   <td><?= number_format($sale->amount_paid) ?></td>
                   <td><?= $sale->sell_by ?></td>
                   <td>
-                    <?= $sale->created_at ?>
+                    <?= date('Y/m/d H:m:i', strtotime($sale->created_at)) ?>
                   </td>
                 </tr>
                 <?php endforeach ?>

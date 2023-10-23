@@ -22,7 +22,7 @@ class Welcome extends CI_Controller {
 			   )->row();
 
 			$total_revenue_per_day = $this->db->query(
-				'SELECT sum(total_price) as total_revenue_per_day 
+				'SELECT sum(amount_paid) as total_revenue_per_day 
 				from orders where DATE(created_at) = CURDATE()'
 			   )->row();
 
@@ -36,13 +36,13 @@ class Welcome extends CI_Controller {
 				'SELECT sum(profit) as total_profit from order_item')->row();
 
 			$total_revenue = $this->db->query(
-				'SELECT sum(total_price) as total_revenue from orders')->row();
+				'SELECT sum(amount_paid) as total_revenue from orders')->row();
 
 			$total_sales = $this->db->query(
 				'SELECT count(*) as total_sales from orders')->row();
 
 			$avarage_sales_per_day = $this->db->query(
-				'SELECT AVG(total_price) as avarage_sales_per_day from orders')->row();
+				'SELECT AVG(amount_paid) as avarage_sales_per_day from orders')->row();
 
 			$total_product_count = $this->ProductBranchModel->product_branch_count();
 
@@ -57,7 +57,7 @@ class Welcome extends CI_Controller {
 
 			//total sales and revenue per each branch/month order by total sales in descending order
 			$sales_branches = $this->db->query(
-				  'SELECT b.name as name, count(*) as total_sales, sum(o.total_price) as total_revenue 
+				  'SELECT b.name as name, count(*) as total_sales, sum(o.amount_paid) as total_revenue 
 					FROM orders o 
 					LEFT JOIN branch b on b.id = o.branch_id 
 					GROUP BY branch_id 

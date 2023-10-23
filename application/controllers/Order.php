@@ -83,7 +83,7 @@ class Order extends CI_Controller
 
 
         //if sell by debt save the debter to the debt table
-        if($this->input->post('sell_type') == 'debt'){
+        if($this->input->post('sell_type') == 'credit'){
             $data = [
                 'order_id' => $order_id,
                 'customer_name' => $this->input->post('customer_name'),
