@@ -78,16 +78,16 @@ class Welcome extends CI_Controller {
 					)->result();
 
 
-			//get number of out of out stock branch_product(inventory <= stock_limit) from each branch
-			$branch_out_of_stock = $this->db->query(
-				'SELECT p.name as product_name, b.name as branch_name, count(pb.id) as total_out_of_stock 
-				FROM product_branch pb 
-				LEFT JOIN branch b on b.id = pb.branch_id 
-				LEFT JOIN product p on p.id = pb.product_id
-				WHERE pb.inventory <= pb.stock_limit 
-				GROUP BY pb.branch_id
-				LIMIT 10'
-				)->result();
+			// //get number of out of out stock branch_product(inventory <= stock_limit) from each branch
+			// $branch_out_of_stock = $this->db->query(
+			// 	'SELECT p.name as product_name, b.name as branch_name, count(pb.id) as total_out_of_stock 
+			// 	FROM product_branch pb 
+			// 	LEFT JOIN branch b on b.id = pb.branch_id 
+			// 	LEFT JOIN product p on p.id = pb.product_id
+			// 	WHERE pb.inventory <= pb.stock_limit 
+			// 	GROUP BY pb.branch_id
+			// 	LIMIT 10'
+			// 	)->result();
 
 
 			$data = [
@@ -102,7 +102,7 @@ class Welcome extends CI_Controller {
 				'top10_products'=> $top10_products,
 				'profit_per_day' => $total_profit_per_day,
 				'total_profit' => $total_profit,
-				'branch_out_of_stock' => $branch_out_of_stock,
+				// 'branch_out_of_stock' => $branch_out_of_stock,
 				
 			];
 			 $this->load->view('dashboard', $data);
