@@ -338,7 +338,7 @@
                   <?php foreach($branch_out_of_stock as $branch_out):?>
                   <tr>
                     <td>
-                      <span class="text-left"><?= $rowId < 10 ? "0".$rowId++ : $rowId ?></span>
+                      <span class="text-left"><?= $rowId < 10 ? "0".$rowId++ : $rowId++ ?></span>
                     </td>
                     <td>
                       <a href="#">
