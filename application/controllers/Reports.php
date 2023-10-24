@@ -16,7 +16,7 @@ class Reports extends CI_Controller
     {
         //get orders count of each staff and total order revenue raised by each staff
         $report_data = $this->db->query(
-            "SELECT o.user_id, u.username, u.position, o.sell_by, COUNT(o.user_id) AS total_orders, SUM(o.amount_paid) AS total_revenue 
+            "SELECT o.user_id, u.username, u.position, COUNT(o.user_id) AS total_orders, SUM(o.amount_paid) AS total_revenue 
             FROM orders o 
             JOIN user u 
             ON u.id = o.user_id
