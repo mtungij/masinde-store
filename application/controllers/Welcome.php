@@ -85,7 +85,7 @@ class Welcome extends CI_Controller {
 				LEFT JOIN branch b on b.id = pb.branch_id 
 				LEFT JOIN product p on p.id = pb.product_id
 				WHERE pb.inventory <= pb.stock_limit 
-				GROUP BY pb.branch_id'
+				GROUP BY pb.branch_id, p.name'
 				)->result();
 
 
