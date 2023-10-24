@@ -23,6 +23,7 @@
           </div>
           <ul class="sidebar-menu flex flex-col " style="padding-bottom: 18px;">
             <!-- dashboards -->
+            <?php if($position == "admin"):?>
             <li class="relative">
               <a href="javascript:void(0)" data-type="collapse" data-target="#dashboard1" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
                 <span class="material-symbols-outlined">leaderboard</span>
@@ -46,11 +47,35 @@
                 </li>
               </ul>
             </li>
+
+          <li class="relative">
+            <a href="<?= site_url('product/register_view') ?>" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
+              <span class="material-symbols-outlined">add_task</span>
+              <span class="compact-title">Register Products</span>
+            </a>
+          </li>
+
+            <li class="relative">
+              <a href="<?= site_url('product/product_branches') ?>" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
+                <span class="material-symbols-outlined">dataset</span>
+                <span class="compact-title">Products Per Branch</span>
+              </a>
+            </li>
+
+            <li class="relative">
+              <a href="<?= site_url('user/create_index') ?>" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
+                <span class="material-symbols-outlined">groups</span>
+                <span class="compact-title">Staff</span>
+              </a>
+            </li>
+            <?php endif ?>
+            
             <li class="relative">
               <a href="javascript:void(0)" data-type="collapse" data-target="#dashboard4" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
                 <span class="material-symbols-outlined">chart_data</span>
                 <span class="compact-title">Sales</span>
               </a>
+
               <ul id="dashboard4" data-type="collapsed" class="sidebar-submenu [&.active]:block hidden">
                 <!-- <li><a href="<?= site_url('sales/dashboard') ?>" class="flex items-center py-3 pl-12 pr-6 mb-1 leading-none gap-2.5 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-primary-600/[0.08] dark:[&.active]:bg-primary-200/10 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
                     Dashboard
@@ -65,17 +90,11 @@
                   </a>
                 </li>
                 <li><a href="<?= site_url('sales/branch_sales') ?>" class="flex items-center py-3 pl-12 pr-6 mb-1 leading-none gap-2.5 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-primary-600/[0.08] dark:[&.active]:bg-primary-200/10 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
-                    Branch Sales
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="relative">
-              <a href="<?= site_url('product/product_branches') ?>" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
-                <span class="material-symbols-outlined">dataset</span>
-                <span class="compact-title">Products Per Branch</span>
-              </a>
-            </li>
+                  Branch Sales
+                </a>
+              </li>
+            </ul>
+          </li>
 
             <li class="relative">
               <a href="<?= site_url('product/sell') ?>" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
@@ -83,30 +102,22 @@
                 <span class="compact-title">Sell Product</span>
               </a>
             </li>
+            <?php if($position != "vendor"):?>
             <li class="relative">
               <a href="<?= site_url('vendors') ?>" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
                 <span class="material-symbols-outlined">autorenew</span>
                 <span class="compact-title">Vendor Transfers</span>
               </a>
             </li>
+            <?php endif ?>
+            
             <li class="relative">
               <a href="<?= site_url('store/transfer_product_view') ?>" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
                 <span class="material-symbols-outlined">rebase</span>
                 <span class="compact-title">Transfer Products</span>
               </a>
             </li>
-            <li class="relative">
-              <a href="<?= site_url('product/register_view') ?>" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
-                <span class="material-symbols-outlined">add_task</span>
-                <span class="compact-title">Register Products</span>
-              </a>
-            </li>
-            <li class="relative">
-              <a href="<?= site_url('user/create_index') ?>" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
-                <span class="material-symbols-outlined">groups</span>
-                <span class="compact-title">Staff</span>
-              </a>
-            </li>
+            
             <li class="relative">
               <a href="<?= site_url('product') ?>" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
                 <span class="material-symbols-outlined">view_agenda</span>
@@ -137,7 +148,7 @@
               </ul>
             </li>
 
-
+           <?php if($position == "admin"):?> 
             <li class="relative">
               <a href="javascript:void(0)" data-type="collapse" data-target="#dashboard5" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
                 <span class="material-symbols-outlined">fact_check</span>
@@ -177,8 +188,8 @@
                   </a>
                 </li>
               </ul>
-
             </li>
+            <?php endif ?>
           </ul>
 
          
