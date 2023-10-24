@@ -21,7 +21,7 @@
           <div class="pt-6 pb-2 px-4 compact-hide">
             <p class="text-title-sm font-medium uppercase text-gray-600 dark:text-gray-400">Home</p>
           </div>
-          <ul class="sidebar-menu flex flex-col">
+          <ul class="sidebar-menu flex flex-col " style="padding-bottom: 18px;">
             <!-- dashboards -->
             <li class="relative">
               <a href="javascript:void(0)" data-type="collapse" data-target="#dashboard1" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
@@ -138,7 +138,7 @@
             </li>
 
 
-              <li class="relative">
+            <li class="relative">
               <a href="javascript:void(0)" data-type="collapse" data-target="#dashboard5" class="flex flex-row items-center gap-3 py-3 pl-4 pr-6 mb-1 rounded-full hover-icon [&.active]:text-gray-900 dark:[&.active]:text-gray-100 [&.active]:bg-secondary-100 dark:[&.active]:bg-secondary-700 hover:bg-primary-600/[0.08] dark:hover:bg-primary-200/[0.08]">
                 <span class="material-symbols-outlined">fact_check</span>
                 <span class="compact-title">Reports</span>
@@ -177,6 +177,7 @@
                   </a>
                 </li>
               </ul>
+
             </li>
           </ul>
 
