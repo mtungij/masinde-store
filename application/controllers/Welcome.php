@@ -36,7 +36,7 @@ class Welcome extends CI_Controller {
 				'SELECT sum(profit) as total_profit from order_item')->row();
 
 			$total_revenue = $this->db->query(
-				'SELECT sum(amount_paid) as total_revenue from orders')->row();
+				'SELECT sum(total) as total_revenue from sales')->row();
 
 			$total_sales = $this->db->query(
 				'SELECT count(*) as total_sales from orders')->row();
