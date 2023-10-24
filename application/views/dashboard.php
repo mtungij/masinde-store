@@ -327,7 +327,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
         <div>
           <!-- card -->
-          <div class="flex flex-col rounded-xl bg-white dark:bg-gray-900">
+          <!-- <div class="flex flex-col rounded-xl bg-white dark:bg-gray-900">
             <div class="pt-5 px-6 flex flex-row gap-2 items-center justify-between pb-3">
               <h3 class="text-title-md text-gray-800 dark:text-gray-200">Out Of Stock Products</h3>
             </div>
@@ -358,7 +358,7 @@
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> -->
         </div>
         <div>
           <!-- card -->
