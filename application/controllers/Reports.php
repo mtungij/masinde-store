@@ -16,12 +16,12 @@ class Reports extends CI_Controller
     {
         //get orders count of each staff and total order revenue raised by each staff
         $report_data = $this->db->query(
-            "SELECT o.user_id, u.username, u.position, o.sell_by, COUNT(*) AS total_orders, SUM(amount_paid) AS total_revenue 
+            "SELECT o.user_id, u.username, u.position, o.sell_by, COUNT(o.user_id) AS total_orders, SUM(o.amount_paid) AS total_revenue 
             FROM orders o 
             JOIN user u 
             ON u.id = o.user_id
             WHERE DATE(o.created_at) = CURDATE()
-            GROUP BY user_id"
+            GROUP BY o.user_id"
           )->result();
 
         $this->load->view('reports/staff_wise', ["datas" => $report_data, "from" => null, "to" => null]);
@@ -50,12 +50,12 @@ class Reports extends CI_Controller
     {
         //get orders count of each branch and total order revenue raised by each branch
         $report_data = $this->db->query(
-            "SELECT o.branch_id, b.name as branch, COUNT(*) AS total_orders, SUM(amount_paid) AS total_revenue 
+            "SELECT o.branch_id, b.name as branch, COUNT(o.branch_id) AS total_orders, SUM(o.amount_paid) AS total_revenue 
             FROM orders o 
             JOIN branch b 
             ON b.id = o.branch_id
             WHERE DATE(o.created_at) = CURDATE()
-            GROUP BY branch_id"
+            GROUP BY o.branch_id"
           )->result();
 
         $this->load->view('reports/branch_wise', ["datas" => $report_data, "from" => null, "to" => null]);
@@ -154,6 +154,39 @@ class Reports extends CI_Controller
 
 
         $this->load->view("reports/empty_products", ["datas"=> $report_data]);
+    }
+
+
+    public function expenses() {
+        $report_data = $this->db->query(
+            "SELECT e.id, e.description, e.amount, e.created_at, b.name as branch, u.username as staff
+            FROM expenses e
+            JOIN branch b
+            ON b.id = e.branch_id
+            JOIN user u
+            ON u.id = e.user_id
+            WHERE DATE(e.created_at) = CURDATE()
+            ")->result();
+
+        $this->load->view("reports/expenses", ["datas"=> $report_data, "from" => null, "to" => null]);
+    }
+
+
+    public function expenses_filter() {
+        $from_date = $this->input->post('from');
+        $to_date = $this->input->post('to');
+
+        $report_data = $this->db->query(
+            "SELECT e.id, e.description, e.amount, e.created_at, b.name as branch, u.username as staff
+            FROM expenses e
+            JOIN branch b
+            ON b.id = e.branch_id
+            JOIN user u
+            ON u.id = e.user_id
+            WHERE DATE(e.created_at) BETWEEN '$from_date' AND '$to_date'
+            ")->result();
+
+        $this->load->view("reports/expenses", ["datas"=> $report_data, "from" => $from_date, "to" => $to_date]);
     }
 
 }

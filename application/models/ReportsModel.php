@@ -6,11 +6,11 @@ class ReportsModel extends CI_Model
     {
         //get orders count of each staff and total order revenue raised by each staff
         $report_data = $this->db->query(
-            "SELECT o.user_id, u.username, u.position, o.sell_by, COUNT(*) AS total_orders, SUM(amount_paid) AS total_revenue 
+            "SELECT o.user_id, u.username, u.position, o.sell_by, COUNT(o.user_id) AS total_orders, SUM(o.amount_paid) AS total_revenue 
             FROM orders o 
             JOIN user u 
             WHERE u.id = o.user_id
-            GROUP BY user_id"
+            GROUP BY o.user_id"
           )->result();
 
         return $report_data;
@@ -21,11 +21,11 @@ class ReportsModel extends CI_Model
     {
         //get orders count of each staff and total order revenue raised by each staff
         $report_data = $this->db->query(
-            "SELECT o.user_id, u.username, u.position, o.sell_by, COUNT(*) AS total_orders, SUM(amount_paid) AS total_revenue 
+            "SELECT o.user_id, u.username, u.position, o.sell_by, COUNT(o.user_id) AS total_orders, SUM(o.amount_paid) AS total_revenue 
             FROM orders o 
             JOIN user u 
             WHERE u.id = o.user_id
-            GROUP BY user_id"
+            GROUP BY o.user_id"
           )->result();
 
         return $report_data;
@@ -36,11 +36,11 @@ class ReportsModel extends CI_Model
     {
         //get orders count of each staff and total order revenue raised by each staff between two dates(created_at)
         $report_data = $this->db->query(
-            "SELECT o.user_id, u.username, u.position, o.sell_by, COUNT(*) AS total_orders, SUM(amount_paid) AS total_revenue 
+            "SELECT o.user_id, u.username, u.position, o.sell_by, COUNT(o.user_id) AS total_orders, SUM(o.amount_paid) AS total_revenue 
             FROM orders o 
             JOIN user u 
             WHERE u.id = o.user_id AND o.created_at BETWEEN '$from_date' AND '$to_date'
-            GROUP BY user_id"
+            GROUP BY o.user_id"
           )->result();
 
         return $report_data;
@@ -51,11 +51,11 @@ class ReportsModel extends CI_Model
     {
         //get orders count of each branch and total order revenue raised by each branch
         $report_data = $this->db->query(
-            "SELECT o.branch_id, b.name, COUNT(*) AS total_orders, SUM(amount_paid) AS total_revenue 
+            "SELECT o.branch_id, b.name, COUNT(o.branch_id) AS total_orders, SUM(o.amount_paid) AS total_revenue 
             FROM orders o 
             JOIN branch b 
             WHERE b.id = o.branch_id
-            GROUP BY branch_id"
+            GROUP BY o.branch_id"
           )->result();
 
         return $report_data;
@@ -67,11 +67,11 @@ class ReportsModel extends CI_Model
     {
         //get orders count of each branch and total order revenue raised by each branch between two dates(created_at)
         $report_data = $this->db->query(
-            "SELECT o.branch_id, b.name as branch, COUNT(*) AS total_orders, SUM(amount_paid) AS total_revenue 
+            "SELECT o.branch_id, b.name as branch, COUNT(o.branch_id) AS total_orders, SUM(o.amount_paid) AS total_revenue 
             FROM orders o 
             JOIN branch b 
             WHERE b.id = o.branch_id AND o.created_at BETWEEN '$from_date' AND '$to_date'
-            GROUP BY branch_id"
+            GROUP BY o.branch_id"
           )->result();
 
         return $report_data;
@@ -115,5 +115,6 @@ class ReportsModel extends CI_Model
         return $report_data;
     }
 
+    
    
 }

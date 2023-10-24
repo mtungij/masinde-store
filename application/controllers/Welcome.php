@@ -51,7 +51,7 @@ class Welcome extends CI_Controller {
 				   'SELECT b.name as name, sum(pb.inventory) as total_products_amount 
 				   FROM product_branch pb 
 				   LEFT JOIN branch b on b.id = pb.branch_id 
-				   GROUP BY branch_id 
+				   GROUP BY pb.branch_id 
 				   ORDER BY total_products_amount DESC'
 				)->result();
 
@@ -60,7 +60,7 @@ class Welcome extends CI_Controller {
 				  'SELECT b.name as name, count(*) as total_sales, sum(o.amount_paid) as total_revenue 
 					FROM orders o 
 					LEFT JOIN branch b on b.id = o.branch_id 
-					GROUP BY branch_id 
+					GROUP BY o.branch_id 
 					ORDER BY total_sales 
 					DESC'
 				)->result();
@@ -80,12 +80,12 @@ class Welcome extends CI_Controller {
 
 			//get number of out of out stock branch_product(inventory <= stock_limit) from each branch
 			$branch_out_of_stock = $this->db->query(
-				'SELECT p.name as product_name, b.name as branch_name, count(*) as total_out_of_stock 
+				'SELECT p.name as product_name, b.name as branch_name, count(p.name) as total_out_of_stock 
 				FROM product_branch pb 
 				LEFT JOIN branch b on b.id = pb.branch_id 
 				LEFT JOIN product p on p.id = pb.product_id
 				WHERE pb.inventory <= pb.stock_limit 
-				GROUP BY pb.branch_id, p.name'
+				GROUP BY pb.branch_id'
 				)->result();
 
 

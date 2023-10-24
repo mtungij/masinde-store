@@ -24,8 +24,9 @@ class User extends CI_Controller
 
     public function create_index()
     {
+        $users = $this->UserModel->get_users();
         $branches = $this->BranchModel->get_branches();
-        $this->load->view('users/add_user', ['branches' => $branches]);
+        $this->load->view('users/add_user', ['branches' => $branches, 'users' => $users]);
     }
 
     public function update()

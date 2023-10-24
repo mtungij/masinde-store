@@ -273,14 +273,14 @@
           </div>
         </div>
         <!-- card -->
-        <div class="max-sm:w-60 max-sm:flex-shrink-0 py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
+        <!-- <div class="max-sm:w-60 max-sm:flex-shrink-0 py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
           <div class="flex flex-row gap-2 items-center justify-between pb-3">
             <h3 class="text-title-md text-gray-800 dark:text-gray-200">Traffic Sources</h3>
           </div>
           <div class="relative w-3/4 mx-auto">
             <canvas class="max-w-100" id="SourceChart"></canvas>
           </div>
-        </div>
+        </div> -->
         <!-- card -->
         <div class="relative overflow-hidden max-sm:w-60 max-sm:flex-shrink-0 py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
           <div class="flex flex-row gap-2 items-center justify-between pb-3">

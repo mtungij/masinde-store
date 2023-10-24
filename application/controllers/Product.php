@@ -25,11 +25,43 @@ class Product extends CI_Controller
         $this->load->view('products/product_detail', ['product' => $product]);
     }
 
+
+    public function product_branches() {
+        $data['branches'] = $this->BranchModel->get_branches();
+        $this->load->view('products/products_per_branch', $data);
+    }
+
     public function create_index()
     {
         $products = $this->db->query("SELECT * FROM product")->result();
         $branches = $this->BranchModel->get_branches();
         $this->load->view('products/add_product', ['branches' => $branches, 'products' => $products]);
+    }
+
+
+    public function branch_products($branch_id) {
+        $branch_name = $this->db->get_where("branch", ['id' => $branch_id])->row()->name;
+        $products = $this->ProductBranchModel->get_productsbranch($branch_id);
+        $this->load->view('products/branch_products_detail', ['products' => $products, 'branch' => $branch_name, 'branch_id2'=>$branch_id]);
+    }
+
+
+    public function edit_product_branch()
+    {
+        $product_branch_id = $this->input->post('product_branch_id');
+        
+        $input_data = [
+            "branch_id" => $this->input->post('branch_id'),
+            "product_id" => $this->input->post('product_id'),
+            "quantity" => $this->input->post('quantity'),
+            "inventory" => $this->input->post('quantity'),
+            "stock_limit" => $this->input->post('stock_limit'),
+        ];
+
+        //update product_branch
+        $this->db->update('product_branch', $input_data, ['id' => $product_branch_id]);
+        $this->session->set_flashdata('product_branch_updated', 'Branch product is updated successfullly!');
+        redirect('product/branch_products/'.$input_data['branch_id']);
     }
 
     public function create()
@@ -48,9 +80,25 @@ class Product extends CI_Controller
             "stock_limit" => $this->input->post('stock_limit'), 
         ];
 
-        $q = $this->ProductBranchModel->create_productbranch($product_branchdata);
+        //if product is found in the product branch table update it's quantity else add as new product branch
+        $this->db->where('product_id', $product_branchdata['product_id']);
+        $this->db->where('branch_id', $product_branchdata['branch_id']);
+        $product_branch = $this->db->get('product_branch')->row();
 
-        if($q) {
+        if($product_branch) {
+            $product_branchdata['quantity'] = $product_branch->quantity + $product_branchdata['quantity'];
+            $product_branchdata['inventory'] = $product_branch->inventory + $product_branchdata['quantity'];
+            $product_branchdata['stock_limit'] = $product_branch->stock_limit;
+            $this->db->where('product_id', $product_branchdata['product_id']);
+            $this->db->where('branch_id', $product_branchdata['branch_id']);
+            $q = $this->db->update('product_branch', $product_branchdata);
+
+            $products_url = site_url('product');
+            $this->session->set_flashdata('create_product', "Srock updated successfully! view it <a href='$products_url' style='color: orange; text-decoration: underline;'>Here</a>");
+            return redirect('product/create_index');
+        } else {
+            $q = $this->db->insert('product_branch', $product_branchdata);
+            if($q) {
             $products_url = site_url('product');
             $this->session->set_flashdata('create_product', "Product is created successfully! view it <a href='$products_url' style='color: orange; text-decoration: underline;'>Here</a>");
             return redirect('product/create_index');
@@ -58,6 +106,8 @@ class Product extends CI_Controller
             $this->session->set_flashdata('create_product_failure',"<b>Failed!<b>, We could not save this product due to unexpected error.");
             return redirect('product/create_index');
         }
+        }
+
     }
 
 
@@ -96,10 +146,6 @@ class Product extends CI_Controller
         //update_product
     }
 
-    public function delete($id)
-    {
-        //delate product
-    }
 
     public function sell() {
         $userId = $this->session->userdata('userId');

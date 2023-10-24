@@ -35,6 +35,7 @@ class Order extends CI_Controller
         $cart_id = $this->input->post('cart_id');
         $branch_id = $this->input->post('branch_id');
         $cart_price = $this->input->post('cart_price');
+        $amount_paid = $this->input->post('amount_paid');
         $order_id = "INV-".uniqid();
     
         $data = [
@@ -46,6 +47,13 @@ class Order extends CI_Controller
             'amount_paid' => $this->input->post('amount_paid'),
         ];
         $returned_orderId = $this->OrderModel->create_order($data);
+
+        //get total sales from sales table
+        $query = $this->db->select_sum('total')->where('branch_id', $branch_id)->get('sales');
+        $total_sales = $query->row()->total;
+
+        //take amount paid add to sales table(sales.total)
+        $this->db->query("UPDATE sales SET total = $total_sales + $amount_paid WHERE branch_id = $branch_id");
         
         //select all cartItems associated with this cart
         $cartItems = $this->db->query("SELECT product_id,quantity,sold_by FROM cart_item WHERE cart_id = $cart_id")->result();

@@ -1,7 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title  -->
+  <title>Add Product</title>
+
+  <!-- Style Css -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" id="stylesheet" href="<?php echo base_url('assets/css/style.css')?>">
+  <link rel="stylesheet" id="color" href="<?php echo base_url('assets/css/colors.css')?>">
+  <link rel="stylesheet" id="editors" href="<?php echo base_url('assets/css/vendor/editor.css')?>">
+  <link rel="stylesheet" id="dropzonex" href="<?php echo base_url('assets/css/vendor/dropzone.css')?>">
+
+  <!-- jquery cdn -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <script>
+      $(document).ready(function() {
+          $('.select2').select2();
+      });
+  </script>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
+  <!-- Icons  -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+
+  <!-- Favicon  -->
+  <link rel="icon" href="<?php echo base_url('assets/img/favicon.png')?>">
+</head>
+
+<body id="body-layout" class="text-body-md relative font-sans font-normal text-gray-700 dark:text-gray-300 bg-surface-500 dark:bg-surfacedark-500 show">
+<?php  include APPPATH.'/views/includes/header.php'?>
+
+  <main class="lg:flex">
+    <!-- sidebar -->
+    <?php include APPPATH.'/views/includes/sidebar.php'?>
+
+    <!-- content -->
+    <div class="main-content flex-grow min-h-[100%] py-20 relative px-4 lg:pr-8 lg:pl-3">
+      <!-- heading -->
+      <div class="flex flex-row justify-between items-center pt-2 pb-6">
+        <h2 class="text-title-lg">Add Expenses</h2>
+      </div>
+
+      <!-- content 1 -->
+      <div class="grid grid-cols-1 gap-4 md:gap-6">
+        <div class="py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
+          <!-- tabs -->
+          <div class="tabs flex flex-col w-full">
+
+            <!-- tabs content -->
+            <?php echo form_open('expenses/create_expense', ['class' => 'flex flex-col'])?>
+              <div id="tab-4" role="tabpanel" class="active [&.active]:block hidden py-4 transition duration-400 ease-in-out">
+                <div class="flex flex-col gap-8">
+
+                  <div class="flex flex-col pt-4 pb-2">
+                    <?php if($this->session->flashdata('create_expense')
+                    ):?>
+                    <div class="flex items-center gap-2 relative bg-green-50 text-green-700 p-4 rounded">
+                        <i class="material-symbols-outlined">info</i>
+                        <p><?= $this->session->flashdata('create_expense');
+                         ?></p>
+                    </div>
+                    <?php endif ?>
+                  </div>
+
+                  <hr class="border-gray-200 dark:border-gray-700">
+             
+                      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="relative z-0">
+                          <label for="description" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Description</label>
+                            <textarea name="description" required class="w-full h-32 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder="mfano; chakula = 3000, umeme = 10000 " value=" " id="description" rows="3"></textarea>
+                        </div>
+
+                        <input type="hidden" name="user_id" value="<?= $userId ?>">
+                        <input type="hidden" name="branch_id" value="<?= $branchId ?>">
+                        
+                        <div class="relative z-0">
+                          <input type="number" aria-label="amount" name="amount" id="amount" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" placeholder=" " required>
+                          <label for="amount" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Total Amount(Tsh)</label>
+                        </div>
+                      </div>
+                </div>
+              </div>
+
+              
+              <div class="relative pt-4 flex justify-end">
+                <button type="submit" class="btn relative inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] hover:shadow-md text-sm tracking-[.00714em] font-medium bg-primary-600 text-white dark:bg-primary-200 dark:text-primary-800">
+                  Add Expense
+                  <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+              </div>
+            <?php echo form_close() ?>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
   <footer class="footer absolute px-4 lg:px-8 lg:pl-3 left-0 lg:left-72 bottom-0 right-0">
     <div class="text-center py-6">
       <!-- Copyright text -->
-      <p><script>document.write(new Date().getFullYear())</script> Masinde Store - All right reserved</p>
+      <p><script>document.write(new Date().getFullYear())</script> Goodash - All right reserved</p>
     </div>
   </footer>
 
@@ -195,33 +302,12 @@
     </div>
   </div>
 
-  <!-- Charts js -->
-  <script src="<?php echo base_url('assets/vendors/chart.js/dist/chart.umd.js')?>"></script>
-  <!-- Chart config -->
-  <script src="<?php echo base_url('assets/js/charts/ecommerce.js')?>"></script>
-
-  <script src="<?php echo base_url('assets/vendors/simple-datatables/dist/umd/simple-datatables.js')?>"></script><!--sort table-->
-  <script src="<?php echo base_url('assets/js/prism.js')?>"></script>
-
-  <script src="<?php echo base_url('assets/vendors/flatpickr/dist/flatpickr.min.js')?>"></script><!-- input date -->
-  <script src="<?php echo base_url('assets/vendors/flatpickr/dist/plugins/rangePlugin.js')?>"></script><!-- input range date -->
-  <script src="<?php echo base_url('assets/js/vendor.js')?>"></script>
-
-  <script>
-  const myTablesorter = function () {
-    const els = document.querySelectorAll(".table-sorter");
-    if ( els != null) {
-      for( let i = 0; i < els.length; i++)
-      {
-        const dataTable = new simpleDatatables.DataTable((els[i]));
-      }
-    };
-  }
-  myTablesorter();
-  </script>
-
   <!-- Tailmater javascript -->
-  <script src="<?php echo base_url('assets/js/tailmater.js') ?>"></script>
+  <script src="<?php echo base_url('assets/js/tailmater.js')?>"></script>
+  <!-- vendors -->
+  <script src="<?php echo base_url('assets/vendors/simplemde/dist/simplemde.min.js')?>"></script>
+  <script src="<?php echo base_url('assets/vendors/dropzone/dist/dropzone-min.js')?>"></script><!-- uploader images -->
+  <script src="<?php echo base_url('assets/js/vendor.js')?>"></script>
 </body>
 
 </html>
