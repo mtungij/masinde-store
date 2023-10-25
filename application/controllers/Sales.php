@@ -54,10 +54,25 @@ class Sales extends CI_Controller
        $user_id = $this->session->userdata('userId');
         $mysales = $this->SalesModel->get_sales_by_user($this->session->userdata('userId'));
         //get today's sales and revenue by user
-        $today_sales = $this->db->query("SELECT COUNT(user_id) as today_sales, SUM(total_price) as revenue FROM orders WHERE user_id = $user_id AND DATE(created_at) = CURDATE()")->row_array();
+        $today_sales = $this->db->query(
+            "SELECT COUNT(user_id) as today_sales, SUM(amount_paid) as revenue 
+            FROM orders 
+            WHERE user_id = $user_id AND DATE(created_at) = CURDATE()
+          ")->row_array();
+
         //get monthly total sales and revenue by user
-        $monthly_sales = $this->db->query("SELECT COUNT(user_id) as monthly_sales, SUM(total_price) as revenue FROM orders WHERE user_id = $user_id AND MONTH(created_at) = MONTH(CURDATE())")->row_array();
-        $sales_summary = $this->db->query("SELECT COUNT(user_id) as total_sales, SUM(total_price) as revenue FROM orders WHERE user_id = $user_id")->row_array();
+        $monthly_sales = $this->db->query(
+            "SELECT COUNT(user_id) as monthly_sales, SUM(amount_paid) as revenue 
+            FROM orders 
+            WHERE user_id = $user_id AND MONTH(created_at) = MONTH(CURDATE())
+          ")->row_array();
+
+        $sales_summary = $this->db->query(
+            "SELECT COUNT(user_id) as total_sales, SUM(amount_paid) as revenue 
+            FROM orders 
+            WHERE user_id = $user_id
+          ")->row_array();
+
         $data = [
             'sales' => $mysales, 
             'sales_summary' => $sales_summary,
@@ -72,11 +87,31 @@ class Sales extends CI_Controller
     {
         $branch_id = $this->session->userdata('branchId');
         $branch_sales = $this->SalesModel->get_sales_by_branch($branch_id);
-                $sales_summary = $this->db->query("SELECT COUNT(branch_id) as total_sales, SUM(total_price) as revenue FROM orders WHERE branch_id = $branch_id")->row_array();
+        $today_branch_sales = $this->db->query(
+            "SELECT COUNT(branch_id) as today_sales, SUM(amount_paid) as revenue 
+            FROM orders 
+            WHERE branch_id = $branch_id AND DATE(created_at) = CURDATE()
+         ")->row_array();
+
+        $monthly_sales = $this->db->query(
+            "SELECT COUNT(branch_id) as monthly_sales, SUM(amount_paid) as revenue 
+            FROM orders 
+            WHERE branch_id = $branch_id AND MONTH(created_at) = MONTH(CURDATE())
+            ")->row_array();
+
+        $sales_summary = $this->db->query(
+            "SELECT COUNT(branch_id) as total_sales, SUM(amount_paid) as revenue 
+            FROM orders 
+            WHERE branch_id = $branch_id
+          ")->row_array();
+        
         $data = [
             "sales" => $branch_sales,
             "sales_summary" => $sales_summary,
+            "today_sales" => $today_branch_sales,
+            "monthly_sales" => $monthly_sales,
         ];
+
         $this->load->view('sales/branch_sales', $data);
         
     }

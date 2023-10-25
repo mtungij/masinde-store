@@ -60,8 +60,7 @@
             <div class="text-body-md flex flex-col gap-1 px-6 pb-6">
               <p><strong>Full Name :</strong><span class="ml-2"><?= $user->first_name. " " .$user->last_name ?></span></p>
               <p><strong>Username :</strong><span class="ml-2">@<?= $user->username ?></span></p>
-              <p><strong>Email :</strong><span class="ml-2"> <?= $user->email ?></span></p>
-              <p><strong>Branch :</strong><span class="ml-2"> MBALIZI BRANCH</span></p>
+              <p><strong>Branch :</strong><span class="ml-2">--</span></p>
             </div>
           </div>
         </div>
@@ -145,31 +144,13 @@
 
                         <div class="relative z-0 w-full">
                           <select id="position_id" value="<?= $user->position_id ?>" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200">
-                            <option value="1">Admin</option>
-                            <option value="2">Seller</option>
-                            <option value="3">Supplier</option>
+                            <option value="admin">Admin</option>
+                            <option value="seller">Seller</option>
+                            <option value="vendor">Vendor</option>
+                            <option value="store keeper">Store Keeper</option>
                           </select>
                           <label for="position_id" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Branch</label>
                         </div>
-
-                        <!-- input email -->
-                        <div class="relative z-0 w-full">
-                          <input type="text" aria-label="email" name="email" value="<?= $user->email ?>" id="email" class="w-full h-12 block leading-5 relative py-2 px-4 rounded bg-neutral-10 dark:bg-neutral-900 border focus:border-2 border-gray-500 overflow-x-auto focus:outline-none focus:border-primary-600 focus:ring-0 dark:text-gray-200 dark:border-gray-400 dark:focus:border-primary-200 peer" value="alkado@gmail.com">
-
-                          <label for="email" class="absolute tracking-[.03125em] text-gray-500 dark:text-gray-400 bg-neutral-10 dark:bg-neutral-900 duration-300 transform px-1 -translate-y-6 scale-75 top-3 z-10 origin-[0] left-4 peer-focus:left-4 peer-focus:text-primary-600 dark:peer-focus:text-primary-200 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:bg-neutral-10 dark:peer-focus:bg-neutral-900 peer-focus:px-1 peer-invalid:text-error-600 dark:peer-invalid:text-error-200">Email</label>
-                        </div>
-                      </div>
-
-
-                      <div class="relative z-0 w-full">
-                        <label class="flex items-center gap-3">
-                          <?php if($user->is_staff): ?>
-                          <input type="checkbox" name="is_staff" checked value="<?= $user->is_staff ?>" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
-                          <?php else: ?>
-                          <input type="checkbox" name="is_staff" value="<?= $user->is_staff ?>" class="w-[18px] h-[18px] flex-none accent-primary-600 hover:accent-primary-600 dark:accent-primary-200 dark:hover:accent-primary-200 rounded-[2px]">
-                          <?php endif?>
-                          <span>Can login to this system</span>
-                        </label>
                       </div>
 
                     </div>

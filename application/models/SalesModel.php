@@ -11,7 +11,7 @@ class SalesModel extends CI_Model
     public function get_sales_by_user($user_id)
     {
         //get sales by user
-        return $this->db->query("SELECT * FROM orders WHERE user_id = $user_id")->result();
+        return $this->db->query("SELECT * FROM orders WHERE user_id = $user_id ORDER BY created_at DESC")->result();
     }
 
     //get sales by date
@@ -28,13 +28,13 @@ class SalesModel extends CI_Model
 
     public function get_sales_by_branch($branch_id)
     {
-        return $this->db->query("SELECT * FROM orders WHERE branch_id = $branch_id")->result();
+        return $this->db->query("SELECT * FROM orders WHERE branch_id = $branch_id ORDER BY created_at DESC")->result();
     }
 
     public function get_sales_of_branches()
     {
         //group sales by branches
-        return $this->db->query("SELECT branch_id, COUNT(*) as total_sales, SUM(total_price) as revenue FROM orders GROUP BY branch_id")->result();
+        return $this->db->query("SELECT branch_id, COUNT(*) as total_sales, SUM(amount_paid) as revenue FROM orders GROUP BY branch_id")->result();
     }
 
 
@@ -47,25 +47,25 @@ class SalesModel extends CI_Model
     //get total sales of the day by branch
     public function get_sales_of_the_day_by_branch($branch_id)
     {
-        return $this->db->query("SELECT COUNT(*) as total_sales, SUM(total_price) as revenue FROM orders WHERE branch_id = $branch_id AND DATE(created_at) = CURDATE()")->row();
+        return $this->db->query("SELECT COUNT(*) as total_sales, SUM(amount_paid) as revenue FROM orders WHERE branch_id = $branch_id AND DATE(created_at) = CURDATE()")->row();
     }
 
     //get total sales of the week by branch
     public function get_sales_of_the_week_by_branch($branch_id)
     {
-        return $this->db->query("SELECT COUNT(*) as total_sales, SUM(total_price) as revenue FROM orders WHERE branch_id = $branch_id AND WEEK(created_at) = WEEK(CURDATE())")->row();
+        return $this->db->query("SELECT COUNT(*) as total_sales, SUM(amount_paid) as revenue FROM orders WHERE branch_id = $branch_id AND WEEK(created_at) = WEEK(CURDATE())")->row();
     }
 
     //get total sales of the month by branch
     public function get_sales_of_the_month_by_branch($branch_id)
     {
-        return $this->db->query("SELECT COUNT(*) as total_sales, SUM(total_price) as revenue FROM orders WHERE branch_id = $branch_id AND MONTH(created_at) = MONTH(CURDATE())")->row();
+        return $this->db->query("SELECT COUNT(*) as total_sales, SUM(amount_paid) as revenue FROM orders WHERE branch_id = $branch_id AND MONTH(created_at) = MONTH(CURDATE())")->row();
     }
 
     //get total sales of the year by branch
     public function get_sales_of_the_year_by_branch($branch_id)
     {
-        return $this->db->query("SELECT COUNT(*) as total_sales, SUM(total_price) as revenue FROM orders WHERE branch_id = $branch_id AND YEAR(created_at) = YEAR(CURDATE())")->row();
+        return $this->db->query("SELECT COUNT(*) as total_sales, SUM(amount_paid) as revenue FROM orders WHERE branch_id = $branch_id AND YEAR(created_at) = YEAR(CURDATE())")->row();
     }
 
 
@@ -81,14 +81,14 @@ class SalesModel extends CI_Model
     //-total sales per each branch for each day
     public function get_sales_of_branches_per_day()
     {
-        return $this->db->query("SELECT branch_id, DATE(created_at) day, COUNT(*) as total_sales, SUM(total_price) as revenue FROM orders GROUP BY branch_id, DATE(created_at)")->result();
+        return $this->db->query("SELECT branch_id, DATE(created_at) day, COUNT(*) as total_sales, SUM(amount_paid) as revenue FROM orders GROUP BY branch_id, DATE(created_at)")->result();
     }
 
     //group sales by branches for each week
     //-total sales per each branch for each week
     public function get_sales_of_branches_per_week()
     {
-        return $this->db->query("SELECT branch_id, WEEK(created_at) week, COUNT(*) as total_sales, SUM(total_price) as revenue FROM orders GROUP BY branch_id, WEEK(created_at)")->result();
+        return $this->db->query("SELECT branch_id, WEEK(created_at) week, COUNT(*) as total_sales, SUM(amount_paid) as revenue FROM orders GROUP BY branch_id, WEEK(created_at)")->result();
     }
 
 
@@ -96,7 +96,7 @@ class SalesModel extends CI_Model
     //-total sales per each branch for each month
     public function get_sales_of_branches_per_month()
     {
-        return $this->db->query("SELECT branch_id, MONTHNAME(created_at) month, COUNT(*) as total_sales, SUM(total_price) as revenue FROM orders GROUP BY branch_id, MONTH(created_at)")->result();
+        return $this->db->query("SELECT branch_id, MONTHNAME(created_at) month, COUNT(*) as total_sales, SUM(amount_paid) as revenue FROM orders GROUP BY branch_id, MONTH(created_at)")->result();
     }
 
 
@@ -104,7 +104,7 @@ class SalesModel extends CI_Model
     //-total sales per each branch for each year
     public function get_sales_of_branches_per_year()
     {
-        return $this->db->query("SELECT branch_id, YEAR(created_at) year, COUNT(*) as total_sales, SUM(total_price) as revenue FROM orders GROUP BY branch_id, YEAR(created_at)")->result();
+        return $this->db->query("SELECT branch_id, YEAR(created_at) year, COUNT(*) as total_sales, SUM(amount_paid) as revenue FROM orders GROUP BY branch_id, YEAR(created_at)")->result();
     }
 
     public function get_general_sales()
@@ -124,7 +124,7 @@ class SalesModel extends CI_Model
     public function get_sales_per_each_day()
     {
         //group sales by days
-        return $this->db->query("SELECT DATE(created_at) as day, COUNT(*) as total_sales, SUM(total_price) as revenue FROM orders GROUP BY DATE(created_at)")->result();
+        return $this->db->query("SELECT DATE(created_at) as day, COUNT(*) as total_sales, SUM(amount_paid) as revenue FROM orders GROUP BY DATE(created_at)")->result();
     }
 
     public function get_order_items_of_the_day()
@@ -142,7 +142,7 @@ class SalesModel extends CI_Model
     public function get_profit_per_each_day()
     {
         //group profits by days
-        return $this->db->query("SELECT DATE(created_at) as day, SUM(o.total_price) as revenue, SUM(oi.profit) as profit FROM orders o JOIN order_item oi ON o.order_number = oi.order_id GROUP BY DATE(o.created_at)")->result();
+        return $this->db->query("SELECT DATE(created_at) as day, SUM(o.amount_paid) as revenue, SUM(oi.profit) as profit FROM orders o JOIN order_item oi ON o.order_number = oi.order_id GROUP BY DATE(o.created_at)")->result();
     }
 
 
@@ -158,7 +158,7 @@ class SalesModel extends CI_Model
     public function get_sales_per_each_week()
     {
         //group sales by weeks
-        return $this->db->query("SELECT WEEK(created_at) as week, COUNT(*) as total_sales, SUM(total_price) as revenue FROM orders GROUP BY WEEK(created_at)")->result();
+        return $this->db->query("SELECT WEEK(created_at) as week, COUNT(*) as total_sales, SUM(amount_paid) as revenue FROM orders GROUP BY WEEK(created_at)")->result();
     }
 
     public function get_order_items_of_the_week()
@@ -176,13 +176,13 @@ class SalesModel extends CI_Model
     public function get_profit_of_the_week()
     {
         //group profits by weeks
-        return $this->db->query("SELECT WEEK(created_at) as week, SUM(o.total_price) as revenue, SUM(oi.profit) as profit FROM orders o JOIN order_item oi ON o.order_number = oi.order_id GROUP BY WEEK(o.created_at)")->result();
+        return $this->db->query("SELECT WEEK(created_at) as week, SUM(o.amount_paid) as revenue, SUM(oi.profit) as profit FROM orders o JOIN order_item oi ON o.order_number = oi.order_id GROUP BY WEEK(o.created_at)")->result();
     }
 
     public function get_profit_per_each_week()
     {
         //group sales by weeks
-        return $this->db->query("SELECT WEEK(created_at) as week, SUM(o.total_price) as revenue, SUM(oi.profit) as profit FROM orders o JOIN order_item oi ON o.order_number = oi.order_id GROUP BY WEEK(o.created_at)")->result();
+        return $this->db->query("SELECT WEEK(created_at) as week, SUM(o.amount_paid) as revenue, SUM(oi.profit) as profit FROM orders o JOIN order_item oi ON o.order_number = oi.order_id GROUP BY WEEK(o.created_at)")->result();
     }
 
 
@@ -197,7 +197,7 @@ class SalesModel extends CI_Model
     public function get_sales_per_each_month()
     {
         //group sales by months
-        return $this->db->query("SELECT MONTHNAME(created_at) as month, COUNT(*) as total_sales, SUM(total_price) as revenue FROM orders GROUP BY MONTH(created_at)")->result();
+        return $this->db->query("SELECT MONTHNAME(created_at) as month, COUNT(*) as total_sales, SUM(amount_paid) as revenue FROM orders GROUP BY MONTH(created_at)")->result();
     }
 
 
@@ -216,7 +216,7 @@ class SalesModel extends CI_Model
     public function get_profit_per_each_month()
     {
         //group sales by months
-        return $this->db->query("SELECT MONTHNAME(created_at) as month, SUM(o.total_price) as revenue, SUM(oi.profit) as profit FROM orders o JOIN order_item oi ON o.order_number = oi.order_id GROUP BY MONTH(o.created_at)")->result();
+        return $this->db->query("SELECT MONTHNAME(created_at) as month, SUM(o.amount_paid) as revenue, SUM(oi.profit) as profit FROM orders o JOIN order_item oi ON o.order_number = oi.order_id GROUP BY MONTH(o.created_at)")->result();
     }
 
 
@@ -233,7 +233,7 @@ class SalesModel extends CI_Model
     //get profit of this year
     public function get_profit_of_the_year()
     {
-        return $this->db->query("SELECT SUM(o.total_price) as revenue, SUM(oi.profit) as profit FROM orders o JOIN order_item oi ON o.order_number = oi.order_id WHERE YEAR(o.created_at) = YEAR(CURDATE())")->row();
+        return $this->db->query("SELECT SUM(o.amount_paid) as revenue, SUM(oi.profit) as profit FROM orders o JOIN order_item oi ON o.order_number = oi.order_id WHERE YEAR(o.created_at) = YEAR(CURDATE())")->row();
     }
 
     //get top 10 products sold this year

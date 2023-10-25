@@ -69,10 +69,8 @@ class Auth extends CI_Controller
             'first_name' => $this->input->post('first_name'),
             'last_name' => $this->input->post('last_name'),
             'username' => $this->input->post('username'),
-            'email' => $this->input->post('email'),
             'branch_id' => $this->input->post('branch_id'),
             'position' => $this->input->post('position_id'),
-            'salary' => $this->input->post('salary'),
             'password' => $this->input->post('password'),
         ];
 
@@ -101,12 +99,9 @@ class Auth extends CI_Controller
                 ],
             ],
             [
-                'field' => 'email',
-                'label' => 'Email',
-                'rules' => 'trim|required|min_length[4]|max_length[100]|valid_email|is_unique[user.email]',
-                'errors' => [
-                    'is_unique' => 'This %s is already exist.'
-                ],
+                'field' => 'username',
+                'label' => 'Username',
+                'rules' => 'trim|required',
             ],
             [
                 'field' => 'password',

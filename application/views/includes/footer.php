@@ -1,7 +1,7 @@
   <footer class="footer absolute px-4 lg:px-8 lg:pl-3 left-0 lg:left-72 bottom-0 right-0">
     <div class="text-center py-6">
       <!-- Copyright text -->
-      <p><script>document.write(new Date().getFullYear())</script> Goodash - All right reserved</p>
+      <p><script>document.write(new Date().getFullYear())</script> Masinde Store - All right reserved</p>
     </div>
   </footer>
 
@@ -201,6 +201,12 @@
   <script src="<?php echo base_url('assets/js/charts/ecommerce.js')?>"></script>
 
   <script src="<?php echo base_url('assets/vendors/simple-datatables/dist/umd/simple-datatables.js')?>"></script><!--sort table-->
+  <script src="<?php echo base_url('assets/js/prism.js')?>"></script>
+
+  <script src="<?php echo base_url('assets/vendors/flatpickr/dist/flatpickr.min.js')?>"></script><!-- input date -->
+  <script src="<?php echo base_url('assets/vendors/flatpickr/dist/plugins/rangePlugin.js')?>"></script><!-- input range date -->
+  <script src="<?php echo base_url('assets/js/vendor.js')?>"></script>
+
   <script>
   const myTablesorter = function () {
     const els = document.querySelectorAll(".table-sorter");
@@ -218,5 +224,4 @@
   <script src="<?php echo base_url('assets/js/tailmater.js') ?>"></script>
 </body>
 
-<!-- Mirrored from goodash.tailwinddashboard.com/ecommerce/ecommerce-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Sep 2023 19:18:05 GMT -->
 </html>

@@ -122,8 +122,8 @@
             <thead>
               <tr>
                 <th>S/NO</th>
-                <th>Product</th>
-                <th>Transfered To</th>
+                <th>Product Name</th>
+                <th>Vendor</th>
                 <th>Quantity</th>
                 <th>Date</th>
                 <th>Confirm</th>
@@ -134,8 +134,8 @@
               <?php foreach($transfers as $transfer):?>
               <tr class="[&.selected]:!bg-primary-100 dark:[&.selected]:!bg-primary-700">
                 <td class="flex items-center gap-3"><?= $rowId < 10 ? "0".$rowId++ : $rowId ?></td>
-                <td><?= $transfer->username ?></td>
                 <td><?= $transfer->name ?></td>
+                <td><?= $transfer->username ?></td>
                 <td><?= $transfer->quantity ?></td>
                 <td><?= $transfer->created_at ?></td>
                 <td class="font-normal text-center">

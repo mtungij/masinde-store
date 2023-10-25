@@ -5,23 +5,24 @@ class UserModel extends CI_Model
 {
     public function get_users(): array
     {
-        $users = $this->db->order_by('created_at', 'desc')->get('User')->result();
+        //get users and their branches
+        $users = $this->db->query("SELECT u.*, b.name as branch_name FROM user u JOIN branch b ON u.branch_id = b.id ORDER BY created_at DESC")->result();
         return $users;
     }
 
     public function get_login_user($data)
     {
-       return $this->db->get_where('User', $data)->row();
+       return $this->db->get_where('user', $data)->row();
     }
 
     public function get_user($id)
     {
-       return $this->db->get_where('User', ['id' => $id])->row();
+       return $this->db->get_where('user', ['id' => $id])->row();
     }
 
     public function create_user($data)
     {
-        $this->db->insert('User', $data);
+        $this->db->insert('user', $data);
     }
 
 

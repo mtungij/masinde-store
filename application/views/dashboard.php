@@ -273,14 +273,14 @@
           </div>
         </div>
         <!-- card -->
-        <div class="max-sm:w-60 max-sm:flex-shrink-0 py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
+        <!-- <div class="max-sm:w-60 max-sm:flex-shrink-0 py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
           <div class="flex flex-row gap-2 items-center justify-between pb-3">
             <h3 class="text-title-md text-gray-800 dark:text-gray-200">Traffic Sources</h3>
           </div>
           <div class="relative w-3/4 mx-auto">
             <canvas class="max-w-100" id="SourceChart"></canvas>
           </div>
-        </div>
+        </div> -->
         <!-- card -->
         <div class="relative overflow-hidden max-sm:w-60 max-sm:flex-shrink-0 py-8 px-6 flex flex-col rounded-xl bg-white dark:bg-gray-900">
           <div class="flex flex-row gap-2 items-center justify-between pb-3">
@@ -327,7 +327,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
         <div>
           <!-- card -->
-          <div class="flex flex-col rounded-xl bg-white dark:bg-gray-900">
+          <!-- <div class="flex flex-col rounded-xl bg-white dark:bg-gray-900">
             <div class="pt-5 px-6 flex flex-row gap-2 items-center justify-between pb-3">
               <h3 class="text-title-md text-gray-800 dark:text-gray-200">Out Of Stock Products</h3>
             </div>
@@ -338,7 +338,7 @@
                   <?php foreach($branch_out_of_stock as $branch_out):?>
                   <tr>
                     <td>
-                      <span class="text-left"><?= $rowId < 10 ? "0".$rowId++ : $rowId ?></span>
+                      <span class="text-left"><?= $rowId < 10 ? "0".$rowId++ : $rowId++ ?></span>
                     </td>
                     <td>
                       <a href="#">
@@ -358,7 +358,7 @@
                 </tbody>
               </table>
             </div>
-          </div>
+          </div> -->
         </div>
         <div>
           <!-- card -->

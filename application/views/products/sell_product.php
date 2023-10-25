@@ -166,10 +166,10 @@
                   <input type="hidden" name="cart_id" value="<?= $cart_id ?>">
                   <input type="hidden" name="user_id" value="<?= $userId ?>">
                   <input type="hidden" name="branch_id" value="<?= $branchId ?>">
-                  <input type="hidden" name="sell_type" value="debt">
+                  <input type="hidden" name="sell_type" value="credit">
                   <?php if($cart_price != 0):?>
                   <button type="submitt" class="btn btn-tonal relative flex max-sm:w-full sm:inline-flex flex-row items-center justify-center gap-x-2 py-2.5 px-6 rounded-[6.25rem] text-sm tracking-[.00714em] font-medium hover:shadow bg-red-100 text-primary-900 dark:bg-secondary-700 dark:text-secondary-100">
-                      Sell By Debt
+                      Sell By Credit
                   </button>
                   <?php endif?>
                   <?php echo form_close()?>

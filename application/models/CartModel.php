@@ -3,7 +3,7 @@
 class CartModel extends CI_Model
 {
     public function get_carts() {
-        return $this->db->get('Cart')->result();
+        return $this->db->get('cart')->result();
         
     }
 
@@ -19,17 +19,17 @@ class CartModel extends CI_Model
 
     public function get_latest_cart($userId)
     {
-        return $this->db->get_where('Cart', ['user_id' => $userId])->row();
+        return $this->db->get_where('cart', ['user_id' => $userId])->row();
     }
 
     public function create_cart($data)
     {
-        return $this->db->insert('Cart', $data);
+        return $this->db->insert('cart', $data);
     }
 
     public function delete($id)
     {
-        return $this->db->delete('Cart', ['id' => $id]);
+        return $this->db->delete('cart', ['id' => $id]);
         
     }
 }
